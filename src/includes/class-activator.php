@@ -11,6 +11,8 @@
 
 namespace BH_WP_AWS_SES_Bounce_Handler\includes;
 
+use BH_WP_AWS_SES_Bounce_Handler\API\Settings_Interface;
+
 /**
  * Fired during plugin activation.
  *

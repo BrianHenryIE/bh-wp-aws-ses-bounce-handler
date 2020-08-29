@@ -14,6 +14,7 @@
 
 namespace BH_WP_AWS_SES_Bounce_Handler\includes;
 
+use BH_WP_AWS_SES_Bounce_Handler\API\Settings_Interface;
 use BH_WP_AWS_SES_Bounce_Handler\admin\Admin;
 use BH_WP_AWS_SES_Bounce_Handler\admin\Ajax;
 use BH_WP_AWS_SES_Bounce_Handler\admin\Plugins_Page;

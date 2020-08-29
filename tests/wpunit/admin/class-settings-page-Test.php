@@ -8,7 +8,7 @@
 
 namespace BH_WP_AWS_SES_Bounce_Handler\admin;
 
-use BH_WP_AWS_SES_Bounce_Handler\includes\Settings;
+use BH_WP_AWS_SES_Bounce_Handler\API\Settings;
 
 /**
  * Tests the wp_mail function introspection.

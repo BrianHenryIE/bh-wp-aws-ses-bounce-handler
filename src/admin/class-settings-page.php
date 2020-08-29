@@ -14,7 +14,7 @@ namespace BH_WP_AWS_SES_Bounce_Handler\admin;
 use BH_WP_AWS_SES_Bounce_Handler\admin\settings\AWS_SNS_ARN_Abstract;
 use BH_WP_AWS_SES_Bounce_Handler\admin\partials\AWS_SNS_ARN_Complaints;
 use BH_WP_AWS_SES_Bounce_Handler\admin\settings\Settings_Section_Element_Abstract;
-use BH_WP_AWS_SES_Bounce_Handler\includes\Settings_Interface;
+use BH_WP_AWS_SES_Bounce_Handler\API\Settings_Interface;
 use BH_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
 
 /**

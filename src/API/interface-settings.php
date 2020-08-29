@@ -9,7 +9,7 @@
  * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  */
 
-namespace BH_WP_AWS_SES_Bounce_Handler\includes;
+namespace BH_WP_AWS_SES_Bounce_Handler\API;
 
 /**
  * The settings interface.

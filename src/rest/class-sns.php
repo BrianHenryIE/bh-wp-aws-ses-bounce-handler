@@ -11,7 +11,7 @@
 
 namespace BH_WP_AWS_SES_Bounce_Handler\rest;
 
-use BH_WP_AWS_SES_Bounce_Handler\includes\Settings_Interface;
+use BH_WP_AWS_SES_Bounce_Handler\API\Settings_Interface;
 use BH_WP_AWS_SES_Bounce_Handler\Logger;
 use BH_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
 use stdClass;

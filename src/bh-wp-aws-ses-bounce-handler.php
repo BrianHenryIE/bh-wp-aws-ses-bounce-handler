@@ -55,7 +55,7 @@ namespace {
 namespace BH_WP_AWS_SES_Bounce_Handler {
 
 	use BH_WP_AWS_SES_Bounce_Handler\includes\BH_WP_AWS_SES_Bounce_Handler;
-	use BH_WP_AWS_SES_Bounce_Handler\includes\Settings;
+	use BH_WP_AWS_SES_Bounce_Handler\API\Settings;
 	use BH_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Loader;
 
 	require_once plugin_dir_path( __FILE__ ) . 'autoload.php';

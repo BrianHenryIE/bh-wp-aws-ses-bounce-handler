@@ -8,8 +8,8 @@
 
 namespace BH_WP_AWS_SES_Bounce_Handler\rest;
 
-use BH_WP_AWS_SES_Bounce_Handler\includes\Settings;
-use BH_WP_AWS_SES_Bounce_Handler\includes\Settings_Interface;
+use BH_WP_AWS_SES_Bounce_Handler\API\Settings;
+use BH_WP_AWS_SES_Bounce_Handler\API\Settings_Interface;
 
 /**
  * Check the route is correctly registered, send it some data.
