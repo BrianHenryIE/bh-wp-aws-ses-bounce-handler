@@ -17,7 +17,7 @@ modules:
             tablePrefix: "%TEST_TABLE_PREFIX%"
             domain: "%TEST_SITE_WP_DOMAIN%"
             adminEmail: "%TEST_SITE_ADMIN_EMAIL%"
-            title: "ea-wp-aws-ses-bounce-handler"
-            plugins: ['ea-wp-aws-ses-bounce-handler/ea-wp-aws-ses-bounce-handler.php','woocommerce/woocommerce.php']
-            activatePlugins: ['ea-wp-aws-ses-bounce-handler/ea-wp-aws-ses-bounce-handler.php', 'woocommerce/woocommerce.php']
+            title: "bh-wp-aws-ses-bounce-handler"
+            plugins: ['bh-wp-aws-ses-bounce-handler/bh-wp-aws-ses-bounce-handler.php','woocommerce/woocommerce.php']
+            activatePlugins: ['bh-wp-aws-ses-bounce-handler/bh-wp-aws-ses-bounce-handler.php', 'woocommerce/woocommerce.php']
 bootstrap: _bootstrap.php

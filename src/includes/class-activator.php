@@ -5,11 +5,11 @@
  * @link       https://BrianHenry.ie
  * @since      1.2.0
  *
- * @package    EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/includes
+ * @package    BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\includes;
+namespace BH_WP_AWS_SES_Bounce_Handler\includes;
 
 /**
  * Fired during plugin activation.
@@ -18,7 +18,7 @@ namespace EA_WP_AWS_SES_Bounce_Handler\includes;
  *
  * Class Activator
  *
- * @package EA_WP_AWS_SES_Bounce_Handler\includes
+ * @package BH_WP_AWS_SES_Bounce_Handler\includes
  */
 class Activator {
 

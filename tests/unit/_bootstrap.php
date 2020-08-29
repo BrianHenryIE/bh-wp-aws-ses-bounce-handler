@@ -2,7 +2,7 @@
 /**
  * PHPUnit bootstrap file for WP_Mock.
  *
- * @package           EA_WP_AWS_SES_Bounce_Handler
+ * @package           BH_WP_AWS_SES_Bounce_Handler
  */
 
 global $plugin_root_dir;

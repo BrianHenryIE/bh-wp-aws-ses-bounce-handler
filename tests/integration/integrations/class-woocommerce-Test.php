@@ -2,11 +2,11 @@
 /**
  * Tests for the WooCommerce integration: will it mark orders correctly?!
  *
- * @package ea-wp-aws-ses-bounce-handler
+ * @package bh-wp-aws-ses-bounce-handler
  * @author Brian Henry <BrianHenryIE@gmail.com>
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\integrations;
+namespace BH_WP_AWS_SES_Bounce_Handler\integrations;
 
 use WC_Order;
 
@@ -15,7 +15,7 @@ use WC_Order;
  *
  * Class WooCommerce_Test
  *
- * @package EA_WP_AWS_SES_Bounce_Handler\integrations
+ * @package BH_WP_AWS_SES_Bounce_Handler\integrations
  */
 class WooCommerce_Test extends \Codeception\TestCase\WPTestCase {
 
@@ -34,7 +34,7 @@ class WooCommerce_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertInstanceOf( WC_Order::class, $order_before );
 
-		$woocommerce_integration = new WooCommerce( 'ea-wp-aws-ses-bounce-handler', '1.2.0' );
+		$woocommerce_integration = new WooCommerce( 'bh-wp-aws-ses-bounce-handler', '1.2.0' );
 
 		$woocommerce_integration->delete_test_data( $test_data );
 

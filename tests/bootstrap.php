@@ -1,6 +1,6 @@
 <?php
 /**
- * @package           EA_WP_AWS_SES_Bounce_Handler
+ * @package           BH_WP_AWS_SES_Bounce_Handler
  */
 
 $GLOBALS['project_root_dir']   = $project_root_dir  = dirname( __FILE__, 2 );

@@ -2,13 +2,13 @@
 /**
  * Tests for the root plugin file.
  *
- * @package EA_WP_AWS_SES_Bounce_Handler
+ * @package BH_WP_AWS_SES_Bounce_Handler
  * @author  Brian Henry <BrianHenryIE@gmail.com>
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler;
+namespace BH_WP_AWS_SES_Bounce_Handler;
 
-use EA_WP_AWS_SES_Bounce_Handler\includes\EA_WP_AWS_SES_Bounce_Handler;
+use BH_WP_AWS_SES_Bounce_Handler\includes\BH_WP_AWS_SES_Bounce_Handler;
 
 /**
  * Class Plugin_WP_Mock_Test
@@ -42,11 +42,11 @@ class Plugin_WP_Mock_Test extends \Codeception\Test\Unit {
 			'register_deactivation_hook'
 		);
 
-		require_once $plugin_root_dir . '/ea-wp-aws-ses-bounce-handler.php';
+		require_once $plugin_root_dir . '/bh-wp-aws-ses-bounce-handler.php';
 
-		$this->assertArrayHasKey( 'ea_wp_aws_ses_bounce_handler', $GLOBALS );
+		$this->assertArrayHasKey( 'bh_wp_aws_ses_bounce_handler', $GLOBALS );
 
-		$this->assertInstanceOf( EA_WP_AWS_SES_Bounce_Handler::class, $GLOBALS['ea_wp_aws_ses_bounce_handler'] );
+		$this->assertInstanceOf( BH_WP_AWS_SES_Bounce_Handler::class, $GLOBALS['bh_wp_aws_ses_bounce_handler'] );
 
 	}
 
@@ -76,7 +76,7 @@ class Plugin_WP_Mock_Test extends \Codeception\Test\Unit {
 
 		ob_start();
 
-		require_once $plugin_root_dir . '/ea-wp-aws-ses-bounce-handler.php';
+		require_once $plugin_root_dir . '/bh-wp-aws-ses-bounce-handler.php';
 
 		$printed_output = ob_get_contents();
 

@@ -2,11 +2,11 @@
 /**
  * Tests for Plugins_Page_Test. Tests the settings link is correctly added on plugins.php.
  *
- * @package ea-wp-aws-ses-bounce-handler
+ * @package bh-wp-aws-ses-bounce-handler
  * @author Brian Henry <BrianHenryIE@gmail.com>
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\admin;
+namespace BH_WP_AWS_SES_Bounce_Handler\admin;
 
 use \DOMDocument;
 
@@ -28,7 +28,7 @@ class Plugins_Page_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_plugin_action_links() {
 
-		$expected_anchor    = get_site_url() . '/wp-admin/options-general.php?page=ea-wp-aws-ses-bounce-handler';
+		$expected_anchor    = get_site_url() . '/wp-admin/options-general.php?page=bh-wp-aws-ses-bounce-handler';
 		$expected_link_text = 'Settings';
 
 		global $plugin_basename;
@@ -67,14 +67,14 @@ class Plugins_Page_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_plugin_meta_filter_github_link() {
 
-		$expected = '<a target="_blank" href="https://github.com/EnhancedAthlete/EA-WP-AWS-SES-Bounce-Handler">View plugin on GitHub</a>';
+		$expected = '<a target="_blank" href="https://github.com/BrianHenryIE/bh-wp-aws-ses-bounce-handler">View plugin on GitHub</a>';
 
 		$filter_name = 'plugin_row_meta';
 
 		global $plugin_basename;
 
 		$plugin_meta   = array();
-		$plugin_meta[] = '<a target="_blank" href="https://github.com/EnhancedAthlete/EA-WP-AWS-SES-Bounce-Handler">Visit plugin site</a>';
+		$plugin_meta[] = '<a target="_blank" href="https://github.com/BrianHenryIE/bh-wp-aws-ses-bounce-handler">Visit plugin site</a>';
 
 		$plugin_action_links = apply_filters( $filter_name, $plugin_meta, $plugin_basename, array(), 'active' );
 

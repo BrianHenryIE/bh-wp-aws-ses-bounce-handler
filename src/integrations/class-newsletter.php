@@ -7,14 +7,14 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package   EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/integrations
+ * @package   BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/integrations
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\integrations;
+namespace BH_WP_AWS_SES_Bounce_Handler\integrations;
 
-use EA_WP_AWS_SES_Bounce_Handler\admin\Bounce_Handler_Test;
-use EA_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
+use BH_WP_AWS_SES_Bounce_Handler\admin\Bounce_Handler_Test;
+use BH_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
 use stdClass;
 use TNP;
 
@@ -24,7 +24,7 @@ use TNP;
  *
  * Class Newsletter
  *
- * @package EA_WP_AWS_SES_Bounce_Handler\integrations
+ * @package BH_WP_AWS_SES_Bounce_Handler\integrations
  */
 class Newsletter extends WPPB_Object implements SES_Bounce_Handler_Integration_Interface {
 

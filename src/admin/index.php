@@ -2,7 +2,7 @@
 /**
  * Silence is golden.
  *
- * @package    ea-wp-aws-ses-bounce-handler
+ * @package    bh-wp-aws-ses-bounce-handler
  */
 
 die();

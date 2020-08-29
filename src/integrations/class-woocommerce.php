@@ -7,14 +7,14 @@
  * @link       https://BrianHenry.ie
  * @since      1.1.0
  *
- * @package   EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/integrations
+ * @package   BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/integrations
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\integrations;
+namespace BH_WP_AWS_SES_Bounce_Handler\integrations;
 
-use EA_WP_AWS_SES_Bounce_Handler\admin\Bounce_Handler_Test;
-use EA_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
+use BH_WP_AWS_SES_Bounce_Handler\admin\Bounce_Handler_Test;
+use BH_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
 use stdClass;
 use WC_Order;
 
@@ -23,11 +23,11 @@ use WC_Order;
  *
  * Class WooCommerce
  *
- * @package EA_WP_AWS_SES_Bounce_Handler\integrations
+ * @package BH_WP_AWS_SES_Bounce_Handler\integrations
  */
 class WooCommerce extends WPPB_Object implements SES_Bounce_Handler_Integration_Interface {
 
-	const BOUNCED_META_KEY = 'ea_wp_aws_ses_bounce_hander_bounced';
+	const BOUNCED_META_KEY = 'bh_wp_aws_ses_bounce_hander_bounced';
 
 	/**
 	 * Return a description for the admin UI, explaining a note and notice will be added to orders.
@@ -218,9 +218,9 @@ class WooCommerce extends WPPB_Object implements SES_Bounce_Handler_Integration_
 
 			$notice = sprintf(
 				"<div class='notice notice-warning'><p>%s <em>%s</em> %s.</p></div>",
-				__( "The customer's email address", 'ea-wp-aws-ses-bounce-handler' ),
+				__( "The customer's email address", 'bh-wp-aws-ses-bounce-handler' ),
 				$bounced_email,
-				__( 'is invalid', 'ea-wp-aws-ses-bounce-handler' )
+				__( 'is invalid', 'bh-wp-aws-ses-bounce-handler' )
 			);
 
 			$allowed_html = array(

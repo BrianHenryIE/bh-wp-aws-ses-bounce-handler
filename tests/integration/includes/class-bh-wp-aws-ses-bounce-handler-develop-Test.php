@@ -1,17 +1,17 @@
 <?php
 /**
- * Tests for EA_WP_AWS_SES_Bounce_Handler main setup class. Tests the actions are correctly added.
+ * Tests for BH_WP_AWS_SES_Bounce_Handler main setup class. Tests the actions are correctly added.
  *
- * @package EA_WP_AWS_SES_Bounce_Handler
+ * @package BH_WP_AWS_SES_Bounce_Handler
  * @author  Brian Henry <BrianHenryIE@gmail.com>
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\includes;
+namespace BH_WP_AWS_SES_Bounce_Handler\includes;
 
 /**
  * Class Develop_Test
  */
-class EA_WP_AWS_SES_Bounce_Handler_Develop_Test extends \Codeception\TestCase\WPTestCase {
+class BH_WP_AWS_SES_Bounce_Handler_Develop_Test extends \Codeception\TestCase\WPTestCase {
 
 	/**
 	 * Verify admin_enqueue_scripts action is correctly added for styles, at priority 10.
@@ -21,9 +21,9 @@ class EA_WP_AWS_SES_Bounce_Handler_Develop_Test extends \Codeception\TestCase\WP
 		$action_name       = 'admin_enqueue_scripts';
 		$expected_priority = 10;
 
-		$ea_wp_aws_ses_bounce_handler = $GLOBALS['ea_wp_aws_ses_bounce_handler'];
+		$bh_wp_aws_ses_bounce_handler = $GLOBALS['bh_wp_aws_ses_bounce_handler'];
 
-		$class = $ea_wp_aws_ses_bounce_handler->admin;
+		$class = $bh_wp_aws_ses_bounce_handler->admin;
 
 		$function = array( $class, 'enqueue_styles' );
 
@@ -43,9 +43,9 @@ class EA_WP_AWS_SES_Bounce_Handler_Develop_Test extends \Codeception\TestCase\WP
 		$filter_name       = 'admin_enqueue_scripts';
 		$expected_priority = 10;
 
-		$ea_wp_aws_ses_bounce_handler = $GLOBALS['ea_wp_aws_ses_bounce_handler'];
+		$bh_wp_aws_ses_bounce_handler = $GLOBALS['bh_wp_aws_ses_bounce_handler'];
 
-		$class = $ea_wp_aws_ses_bounce_handler->admin;
+		$class = $bh_wp_aws_ses_bounce_handler->admin;
 
 		$function = array( $class, 'enqueue_scripts' );
 
@@ -65,9 +65,9 @@ class EA_WP_AWS_SES_Bounce_Handler_Develop_Test extends \Codeception\TestCase\WP
 		$action_name       = 'plugins_loaded';
 		$expected_priority = 10;
 
-		$ea_wp_aws_ses_bounce_handler = $GLOBALS['ea_wp_aws_ses_bounce_handler'];
+		$bh_wp_aws_ses_bounce_handler = $GLOBALS['bh_wp_aws_ses_bounce_handler'];
 
-		$class = $ea_wp_aws_ses_bounce_handler->i18n;
+		$class = $bh_wp_aws_ses_bounce_handler->i18n;
 
 		$function = array( $class, 'load_plugin_textdomain' );
 

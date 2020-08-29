@@ -3,7 +3,7 @@
  * An interface for integrations to conform to to add consistency to testing in wp-admin.
  *
  * ```
- * add_filter( 'ea_wp_aws_ses_bounce_handler_integrations', function( $integrations ) {
+ * add_filter( 'bh_wp_aws_ses_bounce_handler_integrations', function( $integrations ) {
  *   $integrations[] = new class() implements SES_Bounce_Handler_Integration_Interface {};
  *   return $integrations;
  * }
@@ -11,19 +11,19 @@
  *
  * @since      1.2.0
  *
- * @package   EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/integrations
+ * @package   BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/integrations
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\integrations;
+namespace BH_WP_AWS_SES_Bounce_Handler\integrations;
 
-use EA_WP_AWS_SES_Bounce_Handler\admin\Bounce_Handler_Test;
+use BH_WP_AWS_SES_Bounce_Handler\admin\Bounce_Handler_Test;
 use stdClass;
 
 interface SES_Bounce_Handler_Integration_Interface {
 
 	/**
-	 * Called by this plugin on all integrations added to the 'ea_wp_aws_ses_bounce_handler_integrations' filter
+	 * Called by this plugin on all integrations added to the 'bh_wp_aws_ses_bounce_handler_integrations' filter
 	 * after 'plugins_loaded', so code for each integration can be self contained.
 	 */
 	public function init(): void;

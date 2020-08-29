@@ -4,25 +4,25 @@
  *
  * @link              https://BrianHenry.ie
  * @since             1.0.0
- * @package           EA_WP_AWS_SES_Bounce_Handler
+ * @package           BH_WP_AWS_SES_Bounce_Handler
  *
  * @wordpress-plugin
  * Plugin Name:       AWS SES Bounce Handler
- * Plugin URI:        https://github.com/EnhancedAthlete/ea-wp-aws-ses-bounce-handler
+ * Plugin URI:        https://github.com/BrianHenryIE/bh-wp-aws-ses-bounce-handler
  * Description:       When AWS SES sends a bounce or complaint report, users & orders are marked; Newsletter users are unsubscribed.
  * Version:           1.3.0
  * Author:            BrianHenryIE
  * Author URI:        https://BrianHenry.ie
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
- * Text Domain:       ea-wp-aws-ses-bounce-handler
+ * Text Domain:       bh-wp-aws-ses-bounce-handler
  * Domain Path:       /languages
  */
 
 namespace {
 
-	use EA_WP_AWS_SES_Bounce_Handler\includes\Activator;
-	use EA_WP_AWS_SES_Bounce_Handler\includes\Deactivator;
+	use BH_WP_AWS_SES_Bounce_Handler\includes\Activator;
+	use BH_WP_AWS_SES_Bounce_Handler\includes\Deactivator;
 
 	// If this file is called directly, abort.
 	if ( ! defined( 'WPINC' ) ) {
@@ -33,7 +33,7 @@ namespace {
 	 * The code that runs during plugin activation.
 	 * This action is documented in includes/class-activator.php
 	 */
-	function activate_ea_wp_aws_ses_bounce_handler() {
+	function activate_bh_wp_aws_ses_bounce_handler() {
 
 		Activator::activate();
 	}
@@ -42,44 +42,44 @@ namespace {
 	 * The code that runs during plugin deactivation.
 	 * This action is documented in includes/class-deactivator.php
 	 */
-	function deactivate_ea_wp_aws_ses_bounce_handler() {
+	function deactivate_bh_wp_aws_ses_bounce_handler() {
 
 		Deactivator::deactivate();
 	}
 
-	register_activation_hook( __FILE__, 'activate_ea_wp_aws_ses_bounce_handler' );
-	register_deactivation_hook( __FILE__, 'deactivate_ea_wp_aws_ses_bounce_handler' );
+	register_activation_hook( __FILE__, 'activate_bh_wp_aws_ses_bounce_handler' );
+	register_deactivation_hook( __FILE__, 'deactivate_bh_wp_aws_ses_bounce_handler' );
 
 }
 
-namespace EA_WP_AWS_SES_Bounce_Handler {
+namespace BH_WP_AWS_SES_Bounce_Handler {
 
-	use EA_WP_AWS_SES_Bounce_Handler\includes\EA_WP_AWS_SES_Bounce_Handler;
-	use EA_WP_AWS_SES_Bounce_Handler\includes\Settings;
-	use EA_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Loader;
+	use BH_WP_AWS_SES_Bounce_Handler\includes\BH_WP_AWS_SES_Bounce_Handler;
+	use BH_WP_AWS_SES_Bounce_Handler\includes\Settings;
+	use BH_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Loader;
 
 	require_once plugin_dir_path( __FILE__ ) . 'autoload.php';
 
 	/**
 	 * Currently plugin version.
 	 */
-	define( 'EA_WP_AWS_SES_BOUNCE_HANDLER_VERSION', '1.1.0' );
+	define( 'BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION', '1.1.0' );
 
 
 	/**
 	 * Function to keep the loader and settings objects out of the namespace.
 	 *
-	 * @return EA_WP_AWS_SES_Bounce_Handler;
+	 * @return BH_WP_AWS_SES_Bounce_Handler;
 	 */
-	function instantiate_ea_wp_aws_ses_bounce_handler() {
+	function instantiate_bh_wp_aws_ses_bounce_handler() {
 
 		$loader = new WPPB_Loader();
 
 		$settings = new Settings();
 
-		$ea_wp_aws_ses_bounce_handler = new EA_WP_AWS_SES_Bounce_Handler( $loader, $settings );
+		$bh_wp_aws_ses_bounce_handler = new BH_WP_AWS_SES_Bounce_Handler( $loader, $settings );
 
-		return $ea_wp_aws_ses_bounce_handler;
+		return $bh_wp_aws_ses_bounce_handler;
 	}
 
 	/**
@@ -93,6 +93,6 @@ namespace EA_WP_AWS_SES_Bounce_Handler {
 	 *
 	 * phpcs:disable Squiz.PHP.DisallowMultipleAssignments.Found
 	 */
-	$GLOBALS['ea_wp_aws_ses_bounce_handler'] = $ea_wp_aws_ses_bounce_handler = instantiate_ea_wp_aws_ses_bounce_handler();
-	$ea_wp_aws_ses_bounce_handler->run();
+	$GLOBALS['bh_wp_aws_ses_bounce_handler'] = $bh_wp_aws_ses_bounce_handler = instantiate_bh_wp_aws_ses_bounce_handler();
+	$bh_wp_aws_ses_bounce_handler->run();
 }

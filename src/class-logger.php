@@ -5,17 +5,17 @@
  * @link       https://BrianHenry.ie
  * @since      1.4.0
  *
- * @package    EA_WP_AWS_SES_Bounce_Handler
+ * @package    BH_WP_AWS_SES_Bounce_Handler
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler;
+namespace BH_WP_AWS_SES_Bounce_Handler;
 
 /**
  * Uses php's error_log.
  *
  * Class Logger
  *
- * @package EA_WP_AWS_SES_Bounce_Handler
+ * @package BH_WP_AWS_SES_Bounce_Handler
  */
 class Logger {
 

@@ -5,20 +5,20 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package    EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/admin
+ * @package    BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/admin
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\admin;
+namespace BH_WP_AWS_SES_Bounce_Handler\admin;
 
-use EA_WP_AWS_SES_Bounce_Handler\integrations\SES_Bounce_Handler_Integration_Interface;
+use BH_WP_AWS_SES_Bounce_Handler\integrations\SES_Bounce_Handler_Integration_Interface;
 
 /**
  * Create a uid, bounce simulator email address, setup integrations, save the data, verify tests, delete data.
  *
  * Class Bounce_Handler_Test
  *
- * @package EA_WP_AWS_SES_Bounce_Handler\admin
+ * @package BH_WP_AWS_SES_Bounce_Handler\admin
  */
 class Bounce_Handler_Test {
 
@@ -81,7 +81,7 @@ class Bounce_Handler_Test {
 	 */
 	private function get_integrations() {
 
-		return apply_filters( 'ea_wp_aws_ses_bounce_handler_integrations', array() );
+		return apply_filters( 'bh_wp_aws_ses_bounce_handler_integrations', array() );
 	}
 
 	/**
@@ -112,8 +112,8 @@ class Bounce_Handler_Test {
 		}
 
 		$to      = $this->get_email();
-		$subject = 'EA WP AWS SES Bounce Handler Test Email';
-		$message = 'EA WP AWS SES Bounce Handler Test Email';
+		$subject = 'BH WP AWS SES Bounce Handler Test Email';
+		$message = 'BH WP AWS SES Bounce Handler Test Email';
 
 		$mail_send = wp_mail( $to, $subject, $message );
 

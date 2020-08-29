@@ -2,11 +2,11 @@
 /**
  * Tests for I18n. Tests load_plugin_textdomain.
  *
- * @package EA_WP_AWS_SES_Bounce_Handler
+ * @package BH_WP_AWS_SES_Bounce_Handler
  * @author  Brian Henry <BrianHenryIE@gmail.com>
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\includes;
+namespace BH_WP_AWS_SES_Bounce_Handler\includes;
 
 /**
  * Class I18n_Test
@@ -35,12 +35,12 @@ class I18n_Test extends \Codeception\TestCase\WPTestCase {
 
 		add_filter( 'plugin_locale', $filter, 10, 2 );
 
-		$i18n = new I18n( 'ea_wp_aws_ses_bounce_handler', '1.0.0' );
+		$i18n = new I18n( 'bh_wp_aws_ses_bounce_handler', '1.0.0' );
 
 		$i18n->load_plugin_textdomain();
 
 		$this->assertTrue( $called, 'plugin_locale filter not called within load_plugin_textdomain() suggesting it has not been set by the plugin.' );
-		$this->assertEquals( 'ea-wp-aws-ses-bounce-handler', $actual_domain );
+		$this->assertEquals( 'bh-wp-aws-ses-bounce-handler', $actual_domain );
 
 	}
 }

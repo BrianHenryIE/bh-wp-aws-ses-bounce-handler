@@ -2,18 +2,18 @@
 /**
  * Tests for I18n. Tests load_plugin_textdomain.
  *
- * @package EA_WP_AWS_SES_Bounce_Handler
+ * @package BH_WP_AWS_SES_Bounce_Handler
  * @author  Brian Henry <BrianHenryIE@gmail.com>
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\includes;
+namespace BH_WP_AWS_SES_Bounce_Handler\includes;
 
 /**
- * Class EA_WP_AWS_SES_Bounce_Handler_Test
+ * Class BH_WP_AWS_SES_Bounce_Handler_Test
  *
  * @see I18n
  */
-class EA_WP_AWS_SES_Bounce_Handler_I18n_Test extends \Codeception\TestCase\WPTestCase {
+class BH_WP_AWS_SES_Bounce_Handler_I18n_Test extends \Codeception\TestCase\WPTestCase {
 
 	/**
 	 * AFAICT, this will fail until a translation has been added.
@@ -30,7 +30,7 @@ class EA_WP_AWS_SES_Bounce_Handler_I18n_Test extends \Codeception\TestCase\WPTes
 		$this->assertTrue( file_exists( $plugin_root_dir . '/languages/' ), '/languages/ folder does not exist.' );
 
 		// Seems to fail because there are no translations to load.
-		$this->assertTrue( is_textdomain_loaded( 'ea-wp-aws-ses-bounce-handler' ), 'i18n text domain not loaded.' );
+		$this->assertTrue( is_textdomain_loaded( 'bh-wp-aws-ses-bounce-handler' ), 'i18n text domain not loaded.' );
 
 	}
 

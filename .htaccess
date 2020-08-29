@@ -1,4 +1,4 @@
 RewriteEngine on
-RewriteCond %{HTTP_HOST} ^.*ea-wp-aws-ses-bounce-handler$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^.*bh-wp-aws-ses-bounce-handler$ [NC,OR]
 RewriteCond %{REQUEST_URI} !wordpress/
 RewriteRule (.*) wordpress/$1 [L]

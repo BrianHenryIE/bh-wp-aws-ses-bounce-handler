@@ -8,23 +8,23 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package   EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/includes
+ * @package   BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\includes;
+namespace BH_WP_AWS_SES_Bounce_Handler\includes;
 
-use EA_WP_AWS_SES_Bounce_Handler\admin\Admin;
-use EA_WP_AWS_SES_Bounce_Handler\admin\Ajax;
-use EA_WP_AWS_SES_Bounce_Handler\admin\Plugins_Page;
-use EA_WP_AWS_SES_Bounce_Handler\admin\Settings_Page;
-use EA_WP_AWS_SES_Bounce_Handler\integrations\Newsletter;
-use EA_WP_AWS_SES_Bounce_Handler\integrations\SES_Bounce_Handler_Integration_Interface;
-use EA_WP_AWS_SES_Bounce_Handler\integrations\WooCommerce;
-use EA_WP_AWS_SES_Bounce_Handler\integrations\WordPress;
-use EA_WP_AWS_SES_Bounce_Handler\rest\SNS;
-use EA_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Loader_Interface;
-use EA_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
+use BH_WP_AWS_SES_Bounce_Handler\admin\Admin;
+use BH_WP_AWS_SES_Bounce_Handler\admin\Ajax;
+use BH_WP_AWS_SES_Bounce_Handler\admin\Plugins_Page;
+use BH_WP_AWS_SES_Bounce_Handler\admin\Settings_Page;
+use BH_WP_AWS_SES_Bounce_Handler\integrations\Newsletter;
+use BH_WP_AWS_SES_Bounce_Handler\integrations\SES_Bounce_Handler_Integration_Interface;
+use BH_WP_AWS_SES_Bounce_Handler\integrations\WooCommerce;
+use BH_WP_AWS_SES_Bounce_Handler\integrations\WordPress;
+use BH_WP_AWS_SES_Bounce_Handler\rest\SNS;
+use BH_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Loader_Interface;
+use BH_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
 
 /**
  * The core plugin class.
@@ -36,13 +36,13 @@ use EA_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
  * version of the plugin.
  *
  * @since      1.0.0
- * @package    EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/includes
+ * @package    BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  *
  * phpcs:disable Squiz.PHP.DisallowMultipleAssignments.Found
  */
-class EA_WP_AWS_SES_Bounce_Handler extends WPPB_Object {
+class BH_WP_AWS_SES_Bounce_Handler extends WPPB_Object {
 
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
@@ -116,12 +116,12 @@ class EA_WP_AWS_SES_Bounce_Handler extends WPPB_Object {
 	 * @param Settings_Interface    $settings The setting the plugin should be run with.
 	 */
 	public function __construct( $loader, $settings ) {
-		if ( defined( 'EA_WP_AWS_SES_BOUNCE_HANDLER_VERSION' ) ) {
-			$version = EA_WP_AWS_SES_BOUNCE_HANDLER_VERSION;
+		if ( defined( 'BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION' ) ) {
+			$version = BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION;
 		} else {
 			$version = '1.0.0';
 		}
-		$plugin_name = 'ea-wp-aws-ses-bounce-handler';
+		$plugin_name = 'bh-wp-aws-ses-bounce-handler';
 
 		parent::__construct( $plugin_name, $version );
 
@@ -189,7 +189,7 @@ class EA_WP_AWS_SES_Bounce_Handler extends WPPB_Object {
 	private function define_sns_hooks() {
 
 		$this->sns = new SNS( $this->get_plugin_name(), $this->get_version(), $this->settings );
-		$this->loader->add_action( 'rest_api_init', $this->sns, 'add_ea_aws_ses_rest_endpoint' );
+		$this->loader->add_action( 'rest_api_init', $this->sns, 'add_bh_aws_ses_rest_endpoint' );
 	}
 
 	/**
@@ -204,7 +204,7 @@ class EA_WP_AWS_SES_Bounce_Handler extends WPPB_Object {
 
 		$this->integrations = $built_in_integrations;
 
-		$this->loader->add_filter( 'ea_wp_aws_ses_bounce_handler_integrations', $this, 'add_integrations' );
+		$this->loader->add_filter( 'bh_wp_aws_ses_bounce_handler_integrations', $this, 'add_integrations' );
 		$this->loader->add_action( 'plugins_loaded', $this, 'init_integrations' );
 	}
 
@@ -218,7 +218,7 @@ class EA_WP_AWS_SES_Bounce_Handler extends WPPB_Object {
 	/**
 	 * Make available the built-in integrations.
 	 *
-	 * @hooked ea_wp_aws_ses_bounce_handler_integrations
+	 * @hooked bh_wp_aws_ses_bounce_handler_integrations
 	 * @param SES_Bounce_Handler_Integration_Interface[] $integrations WorrdPress, WooCommerce and Newsletter integrations.
 	 *
 	 * @return SES_Bounce_Handler_Integration_Interface[]
@@ -234,7 +234,7 @@ class EA_WP_AWS_SES_Bounce_Handler extends WPPB_Object {
 	 */
 	public function init_integrations() {
 
-		$integrations = apply_filters( 'ea_wp_aws_ses_bounce_handler_integrations', array() );
+		$integrations = apply_filters( 'bh_wp_aws_ses_bounce_handler_integrations', array() );
 
 		foreach ( $integrations as $integration ) {
 

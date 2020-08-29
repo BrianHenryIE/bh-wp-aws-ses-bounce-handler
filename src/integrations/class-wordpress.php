@@ -5,14 +5,14 @@
  * @link       https://BrianHenry.ie
  * @since      1.1.0
  *
- * @package   EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/integrations
+ * @package   BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/integrations
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\integrations;
+namespace BH_WP_AWS_SES_Bounce_Handler\integrations;
 
-use EA_WP_AWS_SES_Bounce_Handler\admin\Bounce_Handler_Test;
-use EA_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
+use BH_WP_AWS_SES_Bounce_Handler\admin\Bounce_Handler_Test;
+use BH_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
 use stdClass;
 use WP_User;
 
@@ -21,13 +21,13 @@ use WP_User;
  *
  * Class WordPress
  *
- * @package EA_WP_AWS_SES_Bounce_Handler\integrations
+ * @package BH_WP_AWS_SES_Bounce_Handler\integrations
  */
 class WordPress extends WPPB_Object implements SES_Bounce_Handler_Integration_Interface {
 
 	/**
 	 * The WordPress integration can always be enabled since it does not depend on external classes.
-	 * It can still be removed in the `ea_wp_aws_ses_bounce_handler_integrations` filter.
+	 * It can still be removed in the `bh_wp_aws_ses_bounce_handler_integrations` filter.
 	 *
 	 * @return bool
 	 */

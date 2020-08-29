@@ -1,4 +1,4 @@
-[![WordPress tested 5.5](https://img.shields.io/badge/WordPress-v5.5%20tested-0073aa.svg)](https://github.com/EnhancedAthlete/ea-wp-aws-ses-bounce-handler) [![PHPCS WPCS](https://img.shields.io/badge/PHPCS-WordPress%20Coding%20Standards-8892BF.svg)](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) [![PHPUnit ](https://img.shields.io/badge/PHPUnit-30%25%20coverage-dc3545.svg)]()
+[![WordPress tested 5.5](https://img.shields.io/badge/WordPress-v5.5%20tested-0073aa.svg)](https://github.com/EnhancedAthlete/bh-wp-aws-ses-bounce-handler) [![PHPCS WPCS](https://img.shields.io/badge/PHPCS-WordPress%20Coding%20Standards-8892BF.svg)](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards) [![PHPUnit ](https://img.shields.io/badge/PHPUnit-30%25%20coverage-dc3545.svg)]()
 
 # AWS SES Bounce Handler
 
@@ -48,7 +48,7 @@ This plugin parses the bounce and complaint notifications, adds the "Bounced Ema
 
 ## Installation
 
-* Download the [latest release from GitHub](https://github.com/EnhancedAthlete/ea-wp-aws-ses-bounce-handler/releases)
+* Download the [latest release from GitHub](https://github.com/EnhancedAthlete/bh-wp-aws-ses-bounce-handler/releases)
 * Follow Amazon's [Configuring Amazon SNS Notifications for Amazon SES](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-sns-notifications.html) document
 * Subscribe to the SNS topics using the endpoint in the settings page
  
@@ -113,12 +113,12 @@ function add_my_integration( $integrations ) {
 Clone this repo, open PhpStorm, then run `composer install` to install the dependencies.
 
 ```
-git clone https://github.com/enhancedathlete/ea-wp-aws-ses-bounce-handler.git;
+git clone https://github.com/enhancedathlete/bh-wp-aws-ses-bounce-handler.git;
 open -a PhpStorm ./;
 composer install;
 ```
 
-For integration and acceptance tests, a local webserver must be running with `localhost/ea-wp-aws-ses-bounce-handler/` pointing at the root of the repo. MySQL must also be running locally – with two databases set up with:
+For integration and acceptance tests, a local webserver must be running with `localhost/bh-wp-aws-ses-bounce-handler/` pointing at the root of the repo. MySQL must also be running locally – with two databases set up with:
 
 ```
 mysql_username="root"

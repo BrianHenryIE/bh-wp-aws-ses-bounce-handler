@@ -8,11 +8,11 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package    EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/includes
+ * @package    BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\includes;
+namespace BH_WP_AWS_SES_Bounce_Handler\includes;
 
 /**
  * Define the internationalization functionality.
@@ -21,8 +21,8 @@ namespace EA_WP_AWS_SES_Bounce_Handler\includes;
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package   EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/includes
+ * @package   BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  */
 class I18n {
@@ -35,7 +35,7 @@ class I18n {
 	public function load_plugin_textdomain(): void {
 
 		load_plugin_textdomain(
-			'ea-wp-aws-ses-bounce-handler',
+			'bh-wp-aws-ses-bounce-handler',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

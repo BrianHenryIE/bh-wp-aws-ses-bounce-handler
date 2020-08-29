@@ -2,21 +2,21 @@
 /**
  * Tests the SNS class with sample data from AWS SNS.
  *
- * @package ea-wp-aws-ses-bounce-handler
+ * @package bh-wp-aws-ses-bounce-handler
  * @author Brian Henry <BrianHenryIE@gmail.com>
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\rest;
+namespace BH_WP_AWS_SES_Bounce_Handler\rest;
 
-use EA_WP_AWS_SES_Bounce_Handler\includes\Settings;
-use EA_WP_AWS_SES_Bounce_Handler\includes\Settings_Interface;
+use BH_WP_AWS_SES_Bounce_Handler\includes\Settings;
+use BH_WP_AWS_SES_Bounce_Handler\includes\Settings_Interface;
 
 /**
  * Check the route is correctly registered, send it some data.
  *
  * Class SNS_Test
  *
- * @package EA_WP_AWS_SES_Bounce_Handler\rest
+ * @package BH_WP_AWS_SES_Bounce_Handler\rest
  */
 class SNS_Test extends \Codeception\TestCase\WPTestCase {
 
@@ -27,7 +27,7 @@ class SNS_Test extends \Codeception\TestCase\WPTestCase {
 
 		$rest_server = rest_get_server();
 
-		$this->assertArrayHasKey( '/ea/v1/aws-ses', $rest_server->get_routes() );
+		$this->assertArrayHasKey( '/brianhenryie/v1/aws-ses', $rest_server->get_routes() );
 	}
 
 	/**
@@ -37,7 +37,7 @@ class SNS_Test extends \Codeception\TestCase\WPTestCase {
 
 		$rest_server = rest_get_server();
 
-		$route = $rest_server->get_routes()['/ea/v1/aws-ses'][0];
+		$route = $rest_server->get_routes()['/brianhenryie/v1/aws-ses'][0];
 
 		$this->assertArrayHasKey( 'POST', $route['methods'] );
 
@@ -76,7 +76,7 @@ class SNS_Test extends \Codeception\TestCase\WPTestCase {
 		$notification_json = file_get_contents( $project_root_dir . '/tests/_data/notification.json' );
 		$notification      = json_decode( $notification_json );
 
-		$request = new \WP_REST_Request( 'POST', '/ea/v1/aws-ses' );
+		$request = new \WP_REST_Request( 'POST', '/brianhenryie/v1/aws-ses' );
 		$request->set_headers( json_decode( $notification->headers ) );
 		$request->set_body( $notification->body );
 

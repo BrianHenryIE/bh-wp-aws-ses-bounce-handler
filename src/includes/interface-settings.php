@@ -5,24 +5,24 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package   EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/includes
+ * @package   BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\includes;
+namespace BH_WP_AWS_SES_Bounce_Handler\includes;
 
 /**
  * The settings interface.
  *
  * @since      1.0.0
- * @package    EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/includes
+ * @package    BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  */
 interface Settings_Interface {
 
-	const SECRET_KEY     = 'ea-wp-aws-ses-bounce-handler-secret-key';
-	const CONFIRMED_ARNS = 'ea-wp-aws-ses-bounce-handler-confirmed-arns';
+	const SECRET_KEY     = 'bh-wp-aws-ses-bounce-handler-secret-key';
+	const CONFIRMED_ARNS = 'bh-wp-aws-ses-bounce-handler-confirmed-arns';
 
 	/**
 	 * The secret key generated on plugin activation, used in calls from AWS SNS to the site.

@@ -3,7 +3,7 @@
 
 	$(window).load(function() {
 
-		// check GET page=ea-wp-aws-ses-bounce-handler
+		// check GET page=bh-wp-aws-ses-bounce-handler
 
 		var runSesBounceTestButton = document.getElementById( 'run-ses-bounce-test-button' );
 

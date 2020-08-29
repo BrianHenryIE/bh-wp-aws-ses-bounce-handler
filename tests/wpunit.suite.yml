@@ -17,7 +17,7 @@ modules:
             tablePrefix: "%TEST_TABLE_PREFIX%"
             domain: "%TEST_SITE_WP_DOMAIN%"
             adminEmail: "%TEST_SITE_ADMIN_EMAIL%"
-            title: "ea-wp-aws-ses-bounce-handler"
+            title: "bh-wp-aws-ses-bounce-handler"
             plugins: []
             activatePlugins: []
 bootstrap: _bootstrap.php

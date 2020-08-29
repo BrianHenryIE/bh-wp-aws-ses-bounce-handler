@@ -5,23 +5,23 @@
  * @link
  * @since      1.0.0
  *
- * @package    EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/admin
+ * @package    BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/admin
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\admin;
+namespace BH_WP_AWS_SES_Bounce_Handler\admin;
 
-use EA_WP_AWS_SES_Bounce_Handler\admin\settings\AWS_SNS_ARN_Abstract;
-use EA_WP_AWS_SES_Bounce_Handler\admin\partials\AWS_SNS_ARN_Complaints;
-use EA_WP_AWS_SES_Bounce_Handler\admin\settings\Settings_Section_Element_Abstract;
-use EA_WP_AWS_SES_Bounce_Handler\includes\Settings_Interface;
-use EA_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
+use BH_WP_AWS_SES_Bounce_Handler\admin\settings\AWS_SNS_ARN_Abstract;
+use BH_WP_AWS_SES_Bounce_Handler\admin\partials\AWS_SNS_ARN_Complaints;
+use BH_WP_AWS_SES_Bounce_Handler\admin\settings\Settings_Section_Element_Abstract;
+use BH_WP_AWS_SES_Bounce_Handler\includes\Settings_Interface;
+use BH_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
 
 /**
  * Adds a wp-admin Settings submenu. Adds a page with input for bounces ARN and copmlaints ARN.
  *
- * @package    EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/admin
+ * @package    BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/admin
  * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  */
 class Settings_Page extends WPPB_Object {
@@ -49,7 +49,7 @@ class Settings_Page extends WPPB_Object {
 	/**
 	 * Add the AWS SES Bounce Handler settings menu-item/page as a submenu-item of the Settings menu.
 	 *
-	 * /wp-admin/options-general.php?page=ea-wp-aws-ses-bounce-handler
+	 * /wp-admin/options-general.php?page=bh-wp-aws-ses-bounce-handler
 	 *
 	 * @hooked admin_menu
 	 */

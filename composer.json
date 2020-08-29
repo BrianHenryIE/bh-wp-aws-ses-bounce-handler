@@ -1,5 +1,5 @@
 {
-  "name": "enhanced-athlete/ea-wp-aws-ses-bounce-handler",
+  "name": "enhanced-athlete/bh-wp-aws-ses-bounce-handler",
   "description": "Unsubscribe users from email lists when AWS SES sends a bounce or complaint report.",
   "type": "wordpress-plugin",
   "license": "GPL-2.0+-or-later",
@@ -80,15 +80,15 @@
       }
     },
     "mozart": {
-      "dep_namespace": "EA_WP_AWS_SES_Bounce_Handler\\",
+      "dep_namespace": "BH_WP_AWS_SES_Bounce_Handler\\",
       "dep_directory": "/src/vendor/",
       "classmap_directory": "/src/dependencies/",
-      "classmap_prefix": "EA_WP_AWS_SES_Bounce_Handler_",
+      "classmap_prefix": "BH_WP_AWS_SES_Bounce_Handler_",
       "delete_vendor_directories": false
     },
     "symlinks": {
       "wp-content": "wordpress/wp-content",
-      "src": "wp-content/plugins/ea-wp-aws-ses-bounce-handler"
+      "src": "wp-content/plugins/bh-wp-aws-ses-bounce-handler"
     },
     "phpstorm": {
       "exclude_folders": {
@@ -96,7 +96,7 @@
           "vendor/wordpress/wordpress/src",
           "vendor/wordpress/wordpress/build",
           "wordpress/wp-content",
-          "wp-content/plugins/ea-wp-aws-ses-bounce-handler"
+          "wp-content/plugins/bh-wp-aws-ses-bounce-handler"
         ],
         "include_folders": [
           "vendor/wordpress/wordpress/"

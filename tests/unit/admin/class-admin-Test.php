@@ -4,11 +4,11 @@
  *
  * @see Admin
  *
- * @package ea-wp-aws-ses-bounce-handler
+ * @package bh-wp-aws-ses-bounce-handler
  * @author Brian Henry <BrianHenryIE@gmail.com>
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\admin;
+namespace BH_WP_AWS_SES_Bounce_Handler\admin;
 
 /**
  * Class Admin_Test
@@ -24,7 +24,7 @@ class Admin_Test extends \Codeception\Test\Unit {
 	 *
 	 * @var string Plugin name.
 	 */
-	private $plugin_name = 'ea-wp-aws-ses-bounce-handler';
+	private $plugin_name = 'bh-wp-aws-ses-bounce-handler';
 
 	/**
 	 * The plugin version, matching the version these tests were written against.
@@ -64,7 +64,7 @@ class Admin_Test extends \Codeception\Test\Unit {
 			)
 		);
 
-		$css_file = $plugin_root_dir . '/admin/css/ea-wp-aws-ses-bounce-handler-admin.css';
+		$css_file = $plugin_root_dir . '/admin/css/bh-wp-aws-ses-bounce-handler-admin.css';
 
 		\WP_Mock::userFunction(
 			'wp_enqueue_style',
@@ -74,9 +74,9 @@ class Admin_Test extends \Codeception\Test\Unit {
 			)
 		);
 
-		$ea_wp_aws_ses_bounce_handler_admin = new Admin( $this->plugin_name, $this->version );
+		$bh_wp_aws_ses_bounce_handler_admin = new Admin( $this->plugin_name, $this->version );
 
-		$ea_wp_aws_ses_bounce_handler_admin->enqueue_styles();
+		$bh_wp_aws_ses_bounce_handler_admin->enqueue_styles();
 
 		$this->assertFileExists( $css_file );
 	}
@@ -101,7 +101,7 @@ class Admin_Test extends \Codeception\Test\Unit {
 			)
 		);
 
-		$css_file = $plugin_root_dir . '/admin/css/ea-wp-aws-ses-bounce-handler-admin.css';
+		$css_file = $plugin_root_dir . '/admin/css/bh-wp-aws-ses-bounce-handler-admin.css';
 
 		\WP_Mock::userFunction(
 			'wp_enqueue_style',
@@ -111,9 +111,9 @@ class Admin_Test extends \Codeception\Test\Unit {
 			)
 		);
 
-		$ea_wp_aws_ses_bounce_handler_admin = new Admin( $this->plugin_name, $this->version );
+		$bh_wp_aws_ses_bounce_handler_admin = new Admin( $this->plugin_name, $this->version );
 
-		$ea_wp_aws_ses_bounce_handler_admin->enqueue_styles();
+		$bh_wp_aws_ses_bounce_handler_admin->enqueue_styles();
 
 	}
 }

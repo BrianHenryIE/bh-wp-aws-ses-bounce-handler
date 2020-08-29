@@ -2,13 +2,13 @@
 /**
  * Handle AJAX requests on the settings page. Primarily for testing the configuration.
 
- * @package ea-wp-aws-ses-bounce-handler
+ * @package bh-wp-aws-ses-bounce-handler
  * @author Brian Henry <BrianHenryIE@gmail.com>
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\admin;
+namespace BH_WP_AWS_SES_Bounce_Handler\admin;
 
-use EA_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
+use BH_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
 
 /**
  * Code to run the ses test and to poll for its completion.

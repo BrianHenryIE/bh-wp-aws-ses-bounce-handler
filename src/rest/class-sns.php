@@ -5,22 +5,22 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package   EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/sns
+ * @package   BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/sns
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\rest;
+namespace BH_WP_AWS_SES_Bounce_Handler\rest;
 
-use EA_WP_AWS_SES_Bounce_Handler\includes\Settings_Interface;
-use EA_WP_AWS_SES_Bounce_Handler\Logger;
-use EA_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
+use BH_WP_AWS_SES_Bounce_Handler\includes\Settings_Interface;
+use BH_WP_AWS_SES_Bounce_Handler\Logger;
+use BH_WP_AWS_SES_Bounce_Handler\WPPB\WPPB_Object;
 use stdClass;
 
 /**
  * The sns-invoked functionality of the plugin.
  *
- * @package   EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/sns
+ * @package   BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/sns
  * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  *
  * Ignore snake case warnings for JSON objects.
@@ -55,10 +55,10 @@ class SNS extends WPPB_Object {
 	/**
 	 * Defines the REST endpoint itself. Added on WordPress `rest_api_init` action.
 	 */
-	public function add_ea_aws_ses_rest_endpoint() {
+	public function add_bh_aws_ses_rest_endpoint() {
 
 		register_rest_route(
-			'ea/v1',
+			'brianhenryie/v1',
 			'/aws-ses/',
 			array(
 				'methods'             => 'POST',
@@ -215,7 +215,7 @@ class SNS extends WPPB_Object {
 	/**
 	 * When a bounce notification is received from SES fire the action for integrations and other plugins to hook into.
 	 *
-	 * @hooked filter ea_aws_ses_notification
+	 * @hooked filter bh_aws_ses_notification
 	 *
 	 * @see https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notification-examples.html
 	 *
@@ -253,7 +253,7 @@ class SNS extends WPPB_Object {
 	/**
 	 * When a complaint notification is received from SES fire the action for integrations and other plugins to hook into.
 	 *
-	 * @hooked filter ea_aws_sns_notification
+	 * @hooked filter bh_aws_sns_notification
 	 *
 	 * @see https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notification-examples.html
 	 *

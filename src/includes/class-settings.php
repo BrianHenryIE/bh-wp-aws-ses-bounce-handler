@@ -5,20 +5,20 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package    EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/includes
+ * @package    BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\includes;
+namespace BH_WP_AWS_SES_Bounce_Handler\includes;
 
-use EA_WP_AWS_SES_Bounce_Handler\integrations\SES_Bounce_Handler_Integration_Interface;
+use BH_WP_AWS_SES_Bounce_Handler\integrations\SES_Bounce_Handler_Integration_Interface;
 
 /**
  * The plugin settings.
  *
  * @since      1.0.0
- * @package    EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/includes
+ * @package    BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  */
 class Settings implements Settings_Interface {
@@ -49,7 +49,7 @@ class Settings implements Settings_Interface {
 	 * @return SES_Bounce_Handler_Integration_Interface[]
 	 */
 	public function get_integrations(): array {
-		return apply_filters( 'ea_wp_aws_ses_bounce_handler_integrations', array() );
+		return apply_filters( 'bh_wp_aws_ses_bounce_handler_integrations', array() );
 	}
 
 	/**
@@ -63,11 +63,11 @@ class Settings implements Settings_Interface {
 	}
 
 	/**
-	 * The full endpoint URL: https://brianhenry.ie/wp-json/ea/v1/aws-ses/?secret=autogend.
+	 * The full endpoint URL: https://brianhenry.ie/wp-json/brianhenryie/v1/aws-ses/?secret=autogend.
 	 *
 	 * @return string
 	 */
 	public function get_endpoint(): string {
-		return get_rest_url( null, 'ea/v1/aws-ses/?secret=' . $this->get_secret_key() );
+		return get_rest_url( null, 'brianhenryie/v1/aws-ses/?secret=' . $this->get_secret_key() );
 	}
 }

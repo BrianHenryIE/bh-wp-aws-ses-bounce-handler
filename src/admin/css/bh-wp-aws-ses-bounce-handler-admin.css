@@ -3,10 +3,10 @@
  * included in this file.
  */
 
-.ea-wp-aws-ses-bounce-handler ul {
+.bh-wp-aws-ses-bounce-handler ul {
     list-style: inside;
 }
-.ea-wp-aws-ses-bounce-handler .bounce-handler-endpoint-text {
+.bh-wp-aws-ses-bounce-handler .bounce-handler-endpoint-text {
     font-family: monospace;
     font-size: 14px;
     margin: 0 5px;
@@ -14,14 +14,14 @@
     color: transparent;
 }
 
-.ea-wp-aws-ses-bounce-handler .bounce-handler-endpoint {
+.bh-wp-aws-ses-bounce-handler .bounce-handler-endpoint {
     background: transparent;
     border: none;
     width: 100%;
     font-family: monospace;
 }
 
-.ea-wp-aws-ses-bounce-handler .bounce-test-running-spinner {
+.bh-wp-aws-ses-bounce-handler .bounce-test-running-spinner {
     width: 20px;
     height: 20px;
     padding: 5px;

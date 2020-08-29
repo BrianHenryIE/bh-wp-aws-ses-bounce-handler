@@ -7,11 +7,11 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package   EA_WP_AWS_SES_Bounce_Handler
- * @subpackage EA_WP_AWS_SES_Bounce_Handler/admin/partials
+ * @package   BH_WP_AWS_SES_Bounce_Handler
+ * @subpackage BH_WP_AWS_SES_Bounce_Handler/admin/partials
  */
 
-use EA_WP_AWS_SES_Bounce_Handler\includes\Settings_Interface;
+use BH_WP_AWS_SES_Bounce_Handler\includes\Settings_Interface;
 
 /**
  * The plugin Settings class. Repeated here for code completion.
@@ -22,7 +22,7 @@ $settings = $this->settings;
 
 ?>
 
-<div class="wrap ea-wp-aws-ses-bounce-handler">
+<div class="wrap bh-wp-aws-ses-bounce-handler">
 
 	<h1>AWS SES Bounce Handler</h1>
 
@@ -81,6 +81,6 @@ $settings = $this->settings;
 		<li>Fires actions <code>handle_ses_bounce</code> and <code>handle_ses_complaint</code></li>
 	</ul>
 
-	<p><a target="_blank" href="https://github.com/EnhancedAthlete/ea-wp-aws-ses-bounce-handler">View code on GitHub</a> &#x2022; <a target="_blank" href="https://BrianHenry.ie">Plugin by BrianHenryIE</a> &#x2022; <a target="_blank" href="https://EnhancedAthlete.com">Plugin for Enhanced Athlete</a></p>
+	<p><a target="_blank" href="https://github.com/BrianHenryIE/bh-wp-aws-ses-bounce-handler">View code on GitHub</a> &#x2022; <a target="_blank" href="https://BrianHenry.ie">Plugin by BrianHenryIE</a> &#x2022; <a target="_blank" href="https://EnhancedAthlete.com">Plugin for Enhanced Athlete</a></p>
 
 </div>

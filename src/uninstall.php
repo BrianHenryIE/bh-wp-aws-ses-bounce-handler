@@ -21,7 +21,7 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package   EA_WP_AWS_SES_Bounce_Handler
+ * @package   BH_WP_AWS_SES_Bounce_Handler
  */
 
 // If uninstall not called from WordPress, then exit.
@@ -29,9 +29,9 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-delete_option( 'ea-wp-aws-ses-bounce-handler-secret-key' );
-delete_option( 'ea-wp-aws-ses-bounce-handler-confirmed-arns' );
+delete_option( 'bh-wp-aws-ses-bounce-handler-secret-key' );
+delete_option( 'bh-wp-aws-ses-bounce-handler-confirmed-arns' );
 delete_option( 'aws_ses_bounce_tests' );
 
 $delete_all = true;
-delete_metadata( null, null, 'ea_wp_aws_ses_bounce_hander_bounced', null, $delete_all );
+delete_metadata( null, null, 'bh_wp_aws_ses_bounce_hander_bounced', null, $delete_all );

@@ -2,13 +2,13 @@
 /**
  * Runs tests against the Newsletter integration.
  *
- * @package ea-wp-aws-ses-bounce-handler
+ * @package bh-wp-aws-ses-bounce-handler
  * @author Brian Henry <BrianHenryIE@gmail.com>
  */
 
-namespace EA_WP_AWS_SES_Bounce_Handler\integrations;
+namespace BH_WP_AWS_SES_Bounce_Handler\integrations;
 
-use EA_WP_AWS_SES_Bounce_Handler\admin\Bounce_Handler_Test;
+use BH_WP_AWS_SES_Bounce_Handler\admin\Bounce_Handler_Test;
 use stdClass;
 use TNP;
 
@@ -17,7 +17,7 @@ use TNP;
  *
  * Class Newsletter_Test
  *
- * @package EA_WP_AWS_SES_Bounce_Handler\integrations
+ * @package BH_WP_AWS_SES_Bounce_Handler\integrations
  */
 class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 
@@ -26,7 +26,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_description_text() {
 
-		$newsletter_integration = new Newsletter( 'ea-wp-aws-ses-bounce-handler', '1.2.0' );
+		$newsletter_integration = new Newsletter( 'bh-wp-aws-ses-bounce-handler', '1.2.0' );
 
 		$description = $newsletter_integration->get_description();
 
@@ -41,7 +41,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_description_html() {
 
-		$newsletter_integration = new Newsletter( 'ea-wp-aws-ses-bounce-handler', '1.2.0' );
+		$newsletter_integration = new Newsletter( 'bh-wp-aws-ses-bounce-handler', '1.2.0' );
 
 		$description = $newsletter_integration->get_description();
 
@@ -61,7 +61,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertSame( 'C', $user_before->status );
 
-		$newsletter_integration = new Newsletter( 'ea-wp-aws-ses-bounce-handler', '1.2.0' );
+		$newsletter_integration = new Newsletter( 'bh-wp-aws-ses-bounce-handler', '1.2.0' );
 		$newsletter_integration->handle_ses_bounce( 'brianhenryie@gmail.com', new stdClass(), new stdClass() );
 
 		$user_after = $tnp->get_user( 'brianhenryie@gmail.com' );
@@ -96,7 +96,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertSame( 'C', $user_before->status );
 
-		$newsletter_integration = new Newsletter( 'ea-wp-aws-ses-bounce-handler', '1.2.0' );
+		$newsletter_integration = new Newsletter( 'bh-wp-aws-ses-bounce-handler', '1.2.0' );
 		$newsletter_integration->handle_ses_complaint( 'brianhenryie@gmail.com', new stdClass(), new stdClass() );
 
 		$user_after = $tnp->get_user( 'brianhenryie@gmail.com' );
@@ -119,7 +119,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertNull( $user_before );
 
-		$newsletter_integration = new Newsletter( 'ea-wp-aws-ses-bounce-handler', '1.2.0' );
+		$newsletter_integration = new Newsletter( 'bh-wp-aws-ses-bounce-handler', '1.2.0' );
 
 		$test_data = $newsletter_integration->setup_test( $test );
 
@@ -143,7 +143,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 
 		$test = new Bounce_Handler_Test();
 
-		$newsletter_integration = new Newsletter( 'ea-wp-aws-ses-bounce-handler', '1.2.0' );
+		$newsletter_integration = new Newsletter( 'bh-wp-aws-ses-bounce-handler', '1.2.0' );
 		$test_data              = $newsletter_integration->setup_test( $test );
 
 		global $wpdb;
@@ -178,7 +178,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 
 		$test_data['tnp_user_id'] = $user_before->id;
 
-		$newsletter_integration = new Newsletter( 'ea-wp-aws-ses-bounce-handler', '1.2.0' );
+		$newsletter_integration = new Newsletter( 'bh-wp-aws-ses-bounce-handler', '1.2.0' );
 
 		$newsletter_integration->delete_test_data( $test_data );
 
