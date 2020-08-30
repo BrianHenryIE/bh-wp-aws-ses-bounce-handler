@@ -19,6 +19,7 @@ use BH_WP_AWS_SES_Bounce_Handler\admin\Admin;
 use BH_WP_AWS_SES_Bounce_Handler\admin\Ajax;
 use BH_WP_AWS_SES_Bounce_Handler\admin\Plugins_Page;
 use BH_WP_AWS_SES_Bounce_Handler\admin\Settings_Page;
+use BH_WP_AWS_SES_Bounce_Handler\integrations\MailPoet;
 use BH_WP_AWS_SES_Bounce_Handler\integrations\Newsletter;
 use BH_WP_AWS_SES_Bounce_Handler\integrations\SES_Bounce_Handler_Integration_Interface;
 use BH_WP_AWS_SES_Bounce_Handler\integrations\WooCommerce;
@@ -202,6 +203,7 @@ class BH_WP_AWS_SES_Bounce_Handler extends WPPB_Object {
 		$built_in_integrations['WordPress']   = new WordPress( $this->get_plugin_name(), $this->get_version() );
 		$built_in_integrations['WooCommerce'] = new WooCommerce( $this->get_plugin_name(), $this->get_version() );
 		$built_in_integrations['Newsletter']  = new Newsletter( $this->get_plugin_name(), $this->get_version() );
+		$built_in_integrations['MailPoet']    = new MailPoet();
 
 		$this->integrations = $built_in_integrations;
 
