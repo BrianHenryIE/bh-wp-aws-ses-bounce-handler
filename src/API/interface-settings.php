@@ -9,7 +9,7 @@
  * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  */
 
-namespace BH_WP_AWS_SES_Bounce_Handler\API;
+namespace BrianHenryIE\AWS_SES_Bounce_Handler\API;
 
 /**
  * The settings interface.
@@ -52,6 +52,12 @@ interface Settings_Interface {
 	 *
 	 * @param string $arn AWS SNS ARN.
 	 */
-	public function set_confirmed_arn( string $arn );
+	public function set_confirmed_arn( string $arn ): void;
+
+
+	public function get_plugin_name(): string;
+	public function get_plugin_slug(): string;
+	public function get_plugin_version(): string;
+	public function get_plugin_basename(): string;
 
 }

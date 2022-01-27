@@ -8,10 +8,12 @@
 
 namespace BH_WP_AWS_SES_Bounce_Handler;
 
-use BH_WP_AWS_SES_Bounce_Handler\includes\BH_WP_AWS_SES_Bounce_Handler;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Includes\BH_WP_AWS_SES_Bounce_Handler;
 
 /**
  * Verifies the plugin has been instantiated and added to PHP's $GLOBALS variable.
+ *
+ * @coversNothing
  */
 class Plugin_Develop_Test extends \Codeception\TestCase\WPTestCase {
 

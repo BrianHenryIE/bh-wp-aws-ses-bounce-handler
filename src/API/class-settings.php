@@ -9,9 +9,11 @@
  * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  */
 
-namespace BH_WP_AWS_SES_Bounce_Handler\API;
+namespace BrianHenryIE\AWS_SES_Bounce_Handler\API;
 
-use BH_WP_AWS_SES_Bounce_Handler\integrations\SES_Bounce_Handler_Integration_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\API\Logger_Settings_Interface;
+use Psr\Log\LogLevel;
+
 
 /**
  * The plugin settings.
@@ -21,7 +23,7 @@ use BH_WP_AWS_SES_Bounce_Handler\integrations\SES_Bounce_Handler_Integration_Int
  * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  */
-class Settings implements Settings_Interface {
+class Settings implements Settings_Interface, Logger_Settings_Interface {
 
 	/**
 	 * List of ARNs which have successfully been confirmed with AWS SNS.
@@ -37,19 +39,10 @@ class Settings implements Settings_Interface {
 	 *
 	 * @param string $arn AWS SNS ARN.
 	 */
-	public function set_confirmed_arn( string $arn ) {
+	public function set_confirmed_arn( string $arn ): void {
 		$confirmed_arns   = $this->get_confirmed_arns();
 		$confirmed_arns[] = $arn;
 		update_option( self::CONFIRMED_ARNS, array_unique( $confirmed_arns ) );
-	}
-
-	/**
-	 * Find and return all integrations.
-	 *
-	 * @return SES_Bounce_Handler_Integration_Interface[]
-	 */
-	public function get_integrations(): array {
-		return apply_filters( 'bh_wp_aws_ses_bounce_handler_integrations', array() );
 	}
 
 	/**
@@ -69,5 +62,39 @@ class Settings implements Settings_Interface {
 	 */
 	public function get_endpoint(): string {
 		return get_rest_url( null, 'brianhenryie/v1/aws-ses/?secret=' . $this->get_secret_key() );
+	}
+
+	/**
+	 * @return string
+	 * @see LogLevel
+	 */
+	public function get_log_level(): string {
+		return LogLevel::INFO;
+	}
+
+	/**
+	 * For friendly display.
+	 *
+	 * @return string
+	 */
+	public function get_plugin_name(): string {
+		return 'AWS SES Bounce Handler';
+	}
+
+	/**
+	 * For filenames and URLs.
+	 *
+	 * @return string
+	 */
+	public function get_plugin_slug(): string {
+		return 'bh-wp-aws-ses-bounce-handler';
+	}
+
+	public function get_plugin_basename(): string {
+		return 'bh-wp-aws-ses-bounce-handler/bh-wp-aws-ses-bounce-handler.php';
+	}
+
+	public function get_plugin_version(): string {
+		return '1.3.2';
 	}
 }

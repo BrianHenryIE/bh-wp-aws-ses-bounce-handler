@@ -18,6 +18,6 @@ modules:
             domain: "%TEST_SITE_WP_DOMAIN%"
             adminEmail: "%TEST_SITE_ADMIN_EMAIL%"
             title: "bh-wp-aws-ses-bounce-handler"
-            plugins: []
-            activatePlugins: []
+            plugins: ["woocommerce/woocommerce.php", "mailpoet/mailpoet.php", "newsletter/plugin.php"]
+            activatePlugins: ["woocommerce/woocommerce.php", "mailpoet/mailpoet.php", "newsletter/plugin.php"]
 bootstrap: _bootstrap.php
