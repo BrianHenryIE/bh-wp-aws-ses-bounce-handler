@@ -12,8 +12,6 @@
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Bounce_Handler_Test;
-use BH_WP_AWS_SES_Bounce_Handler\Logger;
-
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use stdClass;
