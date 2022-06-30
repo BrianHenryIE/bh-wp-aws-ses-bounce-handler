@@ -11,7 +11,8 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\API;
 
-use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\API\Logger_Settings_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger_Settings_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger_Settings_Trait;
 use Psr\Log\LogLevel;
 
 
@@ -24,6 +25,7 @@ use Psr\Log\LogLevel;
  * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  */
 class Settings implements Settings_Interface, Logger_Settings_Interface {
+	use Logger_Settings_Trait;
 
 	/**
 	 * List of ARNs which have successfully been confirmed with AWS SNS.
