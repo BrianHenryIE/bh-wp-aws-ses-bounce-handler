@@ -11,8 +11,8 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
 
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\API_Interface;
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
 
 /**
  * The admin-specific functionality of the plugin.
@@ -47,8 +47,8 @@ class Admin {
 		global $pagenow;
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( 'options-general.php' === $pagenow && isset( $_GET['page'] ) && 'bh-wp-aws-ses-bounce-handler' === filter_var( wp_unslash( $_GET['page'] ), FILTER_SANITIZE_STRING ) ) {
-
-			wp_enqueue_style( $this->settings->get_plugin_slug(), plugin_dir_url( __FILE__ ) . 'css/bh-wp-aws-ses-bounce-handler-admin.css', array(), $this->settings->get_plugin_version(), 'all' );
+			$url = plugin_dir_url( __FILE__ ) . 'css/bh-wp-aws-ses-bounce-handler-admin.css';
+			wp_enqueue_style( $this->settings->get_plugin_slug(), $url, array(), $this->settings->get_plugin_version(), 'all' );
 		}
 	}
 

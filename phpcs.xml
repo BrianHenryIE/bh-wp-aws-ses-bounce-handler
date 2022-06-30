@@ -15,8 +15,9 @@
     <arg name="colors"/>
 
     <exclude-pattern>/assets/</exclude-pattern>
+    <exclude-pattern>/dist-archive/</exclude-pattern>
     <exclude-pattern>/scratch/</exclude-pattern>
-    <exclude-pattern>/src/strauss/*</exclude-pattern>
+    <exclude-pattern>/vendor-prefixed/*</exclude-pattern>
     <exclude-pattern>/tests/_data/</exclude-pattern>
     <exclude-pattern>/tests/_output/</exclude-pattern>
     <exclude-pattern>/tests/_support/</exclude-pattern>

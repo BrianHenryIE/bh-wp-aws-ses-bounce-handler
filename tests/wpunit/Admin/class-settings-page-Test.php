@@ -8,8 +8,8 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
 
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\API_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings;
+use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
 
 /**
  * Tests the wp_mail function introspection.
@@ -28,7 +28,7 @@ class Settings_Page_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_get_wp_mail_info() {
 
-	    $api = $this->makeEmpty( API_Interface::class );
+		$api      = $this->makeEmpty( API_Interface::class );
 		$settings = new Settings();
 
 		$settings_page = new Settings_Page( $api, $settings );

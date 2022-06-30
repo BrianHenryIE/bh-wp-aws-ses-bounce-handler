@@ -8,8 +8,8 @@
 
 namespace BH_WP_AWS_SES_Bounce_Handler\rest;
 
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings;
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Settings;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
 use MailPoet\Models\Subscriber;
 
 /**
@@ -84,9 +84,7 @@ class SNS_Test extends \Codeception\TestCase\WPTestCase {
 
 		$request->set_param( 'secret', $secret );
 
-
-
-//		remove_all_actions( 'handle_ses_bounce' );
+		// remove_all_actions( 'handle_ses_bounce' );
 
 		$success = false;
 		add_action(

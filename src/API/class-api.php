@@ -4,9 +4,10 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler\API;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations\MailPoet;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations\Newsletter;
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations\SES_Bounce_Handler_Integration_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations\WooCommerce;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations\WordPress;
+use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use stdClass;

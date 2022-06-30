@@ -9,7 +9,7 @@
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Bounce_Handler_Test;
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\API_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
 use BrianHenryIE\ColorLogger\ColorLogger;
 use Psr\Log\NullLogger;
 use stdClass;
@@ -27,11 +27,11 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	/**
 	 * Test the text of the description is correct.
 	 *
-     * @covers ::get_description
+	 * @covers ::get_description
 	 */
 	public function test_description_text() {
 
-	    $logger = new ColorLogger();
+		$logger = new ColorLogger();
 
 		$newsletter_integration = new Newsletter( $logger );
 
@@ -50,9 +50,9 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_description_html() {
 
-	    $logger = new ColorLogger();
+		$logger = new ColorLogger();
 
-        $newsletter_integration = new Newsletter( $logger );
+		$newsletter_integration = new Newsletter( $logger );
 
 		$description = $newsletter_integration->get_description();
 
@@ -74,9 +74,9 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertSame( 'C', $user_before->status );
 
-        $logger = new ColorLogger();
+		$logger = new ColorLogger();
 
-        $newsletter_integration = new Newsletter( $logger );
+		$newsletter_integration = new Newsletter( $logger );
 
 		$newsletter_integration->handle_ses_bounce( 'brianhenryie@gmail.com', new stdClass(), new stdClass() );
 
@@ -99,7 +99,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 			function( $result, $option, $default ) {
 				$options                         = array();
 				$options['unsubscribed_message'] = 'message';
-                $options['unsubscribed_subject'] = 'subject';
+				$options['unsubscribed_subject'] = 'subject';
 				return $options;
 			},
 			10,
@@ -107,51 +107,49 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		);
 
 		$option_name = 'newsletter_subscription_template';
-        add_filter(
-            'pre_option_' . $option_name,
-            function( $result, $option, $default ) {
-                $options                         = array();
-                $options['template'] = '{message}';
-                return $options;
-            },
-            10,
-            3
-        );
+		add_filter(
+			'pre_option_' . $option_name,
+			function( $result, $option, $default ) {
+				$options             = array();
+				$options['template'] = '{message}';
+				return $options;
+			},
+			10,
+			3
+		);
 
-        $option_name = 'newsletter_profile';
-        add_filter(
-            'pre_option_' . $option_name,
-            function( $result, $option, $default ) {
-                $options                         = array();
-                $options['title_none'] = 'title_none';
-                return $options;
-            },
-            10,
-            3
-        );
+		$option_name = 'newsletter_profile';
+		add_filter(
+			'pre_option_' . $option_name,
+			function( $result, $option, $default ) {
+				$options               = array();
+				$options['title_none'] = 'title_none';
+				return $options;
+			},
+			10,
+			3
+		);
 
-        $option_name = 'newsletter_main_info';
-        add_filter(
-            'pre_option_' . $option_name,
-            function( $result, $option, $default ) {
-                $options                         = array();
-                $options['footer_contact'] = 'footer_contact';
-                $options['footer_title'] = 'footer_title';
-                $options['footer_legal'] = 'footer_legal';
-                return $options;
-            },
-            10,
-            3
-        );
+		$option_name = 'newsletter_main_info';
+		add_filter(
+			'pre_option_' . $option_name,
+			function( $result, $option, $default ) {
+				$options                   = array();
+				$options['footer_contact'] = 'footer_contact';
+				$options['footer_title']   = 'footer_title';
+				$options['footer_legal']   = 'footer_legal';
+				return $options;
+			},
+			10,
+			3
+		);
 
-
-        // @see \NewsletterModule::process_ip()
-        $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
-        \Newsletter::instance()->options['ip'] = '127.0.0.1';
-        \Newsletter::instance()->options['sender_email'] = 'sender_email';
-        \Newsletter::instance()->options['sender_name'] = 'sender_name';
-        \Newsletter::instance()->options['return_path'] = 'return_path';
-
+		// @see \NewsletterModule::process_ip()
+		$_SERVER['REMOTE_ADDR']                          = '127.0.0.1';
+		\Newsletter::instance()->options['ip']           = '127.0.0.1';
+		\Newsletter::instance()->options['sender_email'] = 'sender_email';
+		\Newsletter::instance()->options['sender_name']  = 'sender_name';
+		\Newsletter::instance()->options['return_path']  = 'return_path';
 
 		TNP::add_subscriber( array( 'email' => 'brianhenryie@gmail.com' ) );
 
@@ -161,11 +159,11 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertSame( 'C', $user_before->status );
 
-        $logger = new ColorLogger();
+		$logger = new ColorLogger();
 
-        $newsletter_integration = new Newsletter( $logger );
+		$newsletter_integration = new Newsletter( $logger );
 
-        $newsletter_integration->handle_ses_complaint( 'brianhenryie@gmail.com', new stdClass(), new stdClass() );
+		$newsletter_integration->handle_ses_complaint( 'brianhenryie@gmail.com', new stdClass(), new stdClass() );
 
 		$user_after = $tnp->get_user( 'brianhenryie@gmail.com' );
 
@@ -182,21 +180,20 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_setup_test() {
 
-	    $logger = new ColorLogger();
-	    $api = $this->makeEmpty( API_Interface::class);
-		$test = new Bounce_Handler_Test( $api, $logger );
+		$logger = new ColorLogger();
+		$api    = $this->makeEmpty( API_Interface::class );
+		$test   = new Bounce_Handler_Test( $api, $logger );
 
 		$tnp         = \Newsletter::instance();
 		$user_before = $tnp->get_user( $test->get_email() );
 
 		$this->assertNull( $user_before );
 
-        $logger = new ColorLogger();
+		$logger = new ColorLogger();
 
-        $newsletter_integration = new Newsletter( $logger );
+		$newsletter_integration = new Newsletter( $logger );
 
-
-        $test_data = $newsletter_integration->setup_test( $test );
+		$test_data = $newsletter_integration->setup_test( $test );
 
 		$this->assertArrayHasKey( 'data', $test_data );
 		$this->assertArrayHasKey( 'html', $test_data );
@@ -218,15 +215,15 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_verify_test() {
 
-	    $api = $this->makeEmpty( API_Interface::class );
-	    $logger = new ColorLogger();
-		$test = new Bounce_Handler_Test( $api, $logger );
+		$api    = $this->makeEmpty( API_Interface::class );
+		$logger = new ColorLogger();
+		$test   = new Bounce_Handler_Test( $api, $logger );
 
-        $logger = new ColorLogger();
+		$logger = new ColorLogger();
 
-        $newsletter_integration = new Newsletter( $logger );
+		$newsletter_integration = new Newsletter( $logger );
 
-		$test_data              = $newsletter_integration->setup_test( $test );
+		$test_data = $newsletter_integration->setup_test( $test );
 
 		global $wpdb;
 		$updated = $wpdb->update( NEWSLETTER_USERS_TABLE, array( 'status' => 'B' ), array( 'email' => $test->get_email() ) );
@@ -261,9 +258,9 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$this->assertNotNull( $user_before );
 
 		$test_data['tnp_user_id'] = $user_before->id;
-        $logger = new ColorLogger();
+		$logger                   = new ColorLogger();
 
-        $newsletter_integration = new Newsletter( $logger );
+		$newsletter_integration = new Newsletter( $logger );
 
 		$newsletter_integration->delete_test_data( $test_data );
 

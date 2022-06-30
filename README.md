@@ -10,11 +10,11 @@ A WordPress plugin to unsubscribe users from email lists when AWS SES sends a bo
 
 #### WordPress
 
-![WordPress Users List](./assets/screenshot-3.png "WordPress Users List")
+![WordPress Users List](./.wordpress-org/screenshot-3.png "WordPress Users List")
 
 #### WooCommerce
 
-![WooCommerce Notice](./assets/screenshot-2.png "WooCommerce Notice")
+![WooCommerce Notice](./.wordpress-org/screenshot-2.png "WooCommerce Notice")
 
 #### The Newsletter Plugin
 
@@ -52,7 +52,7 @@ This plugin parses the bounce and complaint notifications, adds the "Bounced Ema
 * Follow Amazon's [Configuring Amazon SNS Notifications for Amazon SES](https://docs.aws.amazon.com/ses/latest/DeveloperGuide/configure-sns-notifications.html) document
 * Subscribe to the SNS topics using the endpoint in the settings page
  
-![Settings Page](./assets/screenshot-1.png "Settings Page")
+![Settings Page](./.wordpress-org/screenshot-1.png "Settings Page")
 
 ## Verification
 
@@ -61,7 +61,7 @@ The plugin's settings page can set up test data and send a test email to _bounce
 
 NB: When testing on your staging site, that must also be registered in SNS. 
 
-![Testing](./assets/screenshot-4.png "Testing")
+![Testing](./.wordpress-org/screenshot-4.png "Testing")
 
 
 ## API
@@ -189,4 +189,4 @@ vendor/bin/codecept clean
 
 Built by [Brian Henry](https://BrianHenry.ie) for:
 
-[![Enhanced Athlete](./assets/Enhanced_Athlete.png "Enhanced Athlete")](https://EnhancedAthlete.com)
+[![Enhanced Athlete](./.wordpress-org/enhanced_athlete.png "Enhanced Athlete")](https://EnhancedAthlete.com)

@@ -10,22 +10,22 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
 
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\API_Interface;
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
 
 /**
  * @coversDefaultClass \BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Admin
  */
 class Admin_Test extends \Codeception\Test\Unit {
 
-    protected function _before() {
-        \WP_Mock::setUp();
-    }
+	protected function _before() {
+		\WP_Mock::setUp();
+	}
 
-    protected function _tearDown() {
-        parent::_tearDown();
-        \WP_Mock::tearDown();
-    }
+	protected function _tearDown() {
+		parent::_tearDown();
+		\WP_Mock::tearDown();
+	}
 
 	/**
 	 * Verifies enqueue_styles() calls wp_enqueue_style() with appropriate parameters.
@@ -39,6 +39,7 @@ class Admin_Test extends \Codeception\Test\Unit {
 	public function test_enqueue_styles_on_settings_page() {
 
 		global $plugin_root_dir;
+		global $plugin_slug;
 
 		global $pagenow;
 		$pagenow = 'options-general.php';
@@ -56,27 +57,29 @@ class Admin_Test extends \Codeception\Test\Unit {
 		\WP_Mock::userFunction(
 			'plugin_dir_url',
 			array(
-				'return' => $plugin_root_dir . '/admin/',
+				'return' => "http://localhost/{$plugin_slug}/src/Admin/",
 			)
 		);
 
-		$css_file = $plugin_root_dir . '/admin/css/bh-wp-aws-ses-bounce-handler-admin.css';
+		$css_url  = "http://localhost/{$plugin_slug}/src/Admin/css/bh-wp-aws-ses-bounce-handler-admin.css";
+		$css_file = $plugin_root_dir . '/src/Admin/css/bh-wp-aws-ses-bounce-handler-admin.css';
 
 		\WP_Mock::userFunction(
 			'wp_enqueue_style',
 			array(
 				'times' => 1,
-				'args'  => array( 'bh-wp-aws-ses-bounce-handler', $css_file, array(), '2.0.0', 'all' ),
+				'args'  => array( 'bh-wp-aws-ses-bounce-handler', $css_url, array(), '2.0.0', 'all' ),
 			)
 		);
 
-		$api = $this->makeEmpty( API_Interface::class );
-		$settings = $this->makeEmpty( Settings_Interface::class,
-            array(
-                'get_plugin_slug' => 'bh-wp-aws-ses-bounce-handler',
-                'get_plugin_version' => '2.0.0'
-            )
-        );
+		$api      = $this->makeEmpty( API_Interface::class );
+		$settings = $this->makeEmpty(
+			Settings_Interface::class,
+			array(
+				'get_plugin_slug'    => 'bh-wp-aws-ses-bounce-handler',
+				'get_plugin_version' => '2.0.0',
+			)
+		);
 
 		$bh_wp_aws_ses_bounce_handler_admin = new Admin( $api, $settings );
 
@@ -117,15 +120,16 @@ class Admin_Test extends \Codeception\Test\Unit {
 			)
 		);
 
-		$api = $this->makeEmpty( API_Interface::class );
-        $settings = $this->makeEmpty( Settings_Interface::class,
-            array(
-                'get_plugin_slug' => 'bh-wp-aws-ses-bounce-handler',
-                'get_plugin_version' => '2.0.0'
-            )
-        );
+		$api      = $this->makeEmpty( API_Interface::class );
+		$settings = $this->makeEmpty(
+			Settings_Interface::class,
+			array(
+				'get_plugin_slug'    => 'bh-wp-aws-ses-bounce-handler',
+				'get_plugin_version' => '2.0.0',
+			)
+		);
 
-        $bh_wp_aws_ses_bounce_handler_admin = new Admin( $api, $settings );
+		$bh_wp_aws_ses_bounce_handler_admin = new Admin( $api, $settings );
 
 		$bh_wp_aws_ses_bounce_handler_admin->enqueue_styles();
 

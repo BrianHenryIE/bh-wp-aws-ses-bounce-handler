@@ -11,8 +11,8 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
 
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\API_Interface;
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
 
 
 /**

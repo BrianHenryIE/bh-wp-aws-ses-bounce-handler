@@ -3,15 +3,16 @@ parameters:
     paths:
         - src
     excludePaths:
-        - src/trauss/*
+        - vendor-prefixed/*
+        - wp-content/plugins/bh-wp-aws-ses-bounce-handler
     bootstrapFiles:
         - phpstanbootstrap.php
-        - src/autoload.php
+        - autoload.php
         - vendor/php-stubs/wordpress-stubs/wordpress-stubs.php
         - vendor/php-stubs/woocommerce-stubs/woocommerce-stubs.php
         - vendor/php-stubs/woocommerce-stubs/woocommerce-packages-stubs.php
     scanDirectories:
-        - src/strauss
+        - vendor-prefixed
         - wp-content/plugins
         - vendor/wp-cli
     scanFiles:

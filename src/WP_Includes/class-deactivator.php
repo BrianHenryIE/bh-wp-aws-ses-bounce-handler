@@ -9,7 +9,7 @@
  * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  */
 
-namespace BrianHenryIE\AWS_SES_Bounce_Handler\Includes;
+namespace BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes;
 
 /**
  * Fired during plugin deactivation.
@@ -18,7 +18,7 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler\Includes;
  *
  * Class Deactivator
  *
- * @package BrianHenryIE\AWS_SES_Bounce_Handler\Includes
+ * @package BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes
  */
 class Deactivator {
 

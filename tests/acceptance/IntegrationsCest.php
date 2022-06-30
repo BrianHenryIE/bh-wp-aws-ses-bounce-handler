@@ -11,7 +11,7 @@ class IntegrationsCest {
 
 		$I->loginAsAdmin();
 
-		$I->amOnAdminPage('options-general.php?page=bh-wp-aws-ses-bounce-handler');
+		$I->amOnAdminPage( 'options-general.php?page=bh-wp-aws-ses-bounce-handler' );
 
 		// TODO: Check the links in this text to MailPoet's bounce list (if active).
 

@@ -6,9 +6,7 @@
  * @author     Brian Henry <BrianHenryIE@gmail.com>
  */
 
-namespace BH_WP_AWS_SES_Bounce_Handler;
-
-use BrianHenryIE\AWS_SES_Bounce_Handler\Includes\BH_WP_AWS_SES_Bounce_Handler;
+namespace BrianHenryIE\AWS_SES_Bounce_Handler;
 
 /**
  * Verifies the plugin has been instantiated and added to PHP's $GLOBALS variable.

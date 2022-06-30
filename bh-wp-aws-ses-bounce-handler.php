@@ -10,7 +10,7 @@
  * Plugin Name:       AWS SES Bounce Handler
  * Plugin URI:        https://github.com/BrianHenryIE/bh-wp-aws-ses-bounce-handler
  * Description:       When AWS SES sends a bounce or complaint report, users & orders are marked; Newsletter users are unsubscribed.
- * Version:           1.3.2
+ * Version:           1.3.4
  * Author:            BrianHenryIE
  * Author URI:        https://BrianHenry.ie
  * License:           GPL-2.0+
@@ -22,15 +22,15 @@
 namespace BrianHenryIE\AWS_SES_Bounce_Handler;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\API;
-use BrianHenryIE\AWS_SES_Bounce_Handler\Includes\Activator;
-use BrianHenryIE\AWS_SES_Bounce_Handler\Includes\BH_WP_AWS_SES_Bounce_Handler;
-use BrianHenryIE\AWS_SES_Bounce_Handler\Includes\Deactivator;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\Activator;
+use BrianHenryIE\AWS_SES_Bounce_Handler\BH_WP_AWS_SES_Bounce_Handler;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\Deactivator;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-	throw new \Exception('WPINC not defined');
+	throw new \Exception( 'WPINC not defined' );
 }
 
 require_once plugin_dir_path( __FILE__ ) . 'autoload.php';
@@ -42,7 +42,7 @@ register_deactivation_hook( __FILE__, array( Deactivator::class, 'deactivate' ) 
 /**
  * Currently plugin version.
  */
-define( 'BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION', '1.3.2' );
+define( 'BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION', '1.3.4' );
 
 
 /**
@@ -69,8 +69,6 @@ function instantiate_bh_wp_aws_ses_bounce_handler() {
  * not affect the page life cycle.
  *
  * @since    1.0.0
- *
- * phpcs:disable Squiz.PHP.DisallowMultipleAssignments.Found
  */
-$GLOBALS['bh_wp_aws_ses_bounce_handler'] = $bh_wp_aws_ses_bounce_handler = instantiate_bh_wp_aws_ses_bounce_handler();
+$GLOBALS['bh_wp_aws_ses_bounce_handler'] = instantiate_bh_wp_aws_ses_bounce_handler();
 

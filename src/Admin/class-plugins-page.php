@@ -11,7 +11,7 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
 
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
 
 /**
  * This class adds a `Settings` link on the plugins.php page.

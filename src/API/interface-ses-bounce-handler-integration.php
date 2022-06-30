@@ -15,7 +15,7 @@
  * @subpackage BH_WP_AWS_SES_Bounce_Handler/integrations
  */
 
-namespace BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations;
+namespace BrianHenryIE\AWS_SES_Bounce_Handler\API;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Bounce_Handler_Test;
 use Psr\Log\LoggerAwareTrait;

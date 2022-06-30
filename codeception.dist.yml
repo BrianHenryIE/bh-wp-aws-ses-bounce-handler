@@ -24,11 +24,11 @@ coverage:
         - src/*
     exclude:
         - /*/interface-*.*
-        - src/strauss/*
+        - vendor-prefixed/*
         - /*/index.php
         - /*/*.txt
-        - src/autoload.php
-        - src/autoload-classmap.php
+        - autoload.php
+        - autoload-classmap.php
         - /*/*.css
         - /*/*.js
 bootstrap: bootstrap.php

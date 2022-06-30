@@ -11,8 +11,8 @@
  * @subpackage BH_WP_AWS_SES_Bounce_Handler/admin/partials
  */
 
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\API_Interface;
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
 
 /**
  * The plugin Settings class. Repeated here for code completion.

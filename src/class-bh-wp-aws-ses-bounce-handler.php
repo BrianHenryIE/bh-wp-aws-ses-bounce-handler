@@ -12,14 +12,16 @@
  * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  */
 
-namespace BrianHenryIE\AWS_SES_Bounce_Handler\Includes;
+namespace BrianHenryIE\AWS_SES_Bounce_Handler;
 
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\API_Interface;
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Admin;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Ajax;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Plugins_Page;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Settings_Page;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\I18n;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\REST;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 

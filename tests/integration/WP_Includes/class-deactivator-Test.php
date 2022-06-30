@@ -6,14 +6,14 @@
  * @author Brian Henry <BrianHenryIE@gmail.com>
  */
 
-namespace BrianHenryIE\AWS_SES_Bounce_Handler\Includes;
+namespace BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes;
 
 /**
  * Make sure the added role is removed.
  *
  * Class Deactivator_Test
  *
- * @package BrianHenryIE\AWS_SES_Bounce_Handler\Includes
+ * @package BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes
  * @coversNothing
  */
 class Deactivator_Test extends \Codeception\TestCase\WPTestCase {

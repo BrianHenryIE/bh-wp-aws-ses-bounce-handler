@@ -6,7 +6,7 @@
  * @author  Brian Henry <BrianHenryIE@gmail.com>
  */
 
-namespace BrianHenryIE\AWS_SES_Bounce_Handler\Includes;
+namespace BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes;
 
 /**
  * Class BH_WP_AWS_SES_Bounce_Handler_Test

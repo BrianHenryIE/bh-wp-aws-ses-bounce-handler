@@ -23,8 +23,8 @@ class WooCommerce_Test extends \Codeception\TestCase\WPTestCase {
 
 	/**
 	 * Create an order, see if the delete_test_data function successfully deletes it.
-     *
-     * @covers ::delete_test_data
+	 *
+	 * @covers ::delete_test_data
 	 */
 	public function test_delete_test_data() {
 
@@ -38,9 +38,9 @@ class WooCommerce_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertInstanceOf( WC_Order::class, $order_before );
 
-        $logger = new ColorLogger();
+		$logger = new ColorLogger();
 
-        $woocommerce_integration = new WooCommerce( $logger );
+		$woocommerce_integration = new WooCommerce( $logger );
 
 		$woocommerce_integration->delete_test_data( $test_data );
 

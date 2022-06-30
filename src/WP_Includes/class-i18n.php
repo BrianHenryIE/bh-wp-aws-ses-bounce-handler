@@ -12,7 +12,7 @@
  * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
  */
 
-namespace BrianHenryIE\AWS_SES_Bounce_Handler\Includes;
+namespace BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes;
 
 /**
  * Define the internationalization functionality.

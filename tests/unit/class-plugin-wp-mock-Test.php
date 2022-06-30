@@ -6,13 +6,10 @@
  * @author  Brian Henry <BrianHenryIE@gmail.com>
  */
 
-namespace BH_WP_AWS_SES_Bounce_Handler;
+namespace BrianHenryIE\AWS_SES_Bounce_Handler;
 
-use BrianHenryIE\AWS_SES_Bounce_Handler\Includes\BH_WP_AWS_SES_Bounce_Handler;
-use BrianHenryIE\WC_Shipment_Tracking_Updates\API\API;
-use BrianHenryIE\WC_Shipment_Tracking_Updates\API\Settings;
-use BrianHenryIE\WC_Shipment_Tracking_Updates\Includes\BH_WC_Shipment_Tracking_Updates;
-use WP_Mock;
+use BrianHenryIE\AWS_SES_Bounce_Handler\API\API;
+use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings;
 
 /**
  * Class Plugin_WP_Mock_Test
@@ -39,23 +36,23 @@ class Plugin_WP_Mock_Test extends \Codeception\Test\Unit {
 			array( BH_WP_AWS_SES_Bounce_Handler::class, '__construct' ),
 			function( $api, $settings, $logger ) {}
 		);
-//		\Patchwork\redefine(
-//			array( Settings::class, 'get_plugin_slug' ),
-//			function(): string {
-//				return 'bh-wc-shipment-tracking-updates'; }
-//		);
-//		\Patchwork\redefine(
-//			array( Settings::class, 'get_log_level' ),
-//			function(): string {
-//				return 'info'; }
-//		);
-//		\Patchwork\redefine(
-//			array( Settings::class, 'get_plugin_basename' ),
-//			function(): string {
-//				return 'bh-wc-shipment-tracking-updates/bh-wc-shipment-tracking-updates.php'; }
-//		);
+		// \Patchwork\redefine(
+		// array( Settings::class, 'get_plugin_slug' ),
+		// function(): string {
+		// return 'bh-wc-shipment-tracking-updates'; }
+		// );
+		// \Patchwork\redefine(
+		// array( Settings::class, 'get_log_level' ),
+		// function(): string {
+		// return 'info'; }
+		// );
+		// \Patchwork\redefine(
+		// array( Settings::class, 'get_plugin_basename' ),
+		// function(): string {
+		// return 'bh-wc-shipment-tracking-updates/bh-wc-shipment-tracking-updates.php'; }
+		// );
 
-		$plugin_root_dir = dirname( __DIR__, 2 ) . '/src';
+		global $plugin_root_dir;
 
 		\WP_Mock::userFunction(
 			'plugin_dir_path',
@@ -146,7 +143,6 @@ class Plugin_WP_Mock_Test extends \Codeception\Test\Unit {
 		ob_end_clean();
 
 		$this->assertEmpty( $printed_output );
-
 
 		$this->assertArrayHasKey( 'bh_wp_aws_ses_bounce_handler', $GLOBALS );
 

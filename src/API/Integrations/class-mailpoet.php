@@ -6,6 +6,7 @@
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Bounce_Handler_Test;
+use BrianHenryIE\AWS_SES_Bounce_Handler\API\SES_Bounce_Handler_Integration_Interface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 use MailPoet\API\MP\v1\APIException;
@@ -59,8 +60,8 @@ class MailPoet implements SES_Bounce_Handler_Integration_Interface {
 
 		$subscriber = Subscriber::findOne( $email_address );
 
-		if( false === $subscriber ) {
-			$this->logger->warning("Bounced email address {$email_address} not found as Mailpoet Subscriber. Unable to unsubscribe", array( 'email_address'=>$email_address) );
+		if ( false === $subscriber ) {
+			$this->logger->warning( "Bounced email address {$email_address} not found as Mailpoet Subscriber. Unable to unsubscribe", array( 'email_address' => $email_address ) );
 			return;
 		}
 		$subscriber->status = Subscriber::STATUS_BOUNCED;

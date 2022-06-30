@@ -11,6 +11,7 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\API;
 
+use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger_Settings_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger_Settings_Trait;
 use Psr\Log\LogLevel;
@@ -97,6 +98,6 @@ class Settings implements Settings_Interface, Logger_Settings_Interface {
 	}
 
 	public function get_plugin_version(): string {
-		return '1.3.2';
+		return '1.3.4';
 	}
 }

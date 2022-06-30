@@ -9,7 +9,7 @@
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Bounce_Handler_Test;
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\API_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
 use BrianHenryIE\ColorLogger\ColorLogger;
 use Psr\Log\NullLogger;
 
@@ -27,15 +27,14 @@ class MailPoet_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_setup_test() {
 
-	    $logger = new ColorLogger();
-	    $api = $this->makeEmpty( API_Interface::class );
+		$logger = new ColorLogger();
+		$api    = $this->makeEmpty( API_Interface::class );
 
 		$mailpoet_integration = new MailPoet( $logger );
 
 		$bounce_handler_test = new Bounce_Handler_Test( $api, $logger );
 
 		$test_data = $mailpoet_integration->setup_test( $bounce_handler_test );
-
 
 		$this->assertIsArray( $test_data );
 

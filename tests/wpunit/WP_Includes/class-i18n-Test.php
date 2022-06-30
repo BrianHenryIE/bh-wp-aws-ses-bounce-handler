@@ -6,20 +6,20 @@
  * @author  Brian Henry <BrianHenryIE@gmail.com>
  */
 
-namespace BrianHenryIE\AWS_SES_Bounce_Handler\Includes;
+namespace BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes;
 
 /**
  * Class I18n_Test
  *
- * @coversDefaultClass \BrianHenryIE\AWS_SES_Bounce_Handler\Includes\I18n
+ * @coversDefaultClass \BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\I18n
  */
 class I18n_Test extends \Codeception\TestCase\WPTestCase {
 
 	/**
 	 * Checks if the filter run by WordPress in the load_plugin_textdomain() function is called.
 	 *
-     * @covers ::load_plugin_textdomain
-     *
+	 * @covers ::load_plugin_textdomain
+	 *
 	 * @see load_plugin_textdomain()
 	 */
 	public function test_load_plugin_textdomain_function() {
