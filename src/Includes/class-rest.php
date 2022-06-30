@@ -15,6 +15,7 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\API\API_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings_Interface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
+use SimpleXMLElement;
 use stdClass;
 
 /**
@@ -198,7 +199,7 @@ class REST {
 		// If unsuccessful.
 		if ( 2 !== intval( $request_response['response']['code'] / 100 ) ) {
 
-			$xml = new \SimpleXMLElement( $request_response['body'] );
+			$xml = new SimpleXMLElement( $request_response['body'] );
 
 			$error_message = 'Error confirming subscription for topic <b><i>' . $subscription_topic . '</i></b>. ' . $request_response['response']['message'] . ' : ' . $xml->{'Error'}->{'Message'};
 
