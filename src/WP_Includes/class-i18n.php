@@ -37,7 +37,7 @@ class I18n {
 		load_plugin_textdomain(
 			'bh-wp-aws-ses-bounce-handler',
 			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
+			plugin_basename( dirname( __FILE__, 3 ) ) . '/languages/'
 		);
 
 	}

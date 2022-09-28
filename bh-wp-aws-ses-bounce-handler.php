@@ -23,7 +23,6 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\API;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\Activator;
-use BrianHenryIE\AWS_SES_Bounce_Handler\BH_WP_AWS_SES_Bounce_Handler;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\Deactivator;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger;

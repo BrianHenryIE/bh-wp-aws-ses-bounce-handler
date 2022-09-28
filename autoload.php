@@ -35,6 +35,7 @@ foreach ( $class_map_files as $class_map_file ) {
 	}
 }
 
+
 require_once __DIR__ . '/vendor-prefixed/autoload.php';
 
 $wpcs_autoloader = new WP_Namespace_Autoloader( array( 'classes_dir' => array( 'src' ) ) );
