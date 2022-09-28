@@ -16,7 +16,7 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
-use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Admin;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Admin_Assets;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Ajax;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Plugins_Page;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Settings_Page;
@@ -97,7 +97,7 @@ class BH_WP_AWS_SES_Bounce_Handler {
 	 */
 	protected function define_admin_hooks() {
 
-		$admin = new Admin( $this->api, $this->settings );
+		$admin = new Admin_Assets( $this->api, $this->settings );
 		add_action( 'admin_enqueue_scripts', array( $admin, 'enqueue_styles' ) );
 		add_action( 'admin_enqueue_scripts', array( $admin, 'enqueue_scripts' ) );
 

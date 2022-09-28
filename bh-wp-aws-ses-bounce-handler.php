@@ -42,7 +42,7 @@ register_deactivation_hook( __FILE__, array( Deactivator::class, 'deactivate' ) 
  * Currently plugin version.
  */
 define( 'BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION', '1.3.4' );
-
+define( 'BH_WP_AWS_SES_BOUNCE_HANDLER_BASENAME', plugin_basename( __FILE__ ) );
 
 /**
  * Function to keep the loader and settings objects out of the namespace.

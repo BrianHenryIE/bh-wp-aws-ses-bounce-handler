@@ -8,7 +8,7 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler;
 
-use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Admin;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Admin_Assets;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations\WordPress;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\I18n;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\REST;
@@ -58,12 +58,12 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 
 		\WP_Mock::expectActionAdded(
 			'admin_enqueue_scripts',
-			array( new AnyInstance( Admin::class ), 'enqueue_styles' )
+			array( new AnyInstance( Admin_Assets::class ), 'enqueue_styles' )
 		);
 
 		\WP_Mock::expectActionAdded(
 			'admin_enqueue_scripts',
-			array( new AnyInstance( Admin::class ), 'enqueue_scripts' )
+			array( new AnyInstance( Admin_Assets::class ), 'enqueue_scripts' )
 		);
 
 		$api      = $this->makeEmpty( API_Interface::class );

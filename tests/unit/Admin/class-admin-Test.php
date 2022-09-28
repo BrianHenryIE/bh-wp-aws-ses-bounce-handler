@@ -2,7 +2,7 @@
 /**
  * Tests for Admin.
  *
- * @see Admin
+ * @see Admin_Assets
  *
  * @package bh-wp-aws-ses-bounce-handler
  * @author Brian Henry <BrianHenryIE@gmail.com>
@@ -14,7 +14,7 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
 
 /**
- * @coversDefaultClass \BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Admin
+ * @coversDefaultClass \BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Admin_Assets
  */
 class Admin_Test extends \Codeception\Test\Unit {
 
@@ -31,7 +31,7 @@ class Admin_Test extends \Codeception\Test\Unit {
 	 * Verifies enqueue_styles() calls wp_enqueue_style() with appropriate parameters.
 	 * Verifies the .css file exists.
 	 *
-	 * @see Admin::enqueue_styles()
+	 * @see Admin_Assets::enqueue_styles()
 	 * @see wp_enqueue_style()
 	 *
 	 * @covers ::enqueue_styles
@@ -81,7 +81,7 @@ class Admin_Test extends \Codeception\Test\Unit {
 			)
 		);
 
-		$bh_wp_aws_ses_bounce_handler_admin = new Admin( $api, $settings );
+		$bh_wp_aws_ses_bounce_handler_admin = new Admin_Assets( $api, $settings );
 
 		$bh_wp_aws_ses_bounce_handler_admin->enqueue_styles();
 
@@ -93,7 +93,7 @@ class Admin_Test extends \Codeception\Test\Unit {
 	 * Verifies enqueue_styles() calls wp_enqueue_style() with appropriate parameters.
 	 * Verifies the .css file exists.
 	 *
-	 * @see Admin::enqueue_styles()
+	 * @see Admin_Assets::enqueue_styles()
 	 * @see wp_enqueue_style()
 	 *
 	 * @covers ::enqueue_styles
@@ -129,7 +129,7 @@ class Admin_Test extends \Codeception\Test\Unit {
 			)
 		);
 
-		$bh_wp_aws_ses_bounce_handler_admin = new Admin( $api, $settings );
+		$bh_wp_aws_ses_bounce_handler_admin = new Admin_Assets( $api, $settings );
 
 		$bh_wp_aws_ses_bounce_handler_admin->enqueue_styles();
 

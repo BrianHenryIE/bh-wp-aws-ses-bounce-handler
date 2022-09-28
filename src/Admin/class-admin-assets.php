@@ -24,7 +24,7 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
  * @subpackage BH_WP_AWS_SES_Bounce_Handler/admin
  * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  */
-class Admin {
+class Admin_Assets {
 
 	protected Settings_Interface $settings;
 
@@ -47,7 +47,7 @@ class Admin {
 		global $pagenow;
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( 'options-general.php' === $pagenow && isset( $_GET['page'] ) && 'bh-wp-aws-ses-bounce-handler' === filter_var( wp_unslash( $_GET['page'] ), FILTER_SANITIZE_STRING ) ) {
-			$url = plugin_dir_url( __FILE__ ) . 'css/bh-wp-aws-ses-bounce-handler-admin.css';
+			$url = plugin_dir_url( BH_WP_AWS_SES_BOUNCE_HANDLER_BASENAME ) . 'assets/bh-wp-aws-ses-bounce-handler-admin.css';
 			wp_enqueue_style( $this->settings->get_plugin_slug(), $url, array(), $this->settings->get_plugin_version(), 'all' );
 		}
 	}
@@ -62,7 +62,7 @@ class Admin {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( 'options-general.php' === $pagenow && isset( $_GET['page'] ) && 'bh-wp-aws-ses-bounce-handler' === filter_var( wp_unslash( $_GET['page'] ), FILTER_SANITIZE_STRING ) ) {
 
-			wp_enqueue_script( $this->settings->get_plugin_slug(), plugin_dir_url( __FILE__ ) . 'js/bh-wp-aws-ses-bounce-handler-admin.js', array( 'jquery' ), $this->settings->get_plugin_version(), false );
+			wp_enqueue_script( $this->settings->get_plugin_slug(), plugin_dir_url( BH_WP_AWS_SES_BOUNCE_HANDLER_BASENAME ) . 'assets/bh-wp-aws-ses-bounce-handler-admin.js', array( 'jquery' ), $this->settings->get_plugin_version(), false );
 		}
 	}
 
