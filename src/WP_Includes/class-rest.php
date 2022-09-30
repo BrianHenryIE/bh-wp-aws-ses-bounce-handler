@@ -85,14 +85,14 @@ class REST {
 
 		// Check the URL `secret` querystring.
 		if ( ! $request_secret ) {
-			$this->logger->info( 'secret not present' );
+			$this->logger->warning( 'secret not present' );
 			return false;
 		}
 
 		$saved_secret = $this->settings->get_secret_key();
 
 		if ( $saved_secret !== $request_secret ) {
-			$this->logger->info( "secret incorrect. Was $request_secret expected $saved_secret." );
+			$this->logger->warning( "secret incorrect. Was $request_secret expected $saved_secret." );
 			return false;
 		}
 

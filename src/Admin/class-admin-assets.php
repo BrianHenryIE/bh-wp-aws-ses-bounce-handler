@@ -61,8 +61,9 @@ class Admin_Assets {
 		global $pagenow;
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
 		if ( 'options-general.php' === $pagenow && isset( $_GET['page'] ) && 'bh-wp-aws-ses-bounce-handler' === filter_var( wp_unslash( $_GET['page'] ), FILTER_SANITIZE_STRING ) ) {
-
-			wp_enqueue_script( $this->settings->get_plugin_slug(), plugin_dir_url( BH_WP_AWS_SES_BOUNCE_HANDLER_BASENAME ) . 'assets/bh-wp-aws-ses-bounce-handler-admin.js', array( 'jquery' ), $this->settings->get_plugin_version(), false );
+			$url     = plugin_dir_url( $this->settings->get_plugin_basename() ) . 'assets/bh-wp-aws-ses-bounce-handler-admin.js';
+			$version = $this->settings->get_plugin_version();
+			wp_enqueue_script( $this->settings->get_plugin_slug(), $url, array( 'jquery' ), $version, false );
 		}
 	}
 

@@ -155,13 +155,15 @@ class Settings_Page {
 	/**
 	 * Given a filename, figure out what plugin it is from.
 	 *
-	 * i.e. given the file that has the phpmailer, determine what plugin it is part of.
+	 * I.e. given the file that has the phpmailer, determine what plugin it is part of.
+	 *
+	 * TODO: See $wp_plugin_paths if there are problems with this method.
 	 *
 	 * @see get_plugins()
 	 *
 	 * @param string $filename The file path we're trying to deterime the plugin for.
 	 *
-	 * @return array|null The plugin entry from get_plugins().
+	 * @return ?array<string, mixed> The plugin entry from get_plugins().
 	 */
 	private function get_plugin_from_path( string $filename ): ?array {
 
