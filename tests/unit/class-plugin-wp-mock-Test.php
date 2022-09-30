@@ -50,7 +50,7 @@ class Plugin_WP_Mock_Test extends \Codeception\Test\Unit {
 			array(
 				'args'   => array( \WP_Mock\Functions::type( 'string' ) ),
 				'return' => $plugin_root_dir . '/',
-				'times' => 1,
+				'times'  => 1,
 			)
 		);
 
@@ -59,7 +59,7 @@ class Plugin_WP_Mock_Test extends \Codeception\Test\Unit {
 			array(
 				'args'   => array( \WP_Mock\Functions::type( 'string' ) ),
 				'return' => 'bh-wc-shipment-tracking-updates/bh-wc-shipment-tracking-updates.php',
-				'times' => 1,
+				'times'  => 1,
 			)
 		);
 
