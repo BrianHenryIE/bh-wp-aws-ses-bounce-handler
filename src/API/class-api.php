@@ -10,6 +10,7 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 use stdClass;
 
 class API implements API_Interface {
@@ -76,6 +77,8 @@ class API implements API_Interface {
 	 * @param array    $headers                 HTTP headers received from AWS SNS.
 	 * @param stdClass $body                    HTTP body received from AWS SNS.
 	 * @param stdClass $message                 The (potential) bounce report object from AWS SES.
+	 *
+	 * phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 	 */
 	public function handle_bounces( $notification_topic_arn, $headers, $body, $message ): void {
 
@@ -200,4 +203,54 @@ class API implements API_Interface {
 
 	}
 
+	/**
+	 * Set the log level for the plugin.
+	 *
+	 * @param string $level The PSR log level to set, or "none".
+	 *
+	 * @return array{success:bool, message:string}
+	 */
+	public function set_log_level( string $level ): array {
+
+		$result = array();
+
+		$allowed_log_levels = array(
+			'none',
+			LogLevel::ERROR,
+			LogLevel::WARNING,
+			LogLevel::NOTICE,
+			LogLevel::INFO,
+			LogLevel::DEBUG,
+		);
+
+		if ( ! in_array( $level, $allowed_log_levels, true ) ) {
+			$result['sucess'] = false;
+			/* translators: %s is the supplied new log level */
+			$result['message'] = sprintf( __( '`%s` is not a valid log level', 'bh-wp-aws-ses-bounce-handler' ), $level );
+			return $result;
+		}
+
+		$current_log_level = $this->settings->get_log_level();
+
+		if ( $level === $current_log_level ) {
+			$result['sucess'] = true;
+			/* translators: %s existing log level */
+			$result['message'] = sprintf( __( 'Log level already set to `%s`.', 'bh-wp-aws-ses-bounce-handler' ), $level );
+			return $result;
+		}
+
+		$success = update_option( Settings_Interface::LOG_LEVEL_OPTION_NAME, $level );
+
+		$result['success'] = $success;
+
+		if ( $success ) {
+			/* translators: %1s was the previous log level, %2s is the new log level */
+			$result['message'] = sprintf( __( 'Log level changed from `%1$s` to `%2$s`', 'bh-wp-aws-ses-bounce-handler' ), $current_log_level, $level );
+		} else {
+			/* translators: %1s is the desired new log level, %2s was the previous log level */
+			$result['message'] = sprintf( __( 'Error setting log level to `%1$s`. Log level is unchanged at `%2$s`.', 'bh-wp-aws-ses-bounce-handler' ), $level, $current_log_level );
+		}
+
+		return $result;
+	}
 }

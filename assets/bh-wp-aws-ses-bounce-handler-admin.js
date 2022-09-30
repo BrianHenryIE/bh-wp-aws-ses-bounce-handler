@@ -45,6 +45,46 @@
 			});
 		}
 
+		// When the log level is changed, POST it to be saved.
+		$('#log_level').change(function() {
+
+			$('#setting-log-level-spinner').css('display', 'inline');
+
+			var action = 'bh_wp_aws_ses_bounce_handler_set_log_level';
+			var selectedLevel = $('#log_level').val();
+			var nonce = $('#_wpnonce_aws_ses_bounce_handler_log_level').val();
+
+			var data = {
+				'_wpnonce': nonce,
+				'action': action,
+				'log_level': selectedLevel
+			};
+
+			$.post(ajaxurl, data, function (data) {
+
+				var logLevelChangedSuccess = data.success;
+
+				$('#set-log-level-response').removeClass();
+				$('#set-log-level-response').addClass('notice');
+				$('#set-log-level-response').addClass('inline');
+
+				if (logLevelChangedSuccess) {
+					// Set color to green
+					$('#set-log-level-response').addClass('notice-' + data.notice );
+				} else {
+					// set color to red.
+					$('#set-log-level-response').addClass('notice-' + data.notice );
+				}
+
+				var content = '<p>' + data.message + '</p>';
+
+				$('#set-log-level-response').html(content);
+
+				$('#setting-log-level-spinner').css('display', 'none');
+			});
+
+		});
+
 	});
 
 	function fetchTestResults( bounceTestId ) {

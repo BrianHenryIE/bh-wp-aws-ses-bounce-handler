@@ -13,6 +13,7 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
+use Psr\Log\LogLevel;
 
 
 /**
@@ -61,8 +62,25 @@ class Settings_Page {
 
 	/**
 	 * Registered above, called by WordPress to display the admin settings page.
+	 *
+	 * @see API::set_log_level() for valid levels
 	 */
 	public function display_plugin_admin_page(): void {
+
+		$settings = $this->settings;
+		$api      = $this->api;
+
+		$current_log_level = $this->settings->get_log_level();
+		$logs_url          = admin_url( 'admin.php?page=bh-wp-aws-ses-bounce-handler-logs' );
+
+		$allowed_log_levels = array(
+			'none'            => 'None',
+			LogLevel::ERROR   => 'Error',
+			LogLevel::WARNING => 'Warning',
+			LogLevel::NOTICE  => 'Notice',
+			LogLevel::INFO    => 'Info',
+			LogLevel::DEBUG   => 'Debug',
+		);
 
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'Admin/partials/admin-display.php';
 	}

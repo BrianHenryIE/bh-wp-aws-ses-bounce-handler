@@ -68,11 +68,23 @@ class Settings implements Settings_Interface, Logger_Settings_Interface {
 	}
 
 	/**
-	 * @return string
+	 * Get the log level saved in wp_options, default to `info` level.
+	 *
 	 * @see LogLevel
+	 * @return string
 	 */
 	public function get_log_level(): string {
-		return LogLevel::INFO;
+		$default_log_level  = LogLevel::INFO;
+		$allowed_log_levels = array(
+			'none',
+			LogLevel::ERROR,
+			LogLevel::WARNING,
+			LogLevel::NOTICE,
+			LogLevel::INFO,
+			LogLevel::DEBUG,
+		);
+		$saved_log_level    = get_option( Settings_Interface::LOG_LEVEL_OPTION_NAME, $default_log_level );
+		return in_array( $saved_log_level, $allowed_log_levels, true ) ? $saved_log_level : $default_log_level;
 	}
 
 	/**

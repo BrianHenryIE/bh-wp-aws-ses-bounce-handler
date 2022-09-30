@@ -8,21 +8,17 @@
  * @since      1.0.0
  *
  * @package   BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/admin/partials
- */
-
-use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
-use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
-
-/**
- * The plugin Settings class. Repeated here for code completion.
  *
- * @var Settings_Interface $settings
+ * @see Settings_Page::display_plugin_admin_page()
+ *
+ * @var BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface $settings
+ * @var BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface $api
+ *
+ * @var string $current_log_level
+ * @var string $logs_url
+ * @var array<string, string> $allowed_log_levels
  */
-$settings = $this->settings;
 
-/** @var API_Interface $api */
-$api = $this->api;
 ?>
 
 <div class="wrap bh-wp-aws-ses-bounce-handler">
@@ -71,15 +67,34 @@ $api = $this->api;
 
 	<div id="run-ses-bounce-test-response"></div>
 
+	<h2>Logging</h2>
 
-	<h2>Integrations:</h2>
+	<a href="<?php echo esc_url( $logs_url ); ?>">View logs</a>&nbsp;•&nbsp;<label for="log_level">Log level:</label>
+	<select name="log_level" id="log_level">
+	<?php
+	foreach ( $allowed_log_levels as $log_level => $log_level_pretty ) {
+		echo '<option value="' . esc_attr( $log_level ) . '"';
+		if ( $log_level === $current_log_level ) {
+			echo ' selected="selected"';
+		}
+		echo '>' . esc_html( $log_level_pretty ) . '</option>';
+	}
+	?>
+	</select>
+	<img class="aws-ses-bounce-handler-spinner" id="setting-log-level-spinner" alt="Is the set log level AJAX request running spinner" src="<?php echo esc_url( admin_url( '/images/spinner-2x.gif' ) ); ?>" />
+	<?php wp_nonce_field( 'set_log_level', '_wpnonce_aws_ses_bounce_handler_log_level' ); ?>
+
+	<div id="set-log-level-response"></div>
+
+
+	<h2>Integrations</h2>
 
 	<ul >
 		<?php
 		$integrations = $api->get_integrations();
 		$allowed_html = array(
 			'a' => array(
-				'href'  => array(),
+				'href' => array(),
 			),
 		);
 		foreach ( $integrations as $name => $integration ) {

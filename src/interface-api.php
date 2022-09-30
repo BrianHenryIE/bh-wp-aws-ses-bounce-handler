@@ -10,6 +10,7 @@
 namespace BrianHenryIE\AWS_SES_Bounce_Handler;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\SES_Bounce_Handler_Integration_Interface;
+use Psr\Log\LogLevel;
 
 interface API_Interface {
 
@@ -23,4 +24,17 @@ interface API_Interface {
 	 * @return SES_Bounce_Handler_Integration_Interface[]
 	 */
 	public function get_integrations(): array;
+
+	/**
+	 * Set the log level.
+	 *
+	 * @used-by \BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Ajax::set_log_level()
+	 *
+	 * @see LogLevel
+	 *
+	 * @param string $level A PSR log level.
+	 *
+	 * @return array{success:bool, message:string}
+	 */
+	public function set_log_level( string $level ): array;
 }

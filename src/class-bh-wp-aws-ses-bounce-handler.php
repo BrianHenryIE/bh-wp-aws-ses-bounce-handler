@@ -14,8 +14,6 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler;
 
-use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
-use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Admin_Assets;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Ajax;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Plugins_Page;
@@ -58,7 +56,9 @@ class BH_WP_AWS_SES_Bounce_Handler {
 	 *
 	 * @since    1.1.0
 	 *
-	 * @param Settings_Interface $settings The setting the plugin should be run with.
+	 * @param API_Interface      $api
+	 * @param Settings_Interface $settings The settings the plugin should be run with.
+	 * @param LoggerInterface    $logger
 	 */
 	public function __construct( API_Interface $api, Settings_Interface $settings, LoggerInterface $logger ) {
 
@@ -67,9 +67,11 @@ class BH_WP_AWS_SES_Bounce_Handler {
 		$this->api      = $api;
 
 		$this->set_locale();
-		$this->define_admin_hooks();
-		$this->define_rest_hooks();
 
+		$this->define_admin_settings_page_hooks();
+		$this->define_admin_ajax_hooks();
+		$this->define_admin_plugins_page_hooks();
+		$this->define_rest_hooks();
 	}
 
 	/**
@@ -79,35 +81,45 @@ class BH_WP_AWS_SES_Bounce_Handler {
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
-	 * @access   private
 	 */
-	protected function set_locale() {
+	protected function set_locale(): void {
 
 		$plugin_i18n = new I18n();
 
 		add_action( 'plugins_loaded', array( $plugin_i18n, 'load_plugin_textdomain' ) );
-
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
-	 * of the plugin.
-	 *
-	 * @since    1.0.0
+	 * Register the hooks related to displaying the admin settings page.
 	 */
-	protected function define_admin_hooks() {
-
-		$admin = new Admin_Assets( $this->api, $this->settings );
-		add_action( 'admin_enqueue_scripts', array( $admin, 'enqueue_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( $admin, 'enqueue_scripts' ) );
+	protected function define_admin_settings_page_hooks(): void {
 
 		$settings_page = new Settings_Page( $this->api, $this->settings );
 		add_action( 'admin_menu', array( $settings_page, 'add_settings_page' ) );
 
+		$admin = new Admin_Assets( $this->api, $this->settings );
+		add_action( 'admin_enqueue_scripts', array( $admin, 'enqueue_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $admin, 'enqueue_scripts' ) );
+	}
+
+	/**
+	 * Register the hooks related to handling AJAX functionality of the plugin.
+	 */
+	protected function define_admin_ajax_hooks(): void {
+
 		$ajax = new Ajax( $this->api, $this->logger );
+
 		add_action( 'wp_ajax_run_ses_bounce_test', array( $ajax, 'run_ses_bounce_test' ) );
 		add_action( 'wp_ajax_fetch_test_results', array( $ajax, 'fetch_test_results' ) );
 		add_action( 'wp_ajax_delete_test_data', array( $ajax, 'delete_test_data' ) );
+
+		add_action( 'wp_ajax_bh_wp_aws_ses_bounce_handler_set_log_level', array( $ajax, 'set_log_level' ) );
+	}
+
+	/**
+	 * Register the hooks related plugins.php.
+	 */
+	protected function define_admin_plugins_page_hooks(): void {
 
 		$plugins_page    = new Plugins_Page( $this->settings );
 		$plugin_basename = $this->settings->get_plugin_basename();
@@ -116,13 +128,11 @@ class BH_WP_AWS_SES_Bounce_Handler {
 	}
 
 	/**
-	 * Register all of the hooks related to the sns-facing functionality
-	 * of the plugin.
+	 * Register the hooks related to the sns-facing functionality of the plugin.
 	 *
 	 * @since    1.0.0
-	 * @access   private
 	 */
-	protected function define_rest_hooks() {
+	protected function define_rest_hooks(): void {
 
 		$sns = new REST( $this->api, $this->settings, $this->logger );
 		add_action( 'rest_api_init', array( $sns, 'add_bh_aws_ses_rest_endpoint' ) );

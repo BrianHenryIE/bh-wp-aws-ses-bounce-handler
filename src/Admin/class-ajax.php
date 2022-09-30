@@ -148,4 +148,46 @@ class Ajax {
 
 		wp_send_json( $data );
 	}
+
+	/**
+	 * Change the log level.
+	 *
+	 * Handle POST
+	 *
+	 * @hooked wp_ajax_bh_wp_aws_ses_bounce_handler_set_log_level
+	 */
+	public function set_log_level(): void {
+
+		$data = array();
+		// Verify nonce.
+		if ( ! check_ajax_referer( 'set_log_level', false, false ) ) {
+
+			$data['notice']  = 'error';
+			$data['message'] = __( 'Referrer/nonce failure', 'bh-wp-aws-ses-bounce-handler' );
+
+			wp_send_json_error( $data, 400 );
+		}
+
+		if ( ! isset( $_POST['log_level'] ) ) {
+
+			$data['notice']  = 'error';
+			$data['message'] = __( 'log_level not set in POST body.', 'bh-wp-aws-ses-bounce-handler' );
+
+			wp_send_json_error( $data, 400 );
+		}
+
+		$log_level = sanitize_key( wp_unslash( $_POST['log_level'] ) );
+
+		$result = $this->api->set_log_level( $log_level );
+		$data   = $result;
+
+		// TODO: use notice=notice when it has not changed.
+		if ( true !== $result['success'] ) {
+			$data['notice'] = 'error';
+			wp_send_json_error( $data, 500 );
+		} else {
+			$data['notice'] = 'success';
+			wp_send_json( $data );
+		}
+	}
 }

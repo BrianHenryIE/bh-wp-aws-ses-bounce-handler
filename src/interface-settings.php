@@ -24,6 +24,8 @@ interface Settings_Interface {
 	const SECRET_KEY     = 'bh-wp-aws-ses-bounce-handler-secret-key';
 	const CONFIRMED_ARNS = 'bh-wp-aws-ses-bounce-handler-confirmed-arns';
 
+	const LOG_LEVEL_OPTION_NAME = 'bh_wp_aws_ses_bounce_handler_log_level';
+
 	/**
 	 * The secret key generated on plugin activation, used in calls from AWS SNS to the site.
 	 * Because the plugin auto-confirms subscriptions, the secret is needed to stop everyone being able to
@@ -60,4 +62,8 @@ interface Settings_Interface {
 	public function get_plugin_version(): string;
 	public function get_plugin_basename(): string;
 
+	/**
+	 * Get the log level to be used by the plugin logger.
+	 */
+	public function get_log_level(): string;
 }
