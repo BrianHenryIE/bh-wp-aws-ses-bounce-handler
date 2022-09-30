@@ -10,6 +10,7 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\API;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger;
 
 /**
  * Class Plugin_WP_Mock_Test
@@ -36,21 +37,11 @@ class Plugin_WP_Mock_Test extends \Codeception\Test\Unit {
 			array( BH_WP_AWS_SES_Bounce_Handler::class, '__construct' ),
 			function( $api, $settings, $logger ) {}
 		);
-		// \Patchwork\redefine(
-		// array( Settings::class, 'get_plugin_slug' ),
-		// function(): string {
-		// return 'bh-wc-shipment-tracking-updates'; }
-		// );
-		// \Patchwork\redefine(
-		// array( Settings::class, 'get_log_level' ),
-		// function(): string {
-		// return 'info'; }
-		// );
-		// \Patchwork\redefine(
-		// array( Settings::class, 'get_plugin_basename' ),
-		// function(): string {
-		// return 'bh-wc-shipment-tracking-updates/bh-wc-shipment-tracking-updates.php'; }
-		// );
+
+		\Patchwork\redefine(
+			array( Logger::class, '__construct' ),
+			function() {}
+		);
 
 		global $plugin_root_dir;
 
@@ -59,6 +50,7 @@ class Plugin_WP_Mock_Test extends \Codeception\Test\Unit {
 			array(
 				'args'   => array( \WP_Mock\Functions::type( 'string' ) ),
 				'return' => $plugin_root_dir . '/',
+				'times' => 1,
 			)
 		);
 
@@ -67,70 +59,21 @@ class Plugin_WP_Mock_Test extends \Codeception\Test\Unit {
 			array(
 				'args'   => array( \WP_Mock\Functions::type( 'string' ) ),
 				'return' => 'bh-wc-shipment-tracking-updates/bh-wc-shipment-tracking-updates.php',
+				'times' => 1,
 			)
 		);
 
 		\WP_Mock::userFunction(
-			'register_activation_hook'
-		);
-
-		\WP_Mock::userFunction(
-			'register_deactivation_hook'
-		);
-
-		\WP_Mock::userFunction(
-			'get_option',
+			'register_activation_hook',
 			array(
-				'args'   => array( 'bh_wc_shipment_tracking_updates_log_level', 'info' ),
-				'return' => 'notice',
+				'times' => 1,
 			)
 		);
 
 		\WP_Mock::userFunction(
-			'get_option',
+			'register_deactivation_hook',
 			array(
-				'args'   => array( 'active_plugins' ),
-				'return' => array(),
-			)
-		);
-
-		\WP_Mock::userFunction(
-			'is_admin',
-			array(
-				'return' => false,
-			)
-		);
-
-		\WP_Mock::userFunction(
-			'get_current_user_id'
-		);
-
-		\WP_Mock::userFunction(
-			'wp_normalize_path',
-			array(
-				'return_arg' => true,
-			)
-		);
-
-		\WP_Mock::userFunction(
-			'get_option',
-			array(
-				'args'   => array( 'active_plugins' ),
-				'return' => array( 'woocommerce/woocommerce.php' ),
-			)
-		);
-
-		\WP_Mock::userFunction(
-			'did_action',
-			array(
-				'return' => false,
-			)
-		);
-
-		\WP_Mock::userFunction(
-			'add_action',
-			array(
-				'return' => false,
+				'times' => 1,
 			)
 		);
 

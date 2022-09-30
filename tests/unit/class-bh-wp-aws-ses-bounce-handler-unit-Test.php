@@ -52,7 +52,7 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 	}
 
 	/**
-	 * @covers ::define_admin_hooks
+	 * @covers ::define_admin_settings_page_hooks
 	 */
 	public function test_admin_hooks() {
 
