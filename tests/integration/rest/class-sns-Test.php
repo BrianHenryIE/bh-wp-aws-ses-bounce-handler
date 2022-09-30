@@ -84,7 +84,7 @@ class SNS_Test extends \Codeception\TestCase\WPTestCase {
 
 		$request->set_param( 'secret', $secret );
 
-		// remove_all_actions( 'handle_ses_bounce' );
+		remove_all_actions( 'handle_ses_bounce' );
 
 		$success = false;
 		add_action(

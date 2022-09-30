@@ -8,8 +8,7 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package   BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler;
@@ -32,13 +31,6 @@ use Psr\Log\LoggerInterface;
  *
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
- *
- * @since      1.0.0
- * @package    BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
- * @author     BrianHenryIE <BrianHenryIE@gmail.com>
- *
- * phpcs:disable Squiz.PHP.DisallowMultipleAssignments.Found
  */
 class BH_WP_AWS_SES_Bounce_Handler {
 
@@ -123,7 +115,7 @@ class BH_WP_AWS_SES_Bounce_Handler {
 
 		$plugins_page    = new Plugins_Page( $this->settings );
 		$plugin_basename = $this->settings->get_plugin_basename();
-		add_filter( 'plugin_action_links_' . $plugin_basename, array( $plugins_page, 'action_links' ) );
+		add_filter( 'plugin_action_links_' . $plugin_basename, array( $plugins_page, 'action_links' ), 10, 4 );
 		add_filter( 'plugin_row_meta', array( $plugins_page, 'row_meta' ), 20, 4 );
 	}
 

@@ -144,7 +144,9 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 			3
 		);
 
-		// @see \NewsletterModule::process_ip()
+		/**
+		 * @see \NewsletterModule::process_ip()
+		 */
 		$_SERVER['REMOTE_ADDR']                          = '127.0.0.1';
 		\Newsletter::instance()->options['ip']           = '127.0.0.1';
 		\Newsletter::instance()->options['sender_email'] = 'sender_email';

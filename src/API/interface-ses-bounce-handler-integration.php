@@ -11,8 +11,7 @@
  *
  * @since      1.2.0
  *
- * @package   BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/integrations
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\API;

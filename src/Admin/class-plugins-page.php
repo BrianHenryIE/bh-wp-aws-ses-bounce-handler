@@ -5,8 +5,7 @@
  * @link
  * @since      1.0.0
  *
- * @package    BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/admin
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
@@ -15,10 +14,6 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
 
 /**
  * This class adds a `Settings` link on the plugins.php page.
- *
- * @package    BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/admin
- * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  */
 class Plugins_Page {
 
@@ -29,13 +24,19 @@ class Plugins_Page {
 	}
 
 	/**
-	 * Add link to settings page in plugins.php list.
+	 * Add link to Settings page in plugins.php list.
 	 *
-	 * @param array $links_array The existing plugin links (usually "Deactivate").
+	 * @hooked plugin_action_links_{basename}
 	 *
-	 * @return array<mixed, string> The links to display below the plugin name on plugins.php.
+	 * @param array<int|string, string> $action_links The existing plugin links (usually "Deactivate").
+	 * @param ?string                   $_plugin_basename The plugin's directory/filename.php.
+	 * @param ?array<int|string, mixed> $_plugin_data An array of plugin data. See `get_plugin_data()`.
+	 * @param ?string                   $_context     The plugin context. 'all'|'active'|'inactive'|'recently_activated'
+	 *                                               |'upgrade'|'mustuse'|'dropins'|'search'.
+	 *
+	 * @return array<int|string, string> The links to display below the plugin name on plugins.php.
 	 */
-	public function action_links( $links_array ): array {
+	public function action_links( array $links_array, ?string $_plugin_basename, ?array $_plugin_data, ?string $_context ): array {
 
 		$settings_url = admin_url( '/options-general.php?page=' . $this->settings->get_plugin_slug() );
 		array_unshift( $links_array, '<a href="' . $settings_url . '">Settings</a>' );
@@ -48,14 +49,14 @@ class Plugins_Page {
 	 *
 	 * @see https://rudrastyh.com/wordpress/plugin_action_links-plugin_row_meta.html
 	 *
-	 * @param string[] $plugin_meta The meta information/links displayed by the plugin description.
-	 * @param string   $plugin_file_name The plugin filename to match when filtering.
-	 * @param array    $plugin_data Associative array including PluginURI, slug, Author, Version.
-	 * @param string   $status The plugin status, e.g. 'Inactive'.
+	 * @param string[]                  $plugin_meta The meta information/links displayed by the plugin description.
+	 * @param ?string                   $plugin_file_name The plugin filename to match when filtering.
+	 * @param ?array<int|string, mixed> $_plugin_data An array of plugin data. See `get_plugin_data()`.
+	 * @param ?string                   $_status The plugin status, e.g. 'Inactive'.
 	 *
 	 * @return array The filtered $plugin_meta.
 	 */
-	public function row_meta( $plugin_meta, $plugin_file_name, $plugin_data, $status ): array {
+	public function row_meta( array $plugin_meta, ?string $plugin_file_name, ?array $_plugin_data, ?string $_status ): array {
 
 		if ( $this->settings->get_plugin_basename() === $plugin_file_name ) {
 

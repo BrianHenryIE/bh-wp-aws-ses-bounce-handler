@@ -5,8 +5,7 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package    BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\API;
@@ -19,11 +18,6 @@ use Psr\Log\LogLevel;
 
 /**
  * The plugin settings.
- *
- * @since      1.0.0
- * @package    BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
- * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  */
 class Settings implements Settings_Interface, Logger_Settings_Interface {
 	use Logger_Settings_Trait;

@@ -80,8 +80,7 @@ class API implements API_Interface {
 	 *
 	 * phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase
 	 */
-	public function handle_bounces( $notification_topic_arn, $headers, $body, $message ): void {
-
+	public function handle_bounces( string $notification_topic_arn, array $headers, stdClass $body, stdClass $message ): void {
 		if ( 'Bounce' !== $message->notificationType ) {
 			return;
 		}
@@ -126,7 +125,7 @@ class API implements API_Interface {
 	 * @param stdClass $body                    HTTP body received from AWS SNS.
 	 * @param stdClass $message                 The (potential) complaint report object from AWS SES.
 	 */
-	public function handle_complaints( $notification_topic_arn, $headers, $body, $message ): void {
+	public function handle_complaints( string $notification_topic_arn, array $headers, stdClass $body, stdClass $message ): void {
 
 		if ( 'Complaint' !== $message->notificationType ) {
 			return;
@@ -170,7 +169,7 @@ class API implements API_Interface {
 	 * @param stdClass $body                    HTTP body received from AWS SNS.
 	 * @param stdClass $message                 The (potential) complaint report object from AWS SES.
 	 */
-	public function handle_unsubscribe_emails( $notification_topic_arn, $headers, $body, $message ): void {
+	public function handle_unsubscribe_emails( string $notification_topic_arn, array $headers, stdClass $body, stdClass $message ): void {
 
 		if ( 'Received' !== $message->notificationType ) {
 			return;

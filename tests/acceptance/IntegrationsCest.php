@@ -5,7 +5,7 @@ class IntegrationsCest {
 	/**
 	 * Test the text explaining the integration is added to the settings page.
 	 *
-	 * @param AcceptanceTester $I
+	 * @param AcceptanceTester $I The Codeception actor instance.
 	 */
 	public function testPluginsPageForName( AcceptanceTester $I ) {
 

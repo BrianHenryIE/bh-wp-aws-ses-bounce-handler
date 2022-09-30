@@ -5,8 +5,7 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package    BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/admin
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
@@ -18,10 +17,6 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Create a uid, bounce simulator email address, setup integrations, save the data, verify tests, delete data.
- *
- * Class Bounce_Handler_Test
- *
- * @package BrianHenryIE\AWS_SES_Bounce_Handler\Admin
  */
 class Bounce_Handler_Test {
 

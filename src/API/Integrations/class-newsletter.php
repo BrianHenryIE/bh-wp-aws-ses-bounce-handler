@@ -7,8 +7,7 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package   BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/integrations
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations;
@@ -24,10 +23,6 @@ use TNP;
 /**
  * `handle_ses_bounce` => Mark the user bounced.
  * `handle_ses_complaint` => Unsubscribe the user.
- *
- * Class Newsletter
- *
- * @package BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations
  */
 class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 

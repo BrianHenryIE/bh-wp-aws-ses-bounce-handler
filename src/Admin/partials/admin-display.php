@@ -1,13 +1,13 @@
 <?php
 /**
- * Provide a admin area view for the plugin
+ * Provide a UI in the admin area view for the plugin
  *
  * This file is used to markup the admin-facing aspects of the plugin.
  *
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package   BH_WP_AWS_SES_Bounce_Handler
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  *
  * @see Settings_Page::display_plugin_admin_page()
  *

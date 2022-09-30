@@ -5,8 +5,7 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package    BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/admin
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
@@ -19,10 +18,6 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
  *
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
- *
- * @package   BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/admin
- * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  */
 class Admin_Assets {
 

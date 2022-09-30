@@ -7,8 +7,7 @@
  * @link       https://BrianHenry.ie
  * @since      1.1.0
  *
- * @package   BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/integrations
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations;
@@ -23,10 +22,6 @@ use WC_Order;
 
 /**
  * Hook onto `handle_ses_bounce` to add order note and meta key, hook onto `admin_notices` to display notice on orders.
- *
- * Class WooCommerce
- *
- * @package BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations
  */
 class WooCommerce implements SES_Bounce_Handler_Integration_Interface {
 

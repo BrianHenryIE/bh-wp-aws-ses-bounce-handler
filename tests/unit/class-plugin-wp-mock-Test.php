@@ -17,12 +17,12 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger;
  */
 class Plugin_WP_Mock_Test extends \Codeception\Test\Unit {
 
-
 	protected function setup(): void {
 		\WP_Mock::setUp();
 	}
 
 	protected function tearDown(): void {
+		parent::_tearDown();
 		\WP_Mock::tearDown();
 		\Patchwork\restoreAll();
 	}

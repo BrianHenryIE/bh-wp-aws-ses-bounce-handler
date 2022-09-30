@@ -4,19 +4,20 @@
  * @link       https://BrianHenry.ie
  * @since      1.4.0
  *
- * @package   BH_WP_AWS_SES_Bounce_Handler
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\SES_Bounce_Handler_Integration_Interface;
 use Psr\Log\LogLevel;
+use stdClass;
 
 interface API_Interface {
 
-	public function handle_bounces( $topic_arn, $headers, $body, $message ): void;
-	public function handle_complaints( $topic_arn, $headers, $body, $message ): void;
-	public function handle_unsubscribe_emails( $topic_arn, $headers, $body, $message ): void;
+	public function handle_bounces( string $topic_arn, array $headers, stdClass $body, stdClass $message ): void;
+	public function handle_complaints( string $topic_arn, array $headers, stdClass $body, stdClass $message ): void;
+	public function handle_unsubscribe_emails( string $topic_arn, array $headers, stdClass $body, stdClass $message ): void;
 
 	/**
 	 * Find and return all integrations.

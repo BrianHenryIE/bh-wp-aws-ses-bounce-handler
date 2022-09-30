@@ -5,8 +5,7 @@
  * @link
  * @since      1.0.0
  *
- * @package    BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/admin
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
@@ -18,10 +17,6 @@ use Psr\Log\LogLevel;
 
 /**
  * Adds a wp-admin Settings submenu. Adds a page with input for bounces ARN and complaints ARN.
- *
- * @package    BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/admin
- * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  */
 class Settings_Page {
 

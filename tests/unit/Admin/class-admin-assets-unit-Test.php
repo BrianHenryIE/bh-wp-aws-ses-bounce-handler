@@ -18,11 +18,11 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
  */
 class Admin_Assets_Unit_Test extends \Codeception\Test\Unit {
 
-	protected function _before() {
+	protected function setup(): void {
 		\WP_Mock::setUp();
 	}
 
-	protected function _tearDown() {
+	protected function tearDown(): void {
 		parent::_tearDown();
 		\WP_Mock::tearDown();
 	}

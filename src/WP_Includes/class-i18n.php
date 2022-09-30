@@ -8,8 +8,7 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package    BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes;
@@ -19,11 +18,6 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes;
  *
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
- *
- * @since      1.0.0
- * @package   BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
- * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  */
 class I18n {
 

@@ -5,8 +5,7 @@
  * @link       https://BrianHenry.ie
  * @since      1.2.0
  *
- * @package    BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes;
@@ -17,10 +16,6 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
  * Fired during plugin activation.
  *
  * This class defines all code necessary to run during the plugin's activation.
- *
- * Class Activator
- *
- * @package BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes
  */
 class Activator {
 

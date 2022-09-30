@@ -5,19 +5,13 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package   BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler;
 
 /**
  * The settings interface.
- *
- * @since      1.0.0
- * @package    BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/includes
- * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  */
 interface Settings_Interface {
 
@@ -56,11 +50,36 @@ interface Settings_Interface {
 	 */
 	public function set_confirmed_arn( string $arn ): void;
 
-
+	/**
+	 * Friendly plugin name.
+	 * Used by logger.
+	 */
 	public function get_plugin_name(): string;
+
+	/**
+	 * The plugin slug, used in settings page name, css+scripts handles.
+	 * Used by logger.
+	 *
+	 * @return string
+	 */
 	public function get_plugin_slug(): string;
-	public function get_plugin_version(): string;
+
+	/**
+	 * Used when adding Settings link on plugins.php.
+	 * Used by logger.
+	 *
+	 * @return string
+	 */
 	public function get_plugin_basename(): string;
+
+	/**
+	 * Plugin version in semver ("major.minor.patch"), used when enqueuing CSS and JS.
+	 *
+	 * @see https://semver.org/
+	 *
+	 * @return string
+	 */
+	public function get_plugin_version(): string;
 
 	/**
 	 * Get the log level to be used by the plugin logger.

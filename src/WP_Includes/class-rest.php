@@ -5,8 +5,7 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package   BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/sns
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes;
@@ -20,10 +19,6 @@ use stdClass;
 
 /**
  * The sns-invoked functionality of the plugin.
- *
- * @package   BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/sns
- * @author     BrianHenryIE <BrianHenryIE@gmail.com>
  *
  * Ignore snake case warnings for JSON objects.
  * phpcs:disable WordPress.NamingConventions.ValidVariableName.UsedPropertyNotSnakeCase

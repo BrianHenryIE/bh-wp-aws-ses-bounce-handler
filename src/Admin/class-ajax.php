@@ -2,7 +2,7 @@
 /**
  * Handle AJAX requests on the settings page. Primarily for testing the configuration.
 
- * @package bh-wp-aws-ses-bounce-handler
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  * @author Brian Henry <BrianHenryIE@gmail.com>
  */
 

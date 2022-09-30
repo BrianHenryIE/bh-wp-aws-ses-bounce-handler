@@ -15,9 +15,6 @@ use stdClass;
 
 /**
  * @see https://github.com/mailpoet/mailpoet/blob/master/doc/api_methods/GetSubscriber.md
- *
- * Class MailPoet
- * @package BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations
  */
 class MailPoet implements SES_Bounce_Handler_Integration_Interface {
 

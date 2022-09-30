@@ -5,8 +5,7 @@
  * @link       https://BrianHenry.ie
  * @since      1.1.0
  *
- * @package   BH_WP_AWS_SES_Bounce_Handler
- * @subpackage BH_WP_AWS_SES_Bounce_Handler/integrations
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations;
@@ -23,7 +22,7 @@ use WP_User;
  *
  * Class WordPress
  *
- * @package BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations
+ * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 class WordPress implements SES_Bounce_Handler_Integration_Interface {
 
