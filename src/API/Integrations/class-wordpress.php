@@ -55,7 +55,7 @@ class WordPress implements SES_Bounce_Handler_Integration_Interface {
 	 * @return string
 	 */
 	public function get_description(): string {
-		return 'Adds <a href=' . esc_url( admin_url( 'users.php?role=bounced_email' ) ) . '">Bounced Email</a> role to users';
+		return 'Adds <a href="' . esc_url( admin_url( 'users.php?role=bounced_email' ) ) . '">Bounced Email</a> role to users';
 	}
 
 	/**

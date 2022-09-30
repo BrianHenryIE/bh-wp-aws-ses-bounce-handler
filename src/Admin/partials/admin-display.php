@@ -77,8 +77,13 @@ $api = $this->api;
 	<ul >
 		<?php
 		$integrations = $api->get_integrations();
+		$allowed_html = array(
+			'a' => array(
+				'href'  => array(),
+			),
+		);
 		foreach ( $integrations as $name => $integration ) {
-			echo '<li>' . esc_html( $name ) . ': ' . wp_kses( $integration->get_description(), wp_kses_allowed_html( 'data' ) ) . '</li>' . "\n";
+			echo '<li>' . esc_html( $name ) . ': ' . wp_kses( $integration->get_description(), $allowed_html ) . '</li>' . "\n";
 		}
 		?>
 		<li>Fires actions <code>handle_ses_bounce</code> and <code>handle_ses_complaint</code></li>
