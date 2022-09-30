@@ -94,10 +94,14 @@ class Settings implements Settings_Interface, Logger_Settings_Interface {
 	}
 
 	public function get_plugin_basename(): string {
-		return 'bh-wp-aws-ses-bounce-handler/bh-wp-aws-ses-bounce-handler.php';
+		return defined( 'BH_WP_AWS_SES_BOUNCE_HANDLER_BASENAME' )
+			? BH_WP_AWS_SES_BOUNCE_HANDLER_BASENAME
+			: 'bh-wp-aws-ses-bounce-handler/bh-wp-aws-ses-bounce-handler.php';
 	}
 
 	public function get_plugin_version(): string {
-		return '1.3.4';
+		return defined( 'BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION' )
+		? BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION
+			: '1.3.4';
 	}
 }
