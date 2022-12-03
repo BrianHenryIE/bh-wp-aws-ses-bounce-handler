@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.5.0
+
+* Add: filter outgoing mail to prevent sending to bounced addresses (only works where a wp_user account exists)
+
 ## 1.4.0
 
 * Add: UI to change log level
