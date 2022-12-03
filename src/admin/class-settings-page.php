@@ -77,7 +77,29 @@ class Settings_Page {
 			LogLevel::DEBUG   => 'Debug',
 		);
 
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'Admin/partials/admin-display.php';
+
+
+		$template = 'admin/settings-page.php';
+
+		$template_admin_settings_page = WP_PLUGIN_DIR . '/' . plugin_dir_path( $this->settings->get_plugin_basename() ) . 'templates/' . $template;
+
+		// Check the child theme for template overrides.
+		if ( file_exists( get_stylesheet_directory() . $template ) ) {
+			$template_admin_settings_page = get_stylesheet_directory() . $template;
+		} elseif ( file_exists( get_stylesheet_directory() . 'templates/' . $template ) ) {
+			$template_admin_settings_page = get_stylesheet_directory() . 'templates/' . $template;
+		}
+
+		/**
+		 * Allow overriding the admin settings template.
+		 */
+		$filtered_template_admin_settings_page = apply_filters( 'bh_wp_aws_ses_bounce_handler_admin_settings_page_template', $template_admin_settings_page );
+
+		if ( file_exists( $filtered_template_admin_settings_page ) ) {
+			include $filtered_template_admin_settings_page;
+		} else {
+			include $template_admin_settings_page;
+		}
 	}
 
 	/**
