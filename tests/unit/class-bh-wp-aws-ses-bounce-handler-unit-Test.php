@@ -12,6 +12,7 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Admin_Assets;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations\WordPress;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\I18n;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\REST;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\WP_Mail;
 use BrianHenryIE\ColorLogger\ColorLogger;
 use WP_Mock\Matcher\AnyInstance;
 
@@ -113,6 +114,24 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 
 		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $logger );
 
+	}
+
+	/**
+	 *
+	 * @covers ::define_wp_mail_hooks
+	 */
+	public function test_wp_mail_hooks_added(): void {
+
+		\WP_Mock::expectFilterAdded(
+			'wp_mail',
+			array( new AnyInstance( WP_Mail::class ), 'remove_bounced_destination_email_addresses' )
+		);
+
+		$api      = $this->makeEmpty( API_Interface::class );
+		$settings = $this->makeEmpty( Settings_Interface::class );
+		$logger   = new ColorLogger();
+
+		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $logger );
 	}
 
 }

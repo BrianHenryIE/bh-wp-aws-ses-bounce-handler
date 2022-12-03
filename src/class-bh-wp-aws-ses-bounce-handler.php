@@ -19,6 +19,7 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Plugins_Page;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Settings_Page;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\I18n;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\REST;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\WP_Mail;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\LoggerInterface;
 
@@ -64,6 +65,7 @@ class BH_WP_AWS_SES_Bounce_Handler {
 		$this->define_admin_ajax_hooks();
 		$this->define_admin_plugins_page_hooks();
 		$this->define_rest_hooks();
+		$this->define_wp_mail_hooks();
 	}
 
 	/**
@@ -128,6 +130,15 @@ class BH_WP_AWS_SES_Bounce_Handler {
 
 		$sns = new REST( $this->api, $this->settings, $this->logger );
 		add_action( 'rest_api_init', array( $sns, 'add_bh_aws_ses_rest_endpoint' ) );
+	}
+
+	/**
+	 * Hook into wp_mail to filter bounced email addresses from outgoing mail.
+	 */
+	protected function define_wp_mail_hooks(): void {
+
+		$wp_mail = new WP_Mail( $this->logger );
+		add_filter( 'wp_mail', array( $wp_mail, 'remove_bounced_destination_email_addresses' ) );
 	}
 
 }
