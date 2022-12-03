@@ -40,6 +40,6 @@ unset( $class_map_files, $class_map_file, $class_map );
 require_once __DIR__ . '/vendor-prefixed/autoload.php';
 
 Autoloader::generate(
-	'Plugin_Package_Name',
+	__NAMESPACE__,
 	__DIR__ . '/src',
 )->register();
