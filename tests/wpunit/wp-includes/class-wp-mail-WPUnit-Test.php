@@ -28,7 +28,8 @@ class WP_Mail_WPUnit_Test extends \Codeception\TestCase\WPTestCase {
 		$sut = new WP_Mail( $logger );
 
 		$atts = array(
-			'to' => 'brianhenryie@gmail.com',
+			'to'      => 'brianhenryie@gmail.com',
+			'subject' => 'subject',
 		);
 
 		$user_id = wp_create_user( 'brianhenryie', 'password', 'brianhenryie@gmail.com' );
@@ -53,7 +54,8 @@ class WP_Mail_WPUnit_Test extends \Codeception\TestCase\WPTestCase {
 		$sut = new WP_Mail( $logger );
 
 		$atts = array(
-			'to' => 'brianhenryie@gmail.com',
+			'to'      => 'brianhenryie@gmail.com',
+			'subject' => 'subject',
 		);
 
 		wp_create_user( 'brianhenryie', 'password', 'brianhenryie@gmail.com' );
