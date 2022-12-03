@@ -223,7 +223,7 @@ class API implements API_Interface {
 		);
 
 		if ( ! in_array( $level, $allowed_log_levels, true ) ) {
-			$result['sucess'] = false;
+			$result['success'] = false;
 			/* translators: %s is the supplied new log level */
 			$result['message'] = sprintf( __( '`%s` is not a valid log level', 'bh-wp-aws-ses-bounce-handler' ), $level );
 			return $result;
@@ -232,7 +232,7 @@ class API implements API_Interface {
 		$current_log_level = $this->settings->get_log_level();
 
 		if ( $level === $current_log_level ) {
-			$result['sucess'] = true;
+			$result['success'] = true;
 			/* translators: %s existing log level */
 			$result['message'] = sprintf( __( 'Log level already set to `%s`.', 'bh-wp-aws-ses-bounce-handler' ), $level );
 			return $result;
