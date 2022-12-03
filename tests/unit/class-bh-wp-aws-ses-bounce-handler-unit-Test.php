@@ -32,6 +32,7 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 
 	/**
 	 * @covers ::set_locale
+	 * @covers ::__construct
 	 */
 	public function test_set_locale_hooked() {
 
