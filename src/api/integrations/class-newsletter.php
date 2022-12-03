@@ -28,6 +28,11 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 
 	use LoggerAwareTrait;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param LoggerInterface $logger A PSR logger.
+	 */
 	public function __construct( LoggerInterface $logger ) {
 		$this->setLogger( $logger );
 	}
@@ -64,9 +69,9 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 	 *
 	 * @hooked handle_ses_bounce
 	 *
-	 * @param string    $email_address     The email address that has bounced.
-	 * @param \stdClass $bounced_recipient Parent object with emailAddress, status, action, diagnosticCode.
-	 * @param \stdClass $message           Parent object of complete notification.
+	 * @param string   $email_address    The email address that has bounced.
+	 * @param stdClass $bounced_recipient Parent object with emailAddress, status, action, diagnosticCode.
+	 * @param stdClass $message           Parent object of complete notification.
 	 *
 	 * phpcs:disable WordPress.DB.DirectDatabaseQuery.DirectQuery
 	 * phpcs:disable WordPress.DB.DirectDatabaseQuery.NoCaching
@@ -81,8 +86,26 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 			return;
 		}
 
-		global $wpdb;
-		$updated = $wpdb->update( NEWSLETTER_USERS_TABLE, array( 'status' => 'B' ), array( 'email' => $email_address ) );
+		$newsletter = \Newsletter::instance();
+		$user       = $newsletter->get_user( $email_address );
+
+		if ( empty( $user ) ) {
+			$this->logger->debug( "No matching TNP user found for Email address {$email_address}." );
+			return;
+		}
+
+		if ( 'B' === $user->status ) {
+			$this->logger->debug( "`TNP_User:{$user->id}` already has bounced status." );
+			return;
+		}
+
+		$user = $newsletter->set_user_status( $user, 'B' );
+
+		if ( 'B' === $user->status ) {
+			$this->logger->info( "`TNP_User:{$user->id}` status set to bounced." );
+		} else {
+			$this->logger->error( "Error setting `TNP_User:{$user->id}` status to bounced." );
+		}
 	}
 
 	/**
@@ -103,7 +126,33 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 		$params          = array();
 		$params['email'] = $email_address;
 
-		TNP::unsubscribe( $params );
+		$newsletter = \Newsletter::instance();
+		$user       = $newsletter->get_user( $email_address );
+
+		if ( empty( $user ) ) {
+			$this->logger->debug( "No matching TNP user found for Email address {$email_address}" );
+			return;
+		}
+
+		$log_unsubscribe_action = function( $subscriber ) {
+			$this->logger->info( "`tnp_user:{$subscriber->id}` unsubscribed after complaint." );
+		};
+
+		/**
+		 * Hook into the Newsletter plugin's own unsubscribe confirmed action.
+		 *
+		 * @see TNP::unsubscribe()
+		 */
+		add_action( 'newsletter_unsubscribed', $log_unsubscribe_action );
+
+		/** Returns WP_Error|void. */
+		$result = TNP::unsubscribe( $params );
+
+		if ( ! empty( $result ) ) {
+			$this->logger->error( "Failed to unsubscribe {$email_address} after complaint: " . $result->get_error_message() );
+		}
+
+		remove_action( 'newsletter_unsubscribed', $log_unsubscribe_action );
 
 		// TODO: Associate the complaint with the particular newsletter sent.
 	}
@@ -111,7 +160,7 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 	/**
 	 * Unsubscribe user from future emails.
 	 *
-	 * @hooked handle_ses_complaint
+	 * @hooked handle_unsubscribe_email
 	 *
 	 * @param string   $email_address     The email address that has bounced.
 	 * @param stdClass $complained_recipient Parent object with emailAddress, status, action, diagnosticCode.
@@ -126,9 +175,35 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 		$params          = array();
 		$params['email'] = $email_address;
 
-		TNP::unsubscribe( $params );
+		$newsletter = \Newsletter::instance();
+		$user       = $newsletter->get_user( $email_address );
 
-		// TODO: Associate the complaint with the particular newsletter sent.
+		if ( empty( $user ) ) {
+			$this->logger->debug( "No matching TNP user found for Email address {$email_address}" );
+			return;
+		}
+
+		$log_unsubscribe_action = function( $subscriber ) {
+			$this->logger->info( "`tnp_user:{$subscriber->id}` unsubscribed after unsubscribe request." );
+		};
+
+		/**
+		 * Hook into the Newsletter plugin's own unsubscribe confirmed action.
+		 *
+		 * @see TNP::unsubscribe()
+		 */
+		add_action( 'newsletter_unsubscribed', $log_unsubscribe_action );
+
+		/** Returns WP_Error|void. */
+		$result = TNP::unsubscribe( $params );
+
+		if ( ! empty( $result ) ) {
+			$this->logger->error( "Failed to unsubscribe {$email_address} after unsubscribe request: " . $result->get_error_message() );
+		}
+
+		remove_action( 'newsletter_unsubscribed', $log_unsubscribe_action );
+
+		// TODO: Associate the response with the particular newsletter sent.
 	}
 
 	/**
@@ -136,7 +211,7 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 	 *
 	 * @param Bounce_Handler_Test $test The object orchestrating the test.
 	 *
-	 * @return ?array<string, array<string,mixed>|string>.
+	 * @return ?array{data:array,html:string}
 	 */
 	public function setup_test( Bounce_Handler_Test $test ): ?array {
 
@@ -175,9 +250,9 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 	/**
 	 * Verify the subscriber has been marked as Bounced.
 	 *
-	 * @param array $test_data {int:tnp_user_id, string:tnp_user_status}.
+	 * @param array{tnp_user_id:int, tnp_user_status:string} $test_data The data generated earlier for the test.
 	 *
-	 * @return array containing success boolean and html.
+	 * @return array{success:bool, html:string} containing success boolean and html.
 	 */
 	public function verify_test( array $test_data ): ?array {
 
@@ -190,10 +265,12 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 
 		$tnp_user = $newsletter->get_user( $test_data['tnp_user_id'] );
 
-		// $newsletter->get_user returns stdclass from wpdb->getrow
-		// if ( ! ( $tnp_user instanceof \TNP_User ) ) {
-		// return null;
-		// }
+		if ( empty( $tnp_user ) ) {
+			return array(
+				'success' => false,
+				'html'    => "<p>Failed to get test user {$test_data['tnp_user_id']}.</p>",
+			);
+		}
 
 		$tnp_user_status = $tnp_user->status;
 

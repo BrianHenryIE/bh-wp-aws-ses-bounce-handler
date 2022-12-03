@@ -10,6 +10,7 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Admin_Assets;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations\WordPress;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Logger\TNP_User_Hyperlink;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\I18n;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\REST;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\WP_Mail;
@@ -34,7 +35,7 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 	 * @covers ::set_locale
 	 * @covers ::__construct
 	 */
-	public function test_set_locale_hooked() {
+	public function test_set_locale_hooked(): void {
 
 		\WP_Mock::expectActionAdded(
 			'plugins_loaded',
@@ -56,7 +57,7 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 	/**
 	 * @covers ::define_admin_settings_page_hooks
 	 */
-	public function test_admin_hooks() {
+	public function test_admin_hooks(): void {
 
 		\WP_Mock::expectActionAdded(
 			'admin_enqueue_scripts',
@@ -80,7 +81,7 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 	 *
 	 * @covers ::define_integrations_hooks
 	 */
-	public function test_integrations_hooks_added() {
+	public function test_integrations_hooks_added(): void {
 
 		$this->markTestSkipped();
 
@@ -102,7 +103,7 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 	 *
 	 * @covers ::define_rest_hooks
 	 */
-	public function test_sns_hooks_added() {
+	public function test_sns_hooks_added(): void {
 
 		\WP_Mock::expectActionAdded(
 			'rest_api_init',
@@ -130,6 +131,32 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 
 		$api      = $this->makeEmpty( API_Interface::class );
 		$settings = $this->makeEmpty( Settings_Interface::class );
+		$logger   = new ColorLogger();
+
+		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $logger );
+	}
+
+
+	/**
+	 *
+	 * @covers ::define_logger_hooks
+	 */
+	public function test_logger_hooks_added(): void {
+
+		\WP_Mock::expectFilterAdded(
+			'bh-wp-aws-ses-bounce-handler_bh_wp_logger_column',
+			array( new AnyInstance( TNP_User_Hyperlink::class ), 'replace_tnp_user_id_with_link' ),
+			10,
+			5
+		);
+
+		$api      = $this->makeEmpty( API_Interface::class );
+		$settings = $this->makeEmpty(
+			Settings_Interface::class,
+			array(
+				'get_plugin_slug' => 'bh-wp-aws-ses-bounce-handler',
+			)
+		);
 		$logger   = new ColorLogger();
 
 		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $logger );

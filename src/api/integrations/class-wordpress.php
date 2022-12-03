@@ -28,6 +28,11 @@ class WordPress implements SES_Bounce_Handler_Integration_Interface {
 
 	use LoggerAwareTrait;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param LoggerInterface $logger A PSR logger.
+	 */
 	public function __construct( LoggerInterface $logger ) {
 		$this->setLogger( $logger );
 	}
@@ -68,7 +73,7 @@ class WordPress implements SES_Bounce_Handler_Integration_Interface {
 	 */
 	public function handle_ses_bounce( string $email_address, stdClass $bounced_recipient, stdClass $message ): void {
 
-		$this->logger->info( __CLASS__ . __FUNCTION__ . $email_address );
+		$this->logger->debug( __CLASS__ . __FUNCTION__ . $email_address );
 
 		$user = get_user_by( 'email', $email_address );
 
@@ -79,7 +84,7 @@ class WordPress implements SES_Bounce_Handler_Integration_Interface {
 
 		$user->add_role( 'bounced_email' );
 
-		$this->logger->info( 'Added bounced_email role to user ' . $user->ID . ' / ' . $email_address );
+		$this->logger->info( 'Added bounced_email role to `wp_user:' . $user->ID . '`' );
 	}
 
 	/**
@@ -99,7 +104,7 @@ class WordPress implements SES_Bounce_Handler_Integration_Interface {
 	 *
 	 * @param Bounce_Handler_Test $test The test configuration.
 	 *
-	 * @return array [values to save, html to print]
+	 * @return array{data:array{wp_user_id:int,wp_user_roles:string|string[], html:string} The values to save, html to print.
 	 */
 	public function setup_test( Bounce_Handler_Test $test ): ?array {
 
@@ -136,7 +141,7 @@ class WordPress implements SES_Bounce_Handler_Integration_Interface {
 	/**
 	 * The test succeeded if the user had the bounced_email role added.
 	 *
-	 * @param array $test_data { string: wp_user_id, string[]: wp_user_roles }.
+	 * @param array{wp_user_id:int, wp_user_roles:string|string[]} $test_data { string: wp_user_id, string[]: wp_user_roles }.
 	 *
 	 * @return array<string, mixed>
 	 */
@@ -179,7 +184,7 @@ class WordPress implements SES_Bounce_Handler_Integration_Interface {
 	/**
 	 * Delete the user created during the test.
 	 *
-	 * @param array{'wp_user_id': int} $test_data The data created and saved during setup_test().
+	 * @param array{wp_user_id?:int} $test_data The data created and saved during setup_test().
 	 *
 	 * @return bool
 	 */

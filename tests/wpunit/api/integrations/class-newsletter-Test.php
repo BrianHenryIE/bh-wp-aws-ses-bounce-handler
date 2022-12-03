@@ -14,6 +14,8 @@ use BrianHenryIE\ColorLogger\ColorLogger;
 use Psr\Log\NullLogger;
 use stdClass;
 use TNP;
+use TNP_User;
+use function PHPUnit\Framework\assertTrue;
 
 /**
  * Broadly tests each function in the Newsletter integration.
@@ -26,8 +28,9 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 * Test the text of the description is correct.
 	 *
 	 * @covers ::get_description
+	 * @covers::__construct
 	 */
-	public function test_description_text() {
+	public function test_description_text(): void {
 
 		$logger = new ColorLogger();
 
@@ -46,7 +49,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 *
 	 * @covers ::get_description
 	 */
-	public function test_description_html() {
+	public function test_description_html(): void {
 
 		$logger = new ColorLogger();
 
@@ -62,12 +65,13 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 *
 	 * @covers ::handle_ses_bounce
 	 */
-	public function test_bounced_email() {
+	public function test_bounced_email(): void {
 
 		TNP::add_subscriber( array( 'email' => 'brianhenryie@gmail.com' ) );
 
 		$tnp = \Newsletter::instance();
 
+		/** @var TNP_User $user_before */
 		$user_before = $tnp->get_user( 'brianhenryie@gmail.com' );
 
 		$this->assertSame( 'C', $user_before->status );
@@ -78,10 +82,10 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 
 		$newsletter_integration->handle_ses_bounce( 'brianhenryie@gmail.com', new stdClass(), new stdClass() );
 
+		/** @var TNP_User $user_after */
 		$user_after = $tnp->get_user( 'brianhenryie@gmail.com' );
 
 		$this->assertSame( 'B', $user_after->status );
-
 	}
 
 	/**
@@ -89,7 +93,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 *
 	 * @covers ::handle_ses_complaint
 	 */
-	public function test_complained_email() {
+	public function test_complained_email(): void {
 
 		$option_name = 'newsletter_unsubscription';
 		add_filter(
@@ -119,7 +123,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$option_name = 'newsletter_profile';
 		add_filter(
 			'pre_option_' . $option_name,
-			function( $result, $option, $default ) {
+			function( $result, $option, $default ): array {
 				$options               = array();
 				$options['title_none'] = 'title_none';
 				return $options;
@@ -131,7 +135,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$option_name = 'newsletter_main_info';
 		add_filter(
 			'pre_option_' . $option_name,
-			function( $result, $option, $default ) {
+			function( $result, $option, $default ): array {
 				$options                   = array();
 				$options['footer_contact'] = 'footer_contact';
 				$options['footer_title']   = 'footer_title';
@@ -155,9 +159,11 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 
 		$tnp = \Newsletter::instance();
 
+		/** @var TNP_User $user_before */
 		$user_before = $tnp->get_user( 'brianhenryie@gmail.com' );
 
-		$this->assertSame( 'C', $user_before->status );
+		// 'C' for Confirmed.
+		assertTrue( 'C' === $user_before->status );
 
 		$logger = new ColorLogger();
 
@@ -165,10 +171,10 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 
 		$newsletter_integration->handle_ses_complaint( 'brianhenryie@gmail.com', new stdClass(), new stdClass() );
 
+		/** @var TNP_User $user_after */
 		$user_after = $tnp->get_user( 'brianhenryie@gmail.com' );
 
 		$this->assertSame( 'U', $user_after->status );
-
 	}
 
 	/**
@@ -178,7 +184,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 *
 	 * @covers ::setup_test
 	 */
-	public function test_setup_test() {
+	public function test_setup_test(): void {
 
 		$logger = new ColorLogger();
 		$api    = $this->makeEmpty( API_Interface::class );
@@ -198,12 +204,12 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$this->assertArrayHasKey( 'data', $test_data );
 		$this->assertArrayHasKey( 'html', $test_data );
 
+		/** @var TNP_User $user_after */
 		$user_after = $tnp->get_user( $test->get_email() );
 
 		$this->assertNotNull( $user_after );
 		$this->assertNotEquals( 'B', $user_after->status );
 	}
-
 
 	/**
 	 * A test verification should respond affirmatively when the test user has bounced.
@@ -213,7 +219,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 *
 	 * @covers ::verify_test
 	 */
-	public function test_verify_test() {
+	public function test_verify_test(): void {
 
 		$api    = $this->makeEmpty( API_Interface::class );
 		$logger = new ColorLogger();
@@ -228,7 +234,8 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		global $wpdb;
 		$updated = $wpdb->update( NEWSLETTER_USERS_TABLE, array( 'status' => 'B' ), array( 'email' => $test->get_email() ) );
 
-		$tnp         = \Newsletter::instance();
+		$tnp = \Newsletter::instance();
+		/** @var TNP_User $user_before */
 		$user_before = $tnp->get_user( $test->get_email() );
 
 		assert( 'B' === $user_before->status );
@@ -239,7 +246,6 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$this->assertArrayHasKey( 'html', $test_verified );
 
 		$this->assertTrue( $test_verified['success'] );
-
 	}
 
 	/**
@@ -247,12 +253,13 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 *
 	 * @covers ::delete_test_data
 	 */
-	public function test_delete_test_data() {
+	public function test_delete_test_data(): void {
 
 		TNP::add_subscriber( array( 'email' => 'brianhenryie@gmail.com' ) );
 
 		$tnp = \Newsletter::instance();
 
+		/** @var TNP_User $user_before */
 		$user_before = $tnp->get_user( 'brianhenryie@gmail.com' );
 
 		$this->assertNotNull( $user_before );

@@ -17,6 +17,7 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Admin_Assets;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Ajax;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Plugins_Page;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Settings_Page;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Logger\TNP_User_Hyperlink;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\I18n;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\REST;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\WP_Mail;
@@ -35,9 +36,25 @@ use Psr\Log\LoggerInterface;
  */
 class BH_WP_AWS_SES_Bounce_Handler {
 
-	use LoggerAwareTrait;
+	/**
+	 * A PSR logger for the plugin's classes to use.
+	 *
+	 * @var LoggerInterface
+	 */
+	protected LoggerInterface $logger;
 
+	/**
+	 * The plugin settings.
+	 *
+	 * @var Settings_Interface
+	 */
 	protected Settings_Interface $settings;
+
+	/**
+	 * The main plugin functions which may be accessed via REST/cron/CLI/etc.
+	 *
+	 * @var API_Interface
+	 */
 	protected API_Interface $api;
 
 	/**
@@ -49,13 +66,13 @@ class BH_WP_AWS_SES_Bounce_Handler {
 	 *
 	 * @since    1.1.0
 	 *
-	 * @param API_Interface      $api
+	 * @param API_Interface      $api Main plugin functions.
 	 * @param Settings_Interface $settings The settings the plugin should be run with.
-	 * @param LoggerInterface    $logger
+	 * @param LoggerInterface    $logger A PSR logger.
 	 */
 	public function __construct( API_Interface $api, Settings_Interface $settings, LoggerInterface $logger ) {
 
-		$this->setLogger( $logger );
+		$this->logger   = $logger;
 		$this->settings = $settings;
 		$this->api      = $api;
 
@@ -66,6 +83,7 @@ class BH_WP_AWS_SES_Bounce_Handler {
 		$this->define_admin_plugins_page_hooks();
 		$this->define_rest_hooks();
 		$this->define_wp_mail_hooks();
+		$this->define_logger_hooks();
 	}
 
 	/**
@@ -141,4 +159,12 @@ class BH_WP_AWS_SES_Bounce_Handler {
 		add_filter( 'wp_mail', array( $wp_mail, 'remove_bounced_destination_email_addresses' ) );
 	}
 
+	/**
+	 * Add hooks to modify the recording/output of the logs.
+	 */
+	protected function define_logger_hooks(): void {
+
+		$tnp_user_hyperlink = new TNP_User_Hyperlink();
+		add_filter( "{$this->settings->get_plugin_slug()}_bh_wp_logger_column", array( $tnp_user_hyperlink, 'replace_tnp_user_id_with_link' ), 10, 5 );
+	}
 }
