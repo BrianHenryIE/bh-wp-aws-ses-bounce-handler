@@ -4,8 +4,52 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0502445cd13c00fee7c641c35ff7f876",
+    "content-hash": "dbc4dbffdcc773b8a1a25d81e2ceb52e",
     "packages": [
+        {
+            "name": "alleyinteractive/wordpress-autoloader",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alleyinteractive/wordpress-autoloader.git",
+                "reference": "c7599d95f49f1cdc38fad19944a50b19ec0dd6ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/alleyinteractive/wordpress-autoloader/zipball/c7599d95f49f1cdc38fad19944a50b19ec0dd6ca",
+                "reference": "c7599d95f49f1cdc38fad19944a50b19ec0dd6ca",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.4.0|^8.0|^8.1"
+            },
+            "require-dev": {
+                "alleyinteractive/alley-coding-standards": "^0.3",
+                "phpunit/phpunit": "^9.5.8"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/class-autoloader.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Alley Interactive",
+                    "email": "info@alley.co"
+                }
+            ],
+            "description": "Autoload files using WordPress File Conventions",
+            "support": {
+                "issues": "https://github.com/alleyinteractive/wordpress-autoloader/issues",
+                "source": "https://github.com/alleyinteractive/wordpress-autoloader/tree/v1.1.1"
+            },
+            "time": "2022-08-31T20:51:21+00:00"
+        },
         {
             "name": "brianhenryie/bh-wp-logger",
             "version": "dev-master",
@@ -364,62 +408,6 @@
                 "source": "https://github.com/katzgrau/KLogger/tree/1.2.2"
             },
             "time": "2022-07-29T20:41:14+00:00"
-        },
-        {
-            "name": "pablo-sg-pacheco/wp-namespace-autoloader",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/pablo-sg-pacheco/wp-namespace-autoloader",
-                "reference": "015c9654459fd267cf12fa7846d3bf36b11c3bd7"
-            },
-            "require": {
-                "php": ">=5.4"
-            },
-            "require-dev": {
-                "cweagans/composer-patches": "^1.0",
-                "dealerdirect/phpcodesniffer-composer-installer": "0.7.0",
-                "phpunit/phpunit": "^7",
-                "squizlabs/php_codesniffer": "dev-master",
-                "wp-coding-standards/wpcs": "^2.3"
-            },
-            "default-branch": true,
-            "type": "library",
-            "extra": {
-                "patches": {
-                    "squizlabs/php_codesniffer": {
-                        "Add GitHub Actions Annotations report type": "https://github.com/squizlabs/PHP_CodeSniffer/pull/2918.patch"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Pablo_Pacheco\\WP_Namespace_Autoloader\\": "src"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Pablo_Pacheco\\WP_Namespace_Autoloader\\Tests\\": "tests"
-                }
-            },
-            "license": [
-                "GPLv2"
-            ],
-            "authors": [
-                {
-                    "name": "Pablo dos S G Pacheco",
-                    "email": "pablo.sg.pacheco@gmail.com"
-                }
-            ],
-            "description": "A PHP autoloader class that follows the WordPress coding standards 2.0 and proposed 3.0 for class/interface/trait names and filenames",
-            "homepage": "https://github.com/pablo-pacheco/wp-namespace-autoloader",
-            "keywords": [
-                "autoload",
-                "namespace",
-                "wordpress",
-                "wp"
-            ],
-            "time": "2022-05-29T02:52:43+00:00"
         },
         {
             "name": "psr/log",
@@ -12064,7 +12052,6 @@
     "minimum-stability": "dev",
     "stability-flags": {
         "brianhenryie/bh-wp-logger": 20,
-        "pablo-sg-pacheco/wp-namespace-autoloader": 20,
         "brianhenryie/composer-phpstorm": 20,
         "kporras07/composer-symlinks": 20,
         "voku/portable-ascii": 20,
@@ -12073,9 +12060,9 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "ext-simplexml": "*",
+        "php": ">=7.4",
         "ext-json": "*",
-        "php": ">=7.4"
+        "ext-simplexml": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"

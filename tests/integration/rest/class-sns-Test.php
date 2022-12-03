@@ -2,7 +2,7 @@
 /**
  * Tests the SNS class with sample data from AWS SNS.
  *
- * @package bh-wp-aws-ses-bounce-handler
+ * @package brianhenryie/bh-wp-aws-ses-bounce-handler
  * @author Brian Henry <BrianHenryIE@gmail.com>
  */
 
@@ -17,7 +17,7 @@ use MailPoet\Models\Subscriber;
  *
  * Class SNS_Test
  *
- * @package BH_WP_AWS_SES_Bounce_Handler\rest
+ * @package brianhenryie/bh-wp-aws-ses-bounce-handler
  * @coversNothing
  */
 class SNS_Test extends \Codeception\TestCase\WPTestCase {

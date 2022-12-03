@@ -2,7 +2,7 @@
 /**
  * PHPUnit bootstrap file for wpunit tests. Since the plugin will not be otherwise autoloaded.
  *
- * @package           BH_WP_AWS_SES_Bounce_Handler
+ * @package brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 global $plugin_root_dir;

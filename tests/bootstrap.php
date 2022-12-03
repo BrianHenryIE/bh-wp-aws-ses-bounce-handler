@@ -1,6 +1,6 @@
 <?php
 /**
- * @package           BH_WP_AWS_SES_Bounce_Handler
+ * @package           brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 $GLOBALS['project_root_dir']   = $project_root_dir  = dirname( __FILE__, 2 );
@@ -9,5 +9,18 @@ $GLOBALS['plugin_name']        = $plugin_name       = basename( $project_root_di
 $GLOBALS['plugin_name_php']    = $plugin_name_php   = $plugin_name . '.php';
 $GLOBALS['plugin_path_php']    = $plugin_root_dir . '/' . $plugin_name_php;
 $GLOBALS['plugin_basename']    = $plugin_name . '/' . $plugin_name_php;
-$GLOBALS['wordpress_root_dir'] = $project_root_dir . '/vendor/wordpress/wordpress/src';
+$GLOBALS['wordpress_root_dir'] = $project_root_dir . '/wordpress';
 
+// If there is a secrets file, load it here.
+// Unsure how to define it in codeception.yml while also not committing to GitHub.
+$env_secret = __DIR__ . '/../.env.secret';
+if ( file_exists( $env_secret ) ) {
+
+	$env_secret_fullpath      = realpath( $env_secret );
+	$env_secret_relative_path = str_replace( codecept_root_dir(), '', $env_secret_fullpath );
+
+	$secret_params = new \Dotenv\Dotenv( codecept_root_dir(), $env_secret_relative_path );
+	$secret_params->load();
+
+	\Codeception\Configuration::config( $env_secret_fullpath );
+}

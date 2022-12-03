@@ -21,7 +21,7 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package   BH_WP_AWS_SES_Bounce_Handler
+ * @package brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 // If uninstall not called from WordPress, then exit.

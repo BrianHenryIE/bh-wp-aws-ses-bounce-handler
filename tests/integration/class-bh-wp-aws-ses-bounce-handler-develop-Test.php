@@ -2,7 +2,7 @@
 /**
  * Class Plugin_Test. Tests the root plugin setup.
  *
- * @package BH_WP_AWS_SES_Bounce_Handler
+ * @package brianhenryie/bh-wp-aws-ses-bounce-handler
  * @author     Brian Henry <BrianHenryIE@gmail.com>
  */
 

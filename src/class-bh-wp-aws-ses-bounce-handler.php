@@ -8,7 +8,7 @@
  * @link       https://BrianHenry.ie
  * @since      1.0.0
  *
- * @package    brianhenryie/bh-wp-aws-ses-bounce-handler
+ * @package brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler;
