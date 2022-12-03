@@ -59,7 +59,7 @@
     "brianhenryie/bh-wp-logger": "dev-master"
   },
   "require-dev": {
-    "10up/wp_mock": "0.4.2",
+    "10up/wp_mock": "*",
     "antecedent/patchwork": "^2.1",
     "brianhenryie/color-logger": "^1.0",
     "brianhenryie/composer-phpstorm": "dev-master",
@@ -77,12 +77,12 @@
     "jaschilz/php-coverage-badger": "^2.0",
     "kporras07/composer-symlinks": "dev-master",
     "lucatume/wp-browser": "*",
-    "php-stubs/woocommerce-stubs": "^5.2",
+    "php-stubs/woocommerce-stubs": "*",
     "phpcompatibility/phpcompatibility-wp": "*",
-    "phpstan/extension-installer": "^1.1",
+    "phpstan/extension-installer": "*",
     "phpunit/phpcov": "*",
     "squizlabs/php_codesniffer": "*",
-    "szepeviktor/phpstan-wordpress": "^0.7.2",
+    "szepeviktor/phpstan-wordpress": "*",
     "voku/portable-ascii": "dev-master",
     "woocommerce/woocommerce-sniffs": "^0.1.1",
     "wordpress/wordpress": "*",
@@ -93,22 +93,16 @@
     "wpackagist-plugin/wp-mail-logging": "^1.10",
     "wpackagist-theme/storefront": "*",
     "wpackagist-plugin/mailpoet":"*",
-    "wpackagist-plugin/newsletter":"*"
+    "wpackagist-plugin/newsletter":"*",
+    "wpackagist-plugin/wp-ses":"*"
   },
   "extra": {
     "patches": {
       "jaschilz/php-coverage-badger": {
         "Allow customising the text": "https://github.com/JASchilz/PHPCoverageBadge/pull/1.patch"
       },
-      "10up/wp_mock": {
-        "Add AnyObject matcher": "https://github.com/10up/wp_mock/pull/161.patch"
-      },
       "ericmartel/codeception-email-mailtrap": {
         "Fixed undefined property ": "https://github.com/ericmartel/codeception-email-mailtrap/pull/7.patch"
-      },
-      "brianhenryie/strauss": {
-        "Fix blocked by your allow-plugins config": "https://github.com/BrianHenryIE/strauss/pull/45.patch",
-        "Static in array and ternary": "https://github.com/BrianHenryIE/strauss/pull/46.patch"
       }
     },
     "strauss": {
