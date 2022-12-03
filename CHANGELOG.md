@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.7.0
+
+* Add: use templates folder for settings page and allow overriding.
+
 ## 1.6.0
 
 * Add: more detailed logging for The Newsletter Plugin bounces/unsubscribes.

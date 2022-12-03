@@ -28,10 +28,20 @@ class Settings_Page {
 	protected Settings_Interface $settings;
 
 	/**
+	 * Needed to display what integrations are available or enabled.
+	 *
+	 * @uses API_Interface::get_integrations()
+	 *
 	 * @var API_Interface
 	 */
 	protected API_Interface $api;
 
+	/**
+	 * Constructor.
+	 *
+	 * @param API_Interface      $api The main plugin functions.
+	 * @param Settings_Interface $settings The plugin settings.
+	 */
 	public function __construct( API_Interface $api, Settings_Interface $settings ) {
 		$this->settings = $settings;
 		$this->api      = $api;
@@ -76,8 +86,6 @@ class Settings_Page {
 			LogLevel::INFO    => 'Info',
 			LogLevel::DEBUG   => 'Debug',
 		);
-
-
 
 		$template = 'admin/settings-page.php';
 
@@ -174,17 +182,17 @@ class Settings_Page {
 	 *
 	 * I.e. given the file that has the phpmailer, determine what plugin it is part of.
 	 *
-	 * TODO: See $wp_plugin_paths if there are problems with this method.
+	 * TODO: See `global $wp_plugin_paths` if there are problems with this method.
 	 *
 	 * @see get_plugins()
 	 *
-	 * @param string $filename The file path we're trying to deterime the plugin for.
+	 * @param string $filename The file path we're trying to determine the plugin for.
 	 *
 	 * @return ?array<string, mixed> The plugin entry from get_plugins().
 	 */
 	private function get_plugin_from_path( string $filename ): ?array {
 
-		// If the file is outside the plugins dir, whats's up? MU plugins?
+		// If the file is outside the plugins' dir, what's up? MU plugins?
 		if ( ! stristr( $filename, WP_PLUGIN_DIR ) ) {
 			return null;
 		}

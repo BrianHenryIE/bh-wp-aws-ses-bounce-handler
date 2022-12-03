@@ -10,7 +10,11 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\API;
 
+use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Admin_Assets;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Plugins_Page;
+use BrianHenryIE\AWS_SES_Bounce_Handler\BH_WP_AWS_SES_Bounce_Handler;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger_Settings_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger_Settings_Trait;
 use Psr\Log\LogLevel;
@@ -65,7 +69,6 @@ class Settings implements Settings_Interface, Logger_Settings_Interface {
 	 * Get the log level saved in wp_options, default to `info` level.
 	 *
 	 * @see LogLevel
-	 * @return string
 	 */
 	public function get_log_level(): string {
 		$default_log_level  = LogLevel::INFO;
@@ -84,7 +87,7 @@ class Settings implements Settings_Interface, Logger_Settings_Interface {
 	/**
 	 * For friendly display.
 	 *
-	 * @return string
+	 * @see Logger_Settings_Interface
 	 */
 	public function get_plugin_name(): string {
 		return 'AWS SES Bounce Handler';
@@ -93,21 +96,41 @@ class Settings implements Settings_Interface, Logger_Settings_Interface {
 	/**
 	 * For filenames and URLs.
 	 *
-	 * @return string
+	 * @see Logger_Settings_Interface
 	 */
 	public function get_plugin_slug(): string {
 		return 'bh-wp-aws-ses-bounce-handler';
 	}
 
+	/**
+	 * Used to match on plugins.php, and to get the plugin URL when serving assets and displaying the settings page.
+	 *
+	 * @used-by BH_WP_AWS_SES_Bounce_Handler::define_admin_plugins_page_hooks()
+	 * @used-by Plugins_Page::row_meta()
+	 * @used-by Admin_Assets::enqueue_styles()
+	 * @used-by Admin_Assets::enqueue_scripts()
+	 *
+	 * @see Logger_Settings_Interface
+	 */
 	public function get_plugin_basename(): string {
 		return defined( 'BH_WP_AWS_SES_BOUNCE_HANDLER_BASENAME' )
 			? BH_WP_AWS_SES_BOUNCE_HANDLER_BASENAME
 			: 'bh-wp-aws-ses-bounce-handler/bh-wp-aws-ses-bounce-handler.php';
 	}
 
+	/**
+	 * The plugin version, as defined in the root plugin file's constant, or as a string here, presumably in sync.
+	 *
+	 * Used for versioning JS and CSS assets.
+	 *
+	 * @used-by Admin_Assets::enqueue_styles()
+	 * @used-by Admin_Assets::enqueue_scripts()
+	 *
+	 * @see Logger_Settings_Interface
+	 */
 	public function get_plugin_version(): string {
 		return defined( 'BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION' )
 		? BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION
-			: '1.6.0';
+			: '1.7.0';
 	}
 }
