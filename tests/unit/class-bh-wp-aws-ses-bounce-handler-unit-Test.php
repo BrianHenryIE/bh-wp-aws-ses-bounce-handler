@@ -129,6 +129,13 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 			array( new AnyInstance( WP_Mail::class ), 'remove_bounced_destination_email_addresses' )
 		);
 
+		\WP_Mock::expectFilterAdded(
+			'pre_wp_mail',
+			array( new AnyInstance( WP_Mail::class ), 'cancel_sending_email_when_all_addresses_removed' ),
+			10,
+			2
+		);
+
 		$api      = $this->makeEmpty( API_Interface::class );
 		$settings = $this->makeEmpty( Settings_Interface::class );
 		$logger   = new ColorLogger();

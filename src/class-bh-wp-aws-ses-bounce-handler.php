@@ -156,7 +156,9 @@ class BH_WP_AWS_SES_Bounce_Handler {
 	protected function define_wp_mail_hooks(): void {
 
 		$wp_mail = new WP_Mail( $this->logger );
+
 		add_filter( 'wp_mail', array( $wp_mail, 'remove_bounced_destination_email_addresses' ) );
+		add_filter( 'pre_wp_mail', array( $wp_mail, 'cancel_sending_email_when_all_addresses_removed' ), 10, 2 );
 	}
 
 	/**

@@ -67,4 +67,26 @@ class WP_Mail {
 
 		return $wp_mail_atts;
 	}
+
+	/**
+	 * If the above function removed all the to: addresses, cancel sending the email on the `pre_wp_mail` hook. This
+	 * hook is not implemented in wp-offload-ses, hence the address checking/removal is done above, but is implemented
+	 * in fluent-smtp, and it should be used where possible.
+	 *
+	 * @hooked pre_wp_mail
+	 * @see wp_mail()
+	 *
+	 * @param ?mixed                    $cancel Any non-null value will cancel sending the email.
+	 * @param array{to:string|string[]} $wp_mail_atts The to, subject, message, headers, attachments of the email being sent.
+	 *
+	 * @return ?mixed
+	 */
+	public function cancel_sending_email_when_all_addresses_removed( $cancel, array $wp_mail_atts ) {
+
+		if ( empty( $wp_mail_atts['to'] ) ) {
+			return false;
+		}
+
+		return $cancel;
+	}
 }

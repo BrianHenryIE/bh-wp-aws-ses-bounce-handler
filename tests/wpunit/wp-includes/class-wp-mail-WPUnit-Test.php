@@ -3,6 +3,7 @@
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes;
 
 use BrianHenryIE\ColorLogger\ColorLogger;
+use WP_User;
 
 /**
  * @coversDefaultClass \BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\WP_Mail
@@ -20,6 +21,7 @@ class WP_Mail_WPUnit_Test extends \Codeception\TestCase\WPTestCase {
 
 	/**
 	 * @covers ::remove_bounced_destination_email_addresses
+	 * @covers ::__construct
 	 */
 	public function test_check_is_destination_email_bounced_happy(): void {
 
@@ -63,5 +65,45 @@ class WP_Mail_WPUnit_Test extends \Codeception\TestCase\WPTestCase {
 		$result = $sut->remove_bounced_destination_email_addresses( $atts );
 
 		$this->assertContains( 'brianhenryie@gmail.com', $result['to'] );
+	}
+
+	/**
+	 * @covers ::cancel_sending_email_when_all_addresses_removed
+	 */
+	public function test_cancel_sending_email_when_all_addresses_removed_happy(): void {
+
+		$logger = new ColorLogger();
+
+		$sut = new WP_Mail( $logger );
+
+		$atts = array(
+			'to' => array(),
+		);
+
+		$cancel = null;
+
+		$result = $sut->cancel_sending_email_when_all_addresses_removed( $cancel, $atts );
+
+		$this->assertNotNull( $result );
+	}
+
+	/**
+	 * @covers ::cancel_sending_email_when_all_addresses_removed
+	 */
+	public function test_cancel_sending_email_when_all_addresses_removed_no_action(): void {
+
+		$logger = new ColorLogger();
+
+		$sut = new WP_Mail( $logger );
+
+		$atts = array(
+			'to' => 'brianhenryie@gmail.com',
+		);
+
+		$cancel = null;
+
+		$result = $sut->cancel_sending_email_when_all_addresses_removed( $cancel, $atts );
+
+		$this->assertNull( $result );
 	}
 }
