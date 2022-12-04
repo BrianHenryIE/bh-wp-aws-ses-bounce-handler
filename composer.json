@@ -89,12 +89,13 @@
     "wp-cli/dist-archive-command": "dev-main",
     "wp-cli/wp-cli-bundle": "*",
     "wp-coding-standards/wpcs": "*  ",
+    "wpackagist-plugin/fluent-smtp": "^2.2",
+    "wpackagist-plugin/mailpoet": "*",
+    "wpackagist-plugin/newsletter": "*",
     "wpackagist-plugin/woocommerce": "*",
     "wpackagist-plugin/wp-mail-logging": "^1.10",
-    "wpackagist-theme/storefront": "*",
-    "wpackagist-plugin/mailpoet":"*",
-    "wpackagist-plugin/newsletter":"*",
-    "wpackagist-plugin/wp-ses":"*"
+    "wpackagist-plugin/wp-ses": "*",
+    "wpackagist-theme/storefront": "*"
   },
   "extra": {
     "patches": {
