@@ -51,7 +51,7 @@ class BH_WP_AWS_SES_Bounce_Handler {
 	protected Settings_Interface $settings;
 
 	/**
-	 * The main plugin functions which may be accessed via REST/cron/CLI/etc.
+	 * The main plugin functions which may be accessed via REST/AJAX/cron/CLI/etc.
 	 *
 	 * @var API_Interface
 	 */

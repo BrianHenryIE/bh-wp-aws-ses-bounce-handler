@@ -104,7 +104,7 @@ class WordPress implements SES_Bounce_Handler_Integration_Interface {
 	 *
 	 * @param Bounce_Handler_Test $test The test configuration.
 	 *
-	 * @return array{data:array{wp_user_id:int,wp_user_roles:string|string[], html:string} The values to save, html to print.
+	 * @return array{data:array{wp_user_id:int,wp_user_roles:string|string[]}, html:string} The values to save, html to print.
 	 */
 	public function setup_test( Bounce_Handler_Test $test ): ?array {
 
