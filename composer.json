@@ -53,6 +53,7 @@
     "antecedent/patchwork": "^2.1",
     "brianhenryie/color-logger": "*",
     "brianhenryie/composer-phpstorm": "dev-master",
+    "brianhenryie/php-codecoverage-markdown": "*",
     "brianhenryie/strauss": "*",
     "cweagans/composer-patches": "*",
     "dealerdirect/phpcodesniffer-composer-installer": "*",
@@ -61,6 +62,7 @@
     "phpcompatibility/phpcompatibility-wp": "*",
     "phpstan/extension-installer": "*",
     "phpunit/phpcov": "*",
+    "rector/rector": "*",
     "squizlabs/php_codesniffer": "*",
     "szepeviktor/phpstan-wordpress": "*",
     "voku/portable-ascii": "dev-master",
@@ -75,7 +77,8 @@
     "wpackagist-plugin/woocommerce": "*",
     "wpackagist-plugin/wp-mail-logging": ">1.10",
     "wpackagist-plugin/wp-ses": "*",
-    "wpackagist-theme/storefront": "*"
+    "wpackagist-theme/storefront": "*",
+    "wpackagist-theme/twentytwenty": "*"
   },
   "extra": {
     "patches": {
@@ -113,11 +116,23 @@
     "post-update-cmd": [
       "vendor/bin/strauss"
     ],
+    "test": [
+      "vendor/bin/codecept run unit",
+      "vendor/bin/codecept run wpunit"
+    ],
     "coverage-tests": [
       "vendor/bin/codecept run unit --coverage unit.cov",
       "vendor/bin/codecept run wpunit --coverage wpunit.cov",
       "vendor/bin/phpcov merge --clover tests/_output/clover.xml --html tests/_output/html tests/_output;",
       "open tests/_output/html/index.html"
+    ],
+    "cs": [
+      "vendor/bin/phpcs || true",
+      "vendor/bin/phpstan analyse --memory-limit 1G"
+    ],
+    "cs-fix": [
+      "vendor/bin/phpcbf || true",
+      "@cs"
     ],
     "lint": [
       "vendor/bin/phpcbf || true",
