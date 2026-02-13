@@ -38,6 +38,33 @@ class API implements API_Interface {
 		$this->settings = $settings;
 	}
 
+	/**
+	 * Given a plugin basename get its semver major installed version.
+	 *
+	 * @param string $plugin_basename The path to the main plugin file from the WP_PLUGIN_DIR directory.
+	 */
+	protected function get_installed_major_version( string $plugin_basename ): int {
+		$plugin_headers = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin_basename );
+		if ( 1 === preg_match( '/(\d+)/', $plugin_headers['Version'], $output_array ) ) {
+			return (int) $output_array[1];
+		} else {
+			return -1;
+		}
+	}
+
+	/**
+	 * Check is the correct version of a plugin active.
+	 *
+	 * @param string $plugin_basename The path to the main plugin file from the WP_PLUGIN_DIR directory.
+	 * @param int    $major_version The required version.
+	 */
+	protected function is_activate_and_major_version( string $plugin_basename, int $major_version ): bool {
+		$is_active = is_plugin_active( 'newsletter/plugin.php' );
+		if ( ! $is_active ) {
+			return false;
+		}
+		return $this->get_installed_major_version( $plugin_basename ) === $major_version;
+	}
 
 	/**
 	 * Find and return all integrations.
@@ -49,15 +76,18 @@ class API implements API_Interface {
 		$built_in_integrations                = array();
 		$built_in_integrations['WordPress']   = new WordPress( $this->logger );
 		$built_in_integrations['WooCommerce'] = new WooCommerce( $this->logger );
-		$built_in_integrations['Newsletter']  = new Newsletter( $this->logger );
-		$built_in_integrations['MailPoet']    = new MailPoet( $this->logger );
-
+		if ( $this->is_activate_and_major_version( 'newsletter/plugin.php', 7 ) ) {
+			$built_in_integrations['Newsletter'] = new Newsletter( $this->logger );
+		}
+		if ( $this->is_activate_and_major_version( 'mailpoet/mailpoet.php', 4 ) ) {
+			$built_in_integrations['MailPoet'] = new MailPoet( $this->logger );
+		}
 		$integrations = apply_filters( 'bh_wp_aws_ses_bounce_handler_integrations', $built_in_integrations );
 
 		// Clean the data.
 		$integrations = array_filter(
 			$integrations,
-			function( $integration ) {
+			function ( $integration ) {
 				return $integration instanceof SES_Bounce_Handler_Integration_Interface;
 			}
 		);
@@ -199,7 +229,6 @@ class API implements API_Interface {
 		 * @see https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notification-examples.html
 		 */
 		do_action( 'handle_unsubscribe_email', $email_address, $email, $message );
-
 	}
 
 	/**
