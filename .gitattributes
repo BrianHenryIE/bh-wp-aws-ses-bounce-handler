@@ -9,10 +9,13 @@
 /.env.secret.dist       export-ignore
 /.gitattributes         export-ignore
 /.gitignore             export-ignore
+/.wp-env.json           export-ignore
 /codeception.dist.yml   export-ignore
 /composer.json          export-ignore
 /composer.lock          export-ignore
 /CONTRIBUTING.md        export-ignore
+/package.json           export-ignore
+/package-lock.json      export-ignore
 /patchwork.json         export-ignore
 /phpcs.xml              export-ignore
 /phpstan.neon           export-ignore

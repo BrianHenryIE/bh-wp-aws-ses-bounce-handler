@@ -16,6 +16,23 @@ updates:
       - "dependencies"
       - "workflows"
 
+  # maintain dependencies for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    target-branch: "master"
+    allow:
+      - dependency-type: direct
+    schedule:
+      interval: "daily"
+    versioning-strategy: increase
+    commit-message:
+      prefix: "NPM"
+      prefix-development: "NPM Dev"
+      include: "scope"
+    labels:
+      - "dependencies"
+      - "js"
+
   # maintain dependencies for Composer
   - package-ecosystem: "composer"
     directory: "/"
