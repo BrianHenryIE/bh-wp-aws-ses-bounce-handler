@@ -21,7 +21,7 @@ class WPUnit_Testcase extends WPTestCase {
 		$this->logger = new class() extends ColorLogger implements LoggerInterface {};
 	}
 
-	protected function get_installed_major_version( string $plugin_basename ): string {
+	protected function get_installed_major_version( string $plugin_basename ): int {
 		$plugin_headers = get_plugin_data( codecept_root_dir( WP_PLUGIN_DIR . '/' . $plugin_basename ) );
 		if ( 1 === preg_match( '/(\d+)/', $plugin_headers['Version'], $output_array ) ) {
 			return (int) $output_array[1];
