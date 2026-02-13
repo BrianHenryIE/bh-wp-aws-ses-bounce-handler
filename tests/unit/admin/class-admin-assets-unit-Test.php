@@ -12,20 +12,12 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Unit_Testcase;
 
 /**
  * @coversDefaultClass \BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Admin_Assets
  */
-class Admin_Assets_Unit_Test extends \Codeception\Test\Unit {
-
-	protected function setup(): void {
-		\WP_Mock::setUp();
-	}
-
-	protected function tearDown(): void {
-		parent::_tearDown();
-		\WP_Mock::tearDown();
-	}
+class Admin_Assets_Unit_Test extends Unit_Testcase {
 
 	/**
 	 * Verifies enqueue_styles() calls wp_enqueue_style() with appropriate parameters.
@@ -136,6 +128,5 @@ class Admin_Assets_Unit_Test extends \Codeception\Test\Unit {
 		$bh_wp_aws_ses_bounce_handler_admin = new Admin_Assets( $api, $settings );
 
 		$bh_wp_aws_ses_bounce_handler_admin->enqueue_styles();
-
 	}
 }

@@ -3,7 +3,9 @@
  * @package           brianhenryie/bh-wp-aws-ses-bounce-handler
  */
 
-$GLOBALS['project_root_dir']   = $project_root_dir  = dirname( __FILE__, 2 );
+use Alley_Interactive\Autoloader\Autoloader;
+
+$GLOBALS['project_root_dir']   = $project_root_dir  = dirname( __DIR__, 1 );
 $GLOBALS['plugin_root_dir']    = $plugin_root_dir   = $project_root_dir;
 $GLOBALS['plugin_name']        = $plugin_name       = basename( $project_root_dir );
 $GLOBALS['plugin_name_php']    = $plugin_name_php   = $plugin_name . '.php';
@@ -24,3 +26,13 @@ if ( file_exists( $env_secret ) ) {
 
 	\Codeception\Configuration::config( $env_secret_fullpath );
 }
+
+Autoloader::generate(
+	'BrianHenryIE\\AWS_SES_Bounce_Handler',
+	__DIR__ . '/unit',
+)->register();
+
+Autoloader::generate(
+	'BrianHenryIE\\AWS_SES_Bounce_Handler',
+	__DIR__ . '/wpunit',
+)->register();

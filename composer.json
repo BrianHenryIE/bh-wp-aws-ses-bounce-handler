@@ -22,6 +22,19 @@
       "phpstan/extension-installer": true
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "BrianHenryIE\\AWS_SES_Bounce_Handler\\": [
+        "tests/contract",
+        "tests/integration",
+        "tests/wpunit",
+        "tests/unit"
+      ]
+    },
+    "classmap": [
+      "tests/_support"
+    ]
+  },
   "repositories": {
     "brianhenryie/composer-phpstorm": {
       "url": "https://github.com/BrianHenryIE/composer-phpstorm",

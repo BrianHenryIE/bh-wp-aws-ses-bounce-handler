@@ -8,24 +8,12 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler;
 
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\API;
-use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger;
 
 /**
  * Class Plugin_WP_Mock_Test
  */
-class Plugin_WP_Mock_Test extends \Codeception\Test\Unit {
-
-	protected function setup(): void {
-		\WP_Mock::setUp();
-	}
-
-	protected function tearDown(): void {
-		parent::_tearDown();
-		\WP_Mock::tearDown();
-		\Patchwork\restoreAll();
-	}
+class Plugin_WP_Mock_Test extends Unit_Testcase {
 
 	/**
 	 * Verifies the plugin initialization.
@@ -35,12 +23,14 @@ class Plugin_WP_Mock_Test extends \Codeception\Test\Unit {
 		// Prevents code-coverage counting, and removes the need to define the WordPress functions that are used in that class.
 		\Patchwork\redefine(
 			array( BH_WP_AWS_SES_Bounce_Handler::class, '__construct' ),
-			function( $api, $settings, $logger ) {}
+			function ( $api, $settings, $logger ) {}
 		);
 
 		\Patchwork\redefine(
-			array( Logger::class, '__construct' ),
-			function() {}
+			array( Logger::class, 'instance' ),
+			function () {
+				return $this->makeEmpty( \BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerInterface::class );
+			}
 		);
 
 		global $plugin_root_dir;
@@ -90,7 +80,5 @@ class Plugin_WP_Mock_Test extends \Codeception\Test\Unit {
 		$this->assertArrayHasKey( 'bh_wp_aws_ses_bounce_handler', $GLOBALS );
 
 		$this->assertInstanceOf( BH_WP_AWS_SES_Bounce_Handler::class, $GLOBALS['bh_wp_aws_ses_bounce_handler'] );
-
 	}
-
 }

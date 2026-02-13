@@ -14,22 +14,12 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Logger\TNP_User_Hyperlink;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\I18n;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\REST;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\WP_Mail;
-use BrianHenryIE\ColorLogger\ColorLogger;
 use WP_Mock\Matcher\AnyInstance;
 
 /**
  * @coversDefaultClass \BrianHenryIE\AWS_SES_Bounce_Handler\BH_WP_AWS_SES_Bounce_Handler
  */
-class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
-
-	protected function setup(): void {
-		\WP_Mock::setUp();
-	}
-
-	protected function tearDown(): void {
-		parent::_tearDown();
-		\WP_Mock::tearDown();
-	}
+class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends Unit_Testcase {
 
 	/**
 	 * @covers ::set_locale
@@ -49,9 +39,8 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 				'get_plugin_basename' => 'bh-wp-aws-ses-bounce-handler/bh-wp-aws-ses-bounce-handler.php',
 			)
 		);
-		$logger   = new ColorLogger();
 
-		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $logger );
+		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $this->logger );
 	}
 
 	/**
@@ -71,9 +60,8 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 
 		$api      = $this->makeEmpty( API_Interface::class );
 		$settings = $this->makeEmpty( Settings_Interface::class );
-		$logger   = new ColorLogger();
 
-		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $logger );
+		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $this->logger );
 	}
 
 	/**
@@ -92,10 +80,8 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 
 		$api      = $this->makeEmpty( API_Interface::class );
 		$settings = $this->makeEmpty( Settings_Interface::class );
-		$logger   = new ColorLogger();
 
-		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $logger );
-
+		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $this->logger );
 	}
 
 
@@ -112,10 +98,8 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 
 		$api      = $this->makeEmpty( API_Interface::class );
 		$settings = $this->makeEmpty( Settings_Interface::class );
-		$logger   = new ColorLogger();
 
-		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $logger );
-
+		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $this->logger );
 	}
 
 	/**
@@ -138,9 +122,8 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 
 		$api      = $this->makeEmpty( API_Interface::class );
 		$settings = $this->makeEmpty( Settings_Interface::class );
-		$logger   = new ColorLogger();
 
-		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $logger );
+		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $this->logger );
 	}
 
 
@@ -164,9 +147,7 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends \Codeception\Test\Unit {
 				'get_plugin_slug' => 'bh-wp-aws-ses-bounce-handler',
 			)
 		);
-		$logger   = new ColorLogger();
 
-		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $logger );
+		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $this->logger );
 	}
-
 }
