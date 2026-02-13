@@ -65,27 +65,6 @@ class BH_WP_AWS_SES_Bounce_Handler_Unit_Test extends Unit_Testcase {
 	}
 
 	/**
-	 * Check all three integrations are hooked onto handle_ses_bounce
-	 *
-	 * @covers ::define_integrations_hooks
-	 */
-	public function test_integrations_hooks_added(): void {
-
-		$this->markTestSkipped();
-
-		\WP_Mock::expectActionAdded(
-			'plugins_loaded',
-			array( new AnyInstance( WordPress::class ), 'handle_ses_bounce' )
-		);
-
-		$api      = $this->makeEmpty( API_Interface::class );
-		$settings = $this->makeEmpty( Settings_Interface::class );
-
-		new BH_WP_AWS_SES_Bounce_Handler( $api, $settings, $this->logger );
-	}
-
-
-	/**
 	 *
 	 * @covers ::define_rest_hooks
 	 */
