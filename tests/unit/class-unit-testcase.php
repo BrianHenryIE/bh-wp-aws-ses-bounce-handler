@@ -14,18 +14,7 @@ class Unit_Testcase extends \Codeception\Test\Unit {
 	protected function setup(): void {
 		WP_Mock::setUp();
 
-		$this->logger = new class() implements LoggerInterface {
-			use LoggerTrait;
-
-			protected \Psr\Log\LoggerInterface $logger;
-			public function __construct() {
-				$this->logger = new ColorLogger();
-			}
-
-			public function log( $level, $message, array $context = array() ) {
-				$this->logger->log( $level, $message, $context );
-			}
-		};
+		$this->logger = new class() extends ColorLogger implements LoggerInterface {};
 	}
 
 	protected function tearDown(): void {
