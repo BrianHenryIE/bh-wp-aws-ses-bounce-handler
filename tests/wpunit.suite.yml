@@ -18,4 +18,5 @@ modules:
             title: "bh-wp-aws-ses-bounce-handler"
             plugins: ["woocommerce/woocommerce.php", "mailpoet/mailpoet.php", "newsletter/plugin.php"]
             activatePlugins: ["woocommerce/woocommerce.php", "mailpoet/mailpoet.php", "newsletter/plugin.php"]
+            WP_CONTENT_DIR: wp-content
 bootstrap: _bootstrap.php

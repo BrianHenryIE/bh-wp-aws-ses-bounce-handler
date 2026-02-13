@@ -10,8 +10,7 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Bounce_Handler_Test;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
-use BrianHenryIE\ColorLogger\ColorLogger;
-use Psr\Log\NullLogger;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WPUnit_Testcase;
 use stdClass;
 use TNP;
 use TNP_User;
@@ -22,7 +21,14 @@ use function PHPUnit\Framework\assertTrue;
  *
  * @coversDefaultClass \BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations\Newsletter
  */
-class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
+class Newsletter_Test extends WPUnit_Testcase {
+
+	protected function setUp(): void {
+		parent::setUp();
+		if ( ! $this->is_activate_and_major_version( 'newsletter/plugin.php', 7 ) ) {
+			$this->markTestSkipped( 'This test requires the Newsletter plugin v7.x' );
+		}
+	}
 
 	/**
 	 * Test the text of the description is correct.
@@ -32,16 +38,13 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_description_text(): void {
 
-		$logger = new ColorLogger();
-
-		$newsletter_integration = new Newsletter( $logger );
+		$newsletter_integration = new Newsletter( $this->logger );
 
 		$description = $newsletter_integration->get_description();
 
 		$expected = 'Marks users as bounced and unsubscribes complaints';
 
 		$this->assertSame( $expected, wp_kses( $description, wp_kses_allowed_html( 'strip' ) ) );
-
 	}
 
 	/**
@@ -51,9 +54,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_description_html(): void {
 
-		$logger = new ColorLogger();
-
-		$newsletter_integration = new Newsletter( $logger );
+		$newsletter_integration = new Newsletter( $this->logger );
 
 		$description = $newsletter_integration->get_description();
 
@@ -76,9 +77,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertSame( 'C', $user_before->status );
 
-		$logger = new ColorLogger();
-
-		$newsletter_integration = new Newsletter( $logger );
+		$newsletter_integration = new Newsletter( $this->logger );
 
 		$newsletter_integration->handle_ses_bounce( 'brianhenryie@gmail.com', new stdClass(), new stdClass() );
 
@@ -98,7 +97,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$option_name = 'newsletter_unsubscription';
 		add_filter(
 			'pre_option_' . $option_name,
-			function( $result, $option, $default ) {
+			function ( $result, $option, $default ) {
 				$options                         = array();
 				$options['unsubscribed_message'] = 'message';
 				$options['unsubscribed_subject'] = 'subject';
@@ -111,7 +110,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$option_name = 'newsletter_subscription_template';
 		add_filter(
 			'pre_option_' . $option_name,
-			function( $result, $option, $default ) {
+			function ( $result, $option, $default ) {
 				$options             = array();
 				$options['template'] = '{message}';
 				return $options;
@@ -123,7 +122,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$option_name = 'newsletter_profile';
 		add_filter(
 			'pre_option_' . $option_name,
-			function( $result, $option, $default ): array {
+			function ( $result, $option, $default ): array {
 				$options               = array();
 				$options['title_none'] = 'title_none';
 				return $options;
@@ -135,7 +134,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$option_name = 'newsletter_main_info';
 		add_filter(
 			'pre_option_' . $option_name,
-			function( $result, $option, $default ): array {
+			function ( $result, $option, $default ): array {
 				$options                   = array();
 				$options['footer_contact'] = 'footer_contact';
 				$options['footer_title']   = 'footer_title';
@@ -165,9 +164,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		// 'C' for Confirmed.
 		assertTrue( 'C' === $user_before->status );
 
-		$logger = new ColorLogger();
-
-		$newsletter_integration = new Newsletter( $logger );
+		$newsletter_integration = new Newsletter( $this->logger );
 
 		$newsletter_integration->handle_ses_complaint( 'brianhenryie@gmail.com', new stdClass(), new stdClass() );
 
@@ -186,18 +183,15 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_setup_test(): void {
 
-		$logger = new ColorLogger();
-		$api    = $this->makeEmpty( API_Interface::class );
-		$test   = new Bounce_Handler_Test( $api, $logger );
+		$api  = $this->makeEmpty( API_Interface::class );
+		$test = new Bounce_Handler_Test( $api, $this->logger );
 
 		$tnp         = \Newsletter::instance();
 		$user_before = $tnp->get_user( $test->get_email() );
 
 		$this->assertNull( $user_before );
 
-		$logger = new ColorLogger();
-
-		$newsletter_integration = new Newsletter( $logger );
+		$newsletter_integration = new Newsletter( $this->logger );
 
 		$test_data = $newsletter_integration->setup_test( $test );
 
@@ -221,13 +215,11 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_verify_test(): void {
 
-		$api    = $this->makeEmpty( API_Interface::class );
-		$logger = new ColorLogger();
-		$test   = new Bounce_Handler_Test( $api, $logger );
+		$api = $this->makeEmpty( API_Interface::class );
 
-		$logger = new ColorLogger();
+		$test = new Bounce_Handler_Test( $api, $this->logger );
 
-		$newsletter_integration = new Newsletter( $logger );
+		$newsletter_integration = new Newsletter( $this->logger );
 
 		$test_data = $newsletter_integration->setup_test( $test );
 
@@ -265,16 +257,13 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$this->assertNotNull( $user_before );
 
 		$test_data['tnp_user_id'] = $user_before->id;
-		$logger                   = new ColorLogger();
 
-		$newsletter_integration = new Newsletter( $logger );
+		$newsletter_integration = new Newsletter( $this->logger );
 
 		$newsletter_integration->delete_test_data( $test_data );
 
 		$user_after = $tnp->get_user( 'brianhenryie@gmail.com' );
 
 		$this->assertNull( $user_after );
-
 	}
-
 }
