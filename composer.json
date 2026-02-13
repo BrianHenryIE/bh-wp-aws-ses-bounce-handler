@@ -12,8 +12,6 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "config": {
-    "process-timeout": 0,
-    "sort-packages": true,
     "allow-plugins": {
       "brianhenryie/composer-phpstorm": true,
       "composer/installers": true,
@@ -21,7 +19,12 @@
       "dealerdirect/phpcodesniffer-composer-installer": true,
       "johnpbloch/wordpress-core-installer": true,
       "phpstan/extension-installer": true
-    }
+    },
+    "platform": {
+      "php": "8.0"
+    },
+    "process-timeout": 0,
+    "sort-packages": true
   },
   "autoload-dev": {
     "psr-4": {
