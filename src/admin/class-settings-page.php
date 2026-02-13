@@ -12,7 +12,7 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
-use Psr\Log\LogLevel;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LogLevel;
 
 
 /**

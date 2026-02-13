@@ -21,8 +21,8 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Logger\TNP_User_Hyperlink;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\I18n;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\REST;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\WP_Mail;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\LoggerInterface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerAwareTrait;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerInterface;
 
 
 /**

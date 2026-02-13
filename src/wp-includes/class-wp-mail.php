@@ -8,8 +8,8 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes;
 
-use Psr\Log\LoggerInterface;
-use Psr\Log\LoggerAwareTrait;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerInterface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerAwareTrait;
 use WP_User;
 
 /**

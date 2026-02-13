@@ -8,9 +8,9 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations\WooCommerce;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations\WordPress;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\LoggerInterface;
-use Psr\Log\LogLevel;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerAwareTrait;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerInterface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LogLevel;
 use stdClass;
 
 class API implements API_Interface {

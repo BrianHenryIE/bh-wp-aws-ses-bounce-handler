@@ -17,7 +17,7 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger_Settings_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger_Settings_Trait;
-use Psr\Log\LogLevel;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LogLevel;
 
 
 /**
