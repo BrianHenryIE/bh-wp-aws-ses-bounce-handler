@@ -131,6 +131,6 @@ class Settings implements Settings_Interface, Logger_Settings_Interface {
 	public function get_plugin_version(): string {
 		return defined( 'BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION' )
 		? BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION
-			: '1.7.0';
+			: '1.8.0';
 	}
 }
