@@ -36,3 +36,14 @@ Autoloader::generate(
 	'BrianHenryIE\\AWS_SES_Bounce_Handler',
 	__DIR__ . '/wpunit',
 )->register();
+
+/**
+ * Fix "sh: php: command not found" when running wpunit tests in PhpStorm.
+ *
+ * @see lucatume\WPBrowser\Module\WPLoader::includeCorePHPUniteSuiteBootstrapFile()
+ * @see vendor/lucatume/wp-browser/includes/core-phpunit/includes/bootstrap.php:263
+ */
+$is_phpstorm = array_reduce( $GLOBALS['argv'], fn( bool $carry, string $arg ) => $carry || str_contains( $arg, 'PhpStorm' ), false );
+if ( $is_phpstorm ) {
+	define( 'WP_PHP_BINARY', PHP_BINARY );
+}
