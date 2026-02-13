@@ -23,7 +23,9 @@ class WP_Mail {
 	 *
 	 * @param LoggerInterface $logger A PSR logger.
 	 */
-	public function __construct( LoggerInterface $logger ) {
+	public function __construct(
+		LoggerInterface $logger
+	) {
 		$this->setLogger( $logger );
 	}
 

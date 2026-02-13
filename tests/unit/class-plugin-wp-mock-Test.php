@@ -28,9 +28,7 @@ class Plugin_WP_Mock_Test extends Unit_Testcase {
 
 		\Patchwork\redefine(
 			array( Logger::class, 'instance' ),
-			function () {
-				return $this->makeEmpty( \BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerInterface::class );
-			}
+			fn() => $this->makeEmpty( \BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerInterface::class )
 		);
 
 		global $plugin_root_dir;

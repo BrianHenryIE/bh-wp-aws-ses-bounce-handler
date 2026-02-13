@@ -29,7 +29,7 @@ interface SES_Bounce_Handler_Integration_Interface {
 	 * @param LoggerInterface $logger
 	 * @return void
 	 */
-	public function setLogger( LoggerInterface $logger);
+	public function setLogger( LoggerInterface $logger );
 
 	/**
 	 * Called by this plugin on all integrations added to the 'bh_wp_aws_ses_bounce_handler_integrations' filter

@@ -33,7 +33,9 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 	 *
 	 * @param LoggerInterface $logger A PSR logger.
 	 */
-	public function __construct( LoggerInterface $logger ) {
+	public function __construct(
+		LoggerInterface $logger
+	) {
 		$this->setLogger( $logger );
 	}
 
@@ -134,7 +136,7 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 			return;
 		}
 
-		$log_unsubscribe_action = function( $subscriber ) {
+		$log_unsubscribe_action = function ( $subscriber ) {
 			$this->logger->info( "`tnp_user:{$subscriber->id}` unsubscribed after complaint." );
 		};
 
@@ -183,7 +185,7 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 			return;
 		}
 
-		$log_unsubscribe_action = function( $subscriber ) {
+		$log_unsubscribe_action = function ( $subscriber ) {
 			$this->logger->info( "`tnp_user:{$subscriber->id}` unsubscribed after unsubscribe request." );
 		};
 
@@ -244,7 +246,6 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 			'data' => $data,
 			'html' => $html,
 		);
-
 	}
 
 	/**
@@ -309,5 +310,4 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 
 		return ! is_null( $user );
 	}
-
 }

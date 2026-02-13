@@ -22,8 +22,6 @@ class Bounce_Handler_Test {
 
 	use LoggerAwareTrait;
 
-	protected API_Interface $api;
-
 	/**
 	 * Uid for referencing the test. Created from time().
 	 * Public for saving.
@@ -69,14 +67,12 @@ class Bounce_Handler_Test {
 	 *
 	 * Bounce_Handler_Test constructor.
 	 */
-	public function __construct( API_Interface $api, LoggerInterface $logger ) {
+	public function __construct( protected API_Interface $api, LoggerInterface $logger ) {
 
 		$this->logger = $logger;
-		$this->api    = $api;
 
 		$this->id    = time();
 		$this->email = "bounce+{$this->id}@simulator.amazonses.com";
-
 	}
 
 	/**
@@ -121,7 +117,6 @@ class Bounce_Handler_Test {
 		$data['html'] .= '<p>Test email sent to: <em>' . $this->get_email() . '</em></p>';
 
 		return $data;
-
 	}
 
 	/**
@@ -152,7 +147,6 @@ class Bounce_Handler_Test {
 		}
 
 		return $results_data;
-
 	}
 
 	/**
@@ -167,5 +161,4 @@ class Bounce_Handler_Test {
 			$integrations[ $name ]->delete_test_data( $data );
 		}
 	}
-
 }

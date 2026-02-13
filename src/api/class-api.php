@@ -18,24 +18,18 @@ class API implements API_Interface {
 	use LoggerAwareTrait;
 
 	/**
-	 * The settings object contains the AWS ARNs to listen to, as configured by the user.
-	 *
-	 * @var Settings_Interface
-	 */
-	protected $settings;
-
-	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @param Settings_Interface $settings The settings containing the ARNs to listen for.
+	 * @param Settings_Interface $settings The settings object contains the AWS ARNs to listen to, as configured by the user.
 	 * @param LoggerInterface    $logger PSR logger.
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct( Settings_Interface $settings, LoggerInterface $logger ) {
-
+	public function __construct(
+		protected Settings_Interface $settings,
+		LoggerInterface $logger
+	) {
 		$this->setLogger( $logger );
-		$this->settings = $settings;
 	}
 
 	/**
@@ -87,9 +81,7 @@ class API implements API_Interface {
 		// Clean the data.
 		$integrations = array_filter(
 			$integrations,
-			function ( $integration ) {
-				return $integration instanceof SES_Bounce_Handler_Integration_Interface;
-			}
+			fn( $integration ) => $integration instanceof SES_Bounce_Handler_Integration_Interface
 		);
 
 		return $integrations;

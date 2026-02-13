@@ -20,7 +20,9 @@ class MailPoet implements SES_Bounce_Handler_Integration_Interface {
 
 	use LoggerAwareTrait;
 
-	public function __construct( LoggerInterface $logger ) {
+	public function __construct(
+		LoggerInterface $logger
+	) {
 		$this->setLogger( $logger );
 	}
 
@@ -77,14 +79,14 @@ class MailPoet implements SES_Bounce_Handler_Integration_Interface {
 
 		try {
 			$mailpoet_api = \MailPoet\API\API::MP( 'v1' );
-		} catch ( \Exception $e ) {
+		} catch ( \Exception ) {
 			// TODO.
 			return;
 		}
 
 		try {
 			$subscriber = $mailpoet_api->getSubscriber( $email_address );
-		} catch ( \MailPoet\API\MP\v1\APIException $e ) {
+		} catch ( \MailPoet\API\MP\v1\APIException ) {
 			// Subscriber probably does not exist
 			return;
 		}
@@ -97,7 +99,7 @@ class MailPoet implements SES_Bounce_Handler_Integration_Interface {
 
 		try {
 			$mailpoet_api->unsubscribeFromLists( $subscriber_id, $list_ids );
-		} catch ( \MailPoet\API\MP\v1\APIException $e ) {
+		} catch ( \MailPoet\API\MP\v1\APIException ) {
 
 		}
 	}
@@ -215,6 +217,5 @@ class MailPoet implements SES_Bounce_Handler_Integration_Interface {
 		$result = $subscriber->save();
 
 		return true;
-
 	}
 }

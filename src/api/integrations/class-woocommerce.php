@@ -27,7 +27,9 @@ class WooCommerce implements SES_Bounce_Handler_Integration_Interface {
 
 	use LoggerAwareTrait;
 
-	public function __construct( LoggerInterface $logger ) {
+	public function __construct(
+		LoggerInterface $logger
+	) {
 		$this->setLogger( $logger );
 	}
 
@@ -180,7 +182,6 @@ class WooCommerce implements SES_Bounce_Handler_Integration_Interface {
 			'success' => $success,
 			'html'    => $html,
 		);
-
 	}
 
 	/**
@@ -244,5 +245,4 @@ class WooCommerce implements SES_Bounce_Handler_Integration_Interface {
 			echo wp_kses( $notice, $allowed_html );
 		}
 	}
-
 }

@@ -55,9 +55,7 @@ class SNS_Test extends \Codeception\TestCase\WPTestCase {
 		$secret = 'secret';
 		add_filter(
 			'pre_option_' . Settings_Interface::SECRET_KEY,
-			function( $result, $option, $default ) use ( $secret ) {
-				return $secret;
-			},
+			fn( $result, $option, $default ) => $secret,
 			10,
 			3
 		);
@@ -65,9 +63,7 @@ class SNS_Test extends \Codeception\TestCase\WPTestCase {
 		// Make sure the allowed ARNs works.
 		add_filter(
 			'pre_option_' . Settings_Interface::CONFIRMED_ARNS,
-			function( $result, $option, $default ) {
-				return array( 'arn:aws:sns:us-east-1:112385421323:bounces' );
-			},
+			fn( $result, $option, $default ) => array( 'arn:aws:sns:us-east-1:112385421323:bounces' ),
 			10,
 			3
 		);
@@ -89,7 +85,7 @@ class SNS_Test extends \Codeception\TestCase\WPTestCase {
 		$success = false;
 		add_action(
 			'handle_ses_bounce',
-			function( $email_address, $bounced_recipient, $message ) use ( &$success ) {
+			function ( $email_address, $bounced_recipient, $message ) use ( &$success ) {
 
 				$success = true;
 			},
@@ -101,5 +97,4 @@ class SNS_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertTrue( $success );
 	}
-
 }

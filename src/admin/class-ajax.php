@@ -21,14 +21,11 @@ class Ajax {
 
 	const AWS_SES_BOUNCE_TESTS = 'aws_ses_bounce_tests';
 
-	/**
-	 * @var API_Interface
-	 */
-	protected API_Interface $api;
-
-	public function __construct( API_Interface $api, LoggerInterface $logger ) {
+	public function __construct(
+		protected API_Interface $api,
+		LoggerInterface $logger
+	) {
 		$this->setLogger( $logger );
-		$this->api = $api;
 	}
 
 	/**

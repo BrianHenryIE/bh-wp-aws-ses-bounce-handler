@@ -24,5 +24,4 @@ class Plugin_Develop_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertInstanceOf( BH_WP_AWS_SES_Bounce_Handler::class, $GLOBALS['bh_wp_aws_ses_bounce_handler'] );
 	}
-
 }

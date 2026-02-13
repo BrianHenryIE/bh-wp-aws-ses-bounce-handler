@@ -21,16 +21,10 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
  */
 class Admin_Assets {
 
-	protected Settings_Interface $settings;
-
-	/**
-	 * @var API_Interface
-	 */
-	protected API_Interface $api;
-
-	public function __construct( API_Interface $api, Settings_Interface $settings ) {
-		$this->settings = $settings;
-		$this->api      = $api;
+	public function __construct(
+		protected API_Interface $api,
+		protected Settings_Interface $settings
+	) {
 	}
 
 	/**
@@ -61,5 +55,4 @@ class Admin_Assets {
 			wp_enqueue_script( $this->settings->get_plugin_slug(), $url, array( 'jquery' ), $version, false );
 		}
 	}
-
 }

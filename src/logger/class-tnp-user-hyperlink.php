@@ -37,7 +37,7 @@ class TNP_User_Hyperlink {
 			return $column_output;
 		}
 
-		$callback = function( array $matches ): string {
+		$callback = function ( array $matches ): string {
 
 			$tnp_user_id           = $matches[1];
 			$tnp_user_display_name = $tnp_user_id;
