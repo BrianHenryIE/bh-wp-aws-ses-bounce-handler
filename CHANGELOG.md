@@ -1,5 +1,11 @@
 # Changelog
 
+
+## 2.0.0 February 2026
+
+* Require PHP 8.0
+
+
 ## 1.7.0
 
 * Add: use templates folder for settings page and allow overriding.
