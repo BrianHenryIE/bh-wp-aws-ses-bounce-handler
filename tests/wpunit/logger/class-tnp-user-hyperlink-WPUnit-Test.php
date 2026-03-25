@@ -8,12 +8,19 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger_Settings_Interface;
 /**
  * @coversDefaultClass \BrianHenryIE\AWS_SES_Bounce_Handler\Logger\TNP_User_Hyperlink
  */
-class TNP_User_Hyperlink_WPUnit_Test extends \Codeception\TestCase\WPTestCase {
+class TNP_User_Hyperlink_WPUnit_Test extends \BrianHenryIE\AWS_SES_Bounce_Handler\WPUnit_Testcase {
+
+	protected function setUp(): void {
+		parent::setUp();
+		if ( ! $this->is_activate_and_major_version( 'newsletter/plugin.php', 7 ) ) {
+			$this->markTestSkipped( 'This test requires the Newsletter plugin v7.x' );
+		}
+	}
 
 	/**
 	 * @covers ::replace_tnp_user_id_with_link
 	 */
-	public function test_replace_user_id():void {
+	public function test_replace_user_id(): void {
 
 		$sut = new TNP_User_Hyperlink();
 
@@ -32,5 +39,4 @@ class TNP_User_Hyperlink_WPUnit_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertStringContainsString( 'Newsletter subscriber brianhenryie@gmail.com', $result );
 	}
-
 }

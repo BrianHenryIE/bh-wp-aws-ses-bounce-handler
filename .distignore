@@ -11,6 +11,7 @@ patches/
 phpcs.xml
 wp-cli.yml
 phpstan.neon
+rector.php
 wp-content/
 phpstanbootstrap.php
 scratch/

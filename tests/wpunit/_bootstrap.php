@@ -8,9 +8,11 @@
 global $plugin_root_dir;
 require_once $plugin_root_dir . '/autoload.php';
 
-Newsletter::instance()->upgrade();
-NewsletterUsers::instance()->upgrade();
-NewsletterEmails::instance()->upgrade();
-NewsletterSubscription::instance()->upgrade();
-NewsletterStatistics::instance()->upgrade();
-NewsletterProfile::instance()->upgrade();
+if ( method_exists( Newsletter::class, 'upgrade' ) ) {
+	Newsletter::instance()->upgrade();
+	NewsletterUsers::instance()->upgrade();
+	NewsletterEmails::instance()->upgrade();
+	NewsletterSubscription::instance()->upgrade();
+	NewsletterStatistics::instance()->upgrade();
+	NewsletterProfile::instance()->upgrade();
+}

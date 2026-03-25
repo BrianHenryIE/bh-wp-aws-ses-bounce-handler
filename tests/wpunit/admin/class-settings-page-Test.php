@@ -10,13 +10,14 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WPUnit_Testcase;
 
 /**
  * Tests the wp_mail function introspection.
  *
  * @coversDefaultClass \BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Settings_Page
  */
-class Settings_Page_Test extends \Codeception\TestCase\WPTestCase {
+class Settings_Page_Test extends WPUnit_Testcase {
 
 	/**
 	 * Test the code that detects what class/plugin is being used to send mail from WordPress.
@@ -39,5 +40,4 @@ class Settings_Page_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertTrue( 1 === preg_match( $pattern, $wp_mail_info ) );
 	}
-
 }

@@ -21,8 +21,8 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Logger\TNP_User_Hyperlink;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\I18n;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\REST;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\WP_Mail;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\LoggerInterface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerAwareTrait;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerInterface;
 
 
 /**
@@ -37,27 +37,6 @@ use Psr\Log\LoggerInterface;
 class BH_WP_AWS_SES_Bounce_Handler {
 
 	/**
-	 * A PSR logger for the plugin's classes to use.
-	 *
-	 * @var LoggerInterface
-	 */
-	protected LoggerInterface $logger;
-
-	/**
-	 * The plugin settings.
-	 *
-	 * @var Settings_Interface
-	 */
-	protected Settings_Interface $settings;
-
-	/**
-	 * The main plugin functions which may be accessed via REST/AJAX/cron/CLI/etc.
-	 *
-	 * @var API_Interface
-	 */
-	protected API_Interface $api;
-
-	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -66,15 +45,17 @@ class BH_WP_AWS_SES_Bounce_Handler {
 	 *
 	 * @since    1.1.0
 	 *
-	 * @param API_Interface      $api Main plugin functions.
+	 * @param API_Interface      $api The main plugin functions which may be accessed via REST/AJAX/cron/CLI/etc.
 	 * @param Settings_Interface $settings The settings the plugin should be run with.
-	 * @param LoggerInterface    $logger A PSR logger.
+	 * @param LoggerInterface    $logger A PSR logger for the plugin's classes to use.
 	 */
-	public function __construct( API_Interface $api, Settings_Interface $settings, LoggerInterface $logger ) {
+	public function __construct(
+		protected API_Interface $api,
+		protected Settings_Interface $settings,
+		protected LoggerInterface $logger
+	) {
 
-		$this->logger   = $logger;
-		$this->settings = $settings;
-		$this->api      = $api;
+		$this->logger = $logger;
 
 		$this->set_locale();
 

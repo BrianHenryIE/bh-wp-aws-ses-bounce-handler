@@ -12,8 +12,8 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Bounce_Handler_Test;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\SES_Bounce_Handler_Integration_Interface;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\LoggerInterface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerAwareTrait;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerInterface;
 use stdClass;
 use WP_User;
 
@@ -33,7 +33,9 @@ class WordPress implements SES_Bounce_Handler_Integration_Interface {
 	 *
 	 * @param LoggerInterface $logger A PSR logger.
 	 */
-	public function __construct( LoggerInterface $logger ) {
+	public function __construct(
+		LoggerInterface $logger
+	) {
 		$this->setLogger( $logger );
 	}
 
@@ -73,7 +75,7 @@ class WordPress implements SES_Bounce_Handler_Integration_Interface {
 	 */
 	public function handle_ses_bounce( string $email_address, stdClass $bounced_recipient, stdClass $message ): void {
 
-		$this->logger->debug( __CLASS__ . __FUNCTION__ . $email_address );
+		$this->logger->debug( self::class . __FUNCTION__ . $email_address );
 
 		$user = get_user_by( 'email', $email_address );
 
@@ -178,7 +180,6 @@ class WordPress implements SES_Bounce_Handler_Integration_Interface {
 			'success' => $success,
 			'html'    => $html,
 		);
-
 	}
 
 	/**

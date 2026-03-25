@@ -10,15 +10,14 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Bounce_Handler_Test;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
-use BrianHenryIE\ColorLogger\ColorLogger;
-use Psr\Log\NullLogger;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WPUnit_Testcase;
 
 /**
  * Class MailPoet_Test
  *
  * @coversDefaultClass \BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations\MailPoet
  */
-class MailPoet_Test extends \Codeception\TestCase\WPTestCase {
+class MailPoet_Test extends WPUnit_Testcase {
 
 	/**
 	 * "test" here means the admin UI test to verify all is working.
@@ -27,12 +26,11 @@ class MailPoet_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_setup_test() {
 
-		$logger = new ColorLogger();
-		$api    = $this->makeEmpty( API_Interface::class );
+		$api = $this->makeEmpty( API_Interface::class );
 
-		$mailpoet_integration = new MailPoet( $logger );
+		$mailpoet_integration = new MailPoet( $this->logger );
 
-		$bounce_handler_test = new Bounce_Handler_Test( $api, $logger );
+		$bounce_handler_test = new Bounce_Handler_Test( $api, $this->logger );
 
 		$test_data = $mailpoet_integration->setup_test( $bounce_handler_test );
 
@@ -40,8 +38,5 @@ class MailPoet_Test extends \Codeception\TestCase\WPTestCase {
 
 		// It should have a 'html' entry with the message to show the user.
 		$this->assertArrayHasKey( 'html', $test_data );
-
 	}
-
-
 }

@@ -25,6 +25,4 @@ class Deactivator {
 	public static function deactivate(): void {
 		remove_role( 'bounced_email' );
 	}
-
 }
-

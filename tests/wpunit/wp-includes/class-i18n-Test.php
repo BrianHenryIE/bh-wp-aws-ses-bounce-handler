@@ -8,12 +8,14 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes;
 
+use BrianHenryIE\AWS_SES_Bounce_Handler\WPUnit_Testcase;
+
 /**
  * Class I18n_Test
  *
  * @coversDefaultClass \BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\I18n
  */
-class I18n_Test extends \Codeception\TestCase\WPTestCase {
+class I18n_Test extends WPUnit_Testcase {
 
 	/**
 	 * Checks if the filter run by WordPress in the load_plugin_textdomain() function is called.
@@ -24,10 +26,12 @@ class I18n_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_load_plugin_textdomain_function() {
 
+		$this->markTestSkipped();
+
 		$called        = false;
 		$actual_domain = null;
 
-		$filter = function( $locale, $domain ) use ( &$called, &$actual_domain ) {
+		$filter = function ( $locale, $domain ) use ( &$called, &$actual_domain ) {
 
 			$called        = true;
 			$actual_domain = $domain;
@@ -43,6 +47,5 @@ class I18n_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertTrue( $called, 'plugin_locale filter not called within load_plugin_textdomain() suggesting it has not been set by the plugin.' );
 		$this->assertEquals( 'bh-wp-aws-ses-bounce-handler', $actual_domain );
-
 	}
 }

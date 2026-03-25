@@ -35,6 +35,4 @@ class Activator {
 			update_option( Settings_Interface::SECRET_KEY, $secret_key );
 		}
 	}
-
 }
-

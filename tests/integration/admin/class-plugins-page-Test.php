@@ -8,7 +8,7 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
 
-use \DOMDocument;
+use DOMDocument;
 
 /**
  * Class Plugins_Page_Test
@@ -81,5 +81,4 @@ class Plugins_Page_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertContains( $expected, $plugin_action_links );
 	}
-
 }

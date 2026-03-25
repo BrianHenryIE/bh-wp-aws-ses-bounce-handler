@@ -9,8 +9,8 @@
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\LoggerInterface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerAwareTrait;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerInterface;
 
 /**
  * Code to run the ses test and to poll for its completion.
@@ -21,14 +21,11 @@ class Ajax {
 
 	const AWS_SES_BOUNCE_TESTS = 'aws_ses_bounce_tests';
 
-	/**
-	 * @var API_Interface
-	 */
-	protected API_Interface $api;
-
-	public function __construct( API_Interface $api, LoggerInterface $logger ) {
+	public function __construct(
+		protected API_Interface $api,
+		LoggerInterface $logger
+	) {
 		$this->setLogger( $logger );
-		$this->api = $api;
 	}
 
 	/**

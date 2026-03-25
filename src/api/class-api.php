@@ -8,9 +8,9 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations\WooCommerce;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations\WordPress;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\LoggerInterface;
-use Psr\Log\LogLevel;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerAwareTrait;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerInterface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LogLevel;
 use stdClass;
 
 class API implements API_Interface {
@@ -18,26 +18,47 @@ class API implements API_Interface {
 	use LoggerAwareTrait;
 
 	/**
-	 * The settings object contains the AWS ARNs to listen to, as configured by the user.
-	 *
-	 * @var Settings_Interface
-	 */
-	protected $settings;
-
-	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @param Settings_Interface $settings The settings containing the ARNs to listen for.
+	 * @param Settings_Interface $settings The settings object contains the AWS ARNs to listen to, as configured by the user.
 	 * @param LoggerInterface    $logger PSR logger.
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct( Settings_Interface $settings, LoggerInterface $logger ) {
-
+	public function __construct(
+		protected Settings_Interface $settings,
+		LoggerInterface $logger
+	) {
 		$this->setLogger( $logger );
-		$this->settings = $settings;
 	}
 
+	/**
+	 * Given a plugin basename get its semver major installed version.
+	 *
+	 * @param string $plugin_basename The path to the main plugin file from the WP_PLUGIN_DIR directory.
+	 */
+	protected function get_installed_major_version( string $plugin_basename ): int {
+		$plugin_headers = get_plugin_data( WP_PLUGIN_DIR . '/' . $plugin_basename );
+		if ( 1 === preg_match( '/(\d+)/', $plugin_headers['Version'], $output_array ) ) {
+			return (int) $output_array[1];
+		} else {
+			return -1;
+		}
+	}
+
+	/**
+	 * Check is the correct version of a plugin active.
+	 *
+	 * @param string $plugin_basename The path to the main plugin file from the WP_PLUGIN_DIR directory.
+	 * @param int    $major_version The required version.
+	 */
+	protected function is_activate_and_major_version( string $plugin_basename, int $major_version ): bool {
+		$is_active = is_plugin_active( 'newsletter/plugin.php' );
+		if ( ! $is_active ) {
+			return false;
+		}
+		return $this->get_installed_major_version( $plugin_basename ) === $major_version;
+	}
 
 	/**
 	 * Find and return all integrations.
@@ -49,17 +70,18 @@ class API implements API_Interface {
 		$built_in_integrations                = array();
 		$built_in_integrations['WordPress']   = new WordPress( $this->logger );
 		$built_in_integrations['WooCommerce'] = new WooCommerce( $this->logger );
-		$built_in_integrations['Newsletter']  = new Newsletter( $this->logger );
-		$built_in_integrations['MailPoet']    = new MailPoet( $this->logger );
-
+		if ( $this->is_activate_and_major_version( 'newsletter/plugin.php', 7 ) ) {
+			$built_in_integrations['Newsletter'] = new Newsletter( $this->logger );
+		}
+		if ( $this->is_activate_and_major_version( 'mailpoet/mailpoet.php', 4 ) ) {
+			$built_in_integrations['MailPoet'] = new MailPoet( $this->logger );
+		}
 		$integrations = apply_filters( 'bh_wp_aws_ses_bounce_handler_integrations', $built_in_integrations );
 
 		// Clean the data.
 		$integrations = array_filter(
 			$integrations,
-			function( $integration ) {
-				return $integration instanceof SES_Bounce_Handler_Integration_Interface;
-			}
+			fn( $integration ) => $integration instanceof SES_Bounce_Handler_Integration_Interface
 		);
 
 		return $integrations;
@@ -199,7 +221,6 @@ class API implements API_Interface {
 		 * @see https://docs.aws.amazon.com/ses/latest/DeveloperGuide/notification-examples.html
 		 */
 		do_action( 'handle_unsubscribe_email', $email_address, $email, $message );
-
 	}
 
 	/**

@@ -2,13 +2,13 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes;
 
-use BrianHenryIE\ColorLogger\ColorLogger;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WPUnit_Testcase;
 use WP_User;
 
 /**
  * @coversDefaultClass \BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes\WP_Mail
  */
-class WP_Mail_WPUnit_Test extends \Codeception\TestCase\WPTestCase {
+class WP_Mail_WPUnit_Test extends WPUnit_Testcase {
 
 	public function setUp(): void {
 		parent::setUp();
@@ -25,9 +25,7 @@ class WP_Mail_WPUnit_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_check_is_destination_email_bounced_happy(): void {
 
-		$logger = new ColorLogger();
-
-		$sut = new WP_Mail( $logger );
+		$sut = new WP_Mail( $this->logger );
 
 		$atts = array(
 			'to'      => 'brianhenryie@gmail.com',
@@ -43,7 +41,7 @@ class WP_Mail_WPUnit_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertNotContains( 'brianhenryie@gmail.com', $result['to'] );
 
-		$this->assertTrue( $logger->hasNoticeRecords() );
+		$this->assertTrue( $this->logger->hasNoticeRecords() );
 	}
 
 	/**
@@ -51,9 +49,7 @@ class WP_Mail_WPUnit_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_check_is_destination_email_bounced_not_bounced(): void {
 
-		$logger = new ColorLogger();
-
-		$sut = new WP_Mail( $logger );
+		$sut = new WP_Mail( $this->logger );
 
 		$atts = array(
 			'to'      => 'brianhenryie@gmail.com',
@@ -72,9 +68,7 @@ class WP_Mail_WPUnit_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_cancel_sending_email_when_all_addresses_removed_happy(): void {
 
-		$logger = new ColorLogger();
-
-		$sut = new WP_Mail( $logger );
+		$sut = new WP_Mail( $this->logger );
 
 		$atts = array(
 			'to' => array(),
@@ -92,9 +86,7 @@ class WP_Mail_WPUnit_Test extends \Codeception\TestCase\WPTestCase {
 	 */
 	public function test_cancel_sending_email_when_all_addresses_removed_no_action(): void {
 
-		$logger = new ColorLogger();
-
-		$sut = new WP_Mail( $logger );
+		$sut = new WP_Mail( $this->logger );
 
 		$atts = array(
 			'to' => 'brianhenryie@gmail.com',

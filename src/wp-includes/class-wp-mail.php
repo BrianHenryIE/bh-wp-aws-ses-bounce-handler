@@ -8,8 +8,8 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes;
 
-use Psr\Log\LoggerInterface;
-use Psr\Log\LoggerAwareTrait;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerInterface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerAwareTrait;
 use WP_User;
 
 /**
@@ -23,7 +23,9 @@ class WP_Mail {
 	 *
 	 * @param LoggerInterface $logger A PSR logger.
 	 */
-	public function __construct( LoggerInterface $logger ) {
+	public function __construct(
+		LoggerInterface $logger
+	) {
 		$this->setLogger( $logger );
 	}
 

@@ -1,0 +1,21 @@
+{
+  "name": "bh-wp-aws-ses-bounce-handler",
+  "version": "1.0.0",
+  "description": "Unsubscribe users from email lists when AWS SES sends a bounce or complaint report.",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "wp-env": "wp-env start"
+  },
+  "keywords": [],
+  "author": "BrianHenryIE",
+  "license": "GPL-2.0+",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrianHenryIE/bh-wp-aws-ses-bounce-handler.git"
+  },
+  "devDependencies": {
+    "@wordpress/env": "^10.39.0"
+  }
+}

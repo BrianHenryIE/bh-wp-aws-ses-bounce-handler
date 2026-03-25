@@ -17,8 +17,8 @@
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\API;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Bounce_Handler_Test;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\LoggerInterface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerAwareTrait;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerInterface;
 use stdClass;
 
 interface SES_Bounce_Handler_Integration_Interface {
@@ -29,7 +29,7 @@ interface SES_Bounce_Handler_Integration_Interface {
 	 * @param LoggerInterface $logger
 	 * @return void
 	 */
-	public function setLogger( LoggerInterface $logger);
+	public function setLogger( LoggerInterface $logger );
 
 	/**
 	 * Called by this plugin on all integrations added to the 'bh_wp_aws_ses_bounce_handler_integrations' filter

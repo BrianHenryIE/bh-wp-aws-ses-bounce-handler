@@ -21,16 +21,10 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
  */
 class Admin_Assets {
 
-	protected Settings_Interface $settings;
-
-	/**
-	 * @var API_Interface
-	 */
-	protected API_Interface $api;
-
-	public function __construct( API_Interface $api, Settings_Interface $settings ) {
-		$this->settings = $settings;
-		$this->api      = $api;
+	public function __construct(
+		protected API_Interface $api,
+		protected Settings_Interface $settings
+	) {
 	}
 
 	/**
@@ -41,7 +35,11 @@ class Admin_Assets {
 	public function enqueue_styles(): void {
 		global $pagenow;
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( 'options-general.php' === $pagenow && isset( $_GET['page'] ) && 'bh-wp-aws-ses-bounce-handler' === filter_var( wp_unslash( $_GET['page'] ), FILTER_SANITIZE_STRING ) ) {
+		if (
+			'options-general.php' === $pagenow
+			&& isset( $_GET['page'] )
+			&& 'bh-wp-aws-ses-bounce-handler' === sanitize_key( wp_unslash( $_GET['page'] ) )
+		) {
 			$url = plugin_dir_url( $this->settings->get_plugin_basename() ) . 'assets/bh-wp-aws-ses-bounce-handler-admin.css';
 			wp_enqueue_style( $this->settings->get_plugin_slug(), $url, array(), $this->settings->get_plugin_version(), 'all' );
 		}
@@ -61,5 +59,4 @@ class Admin_Assets {
 			wp_enqueue_script( $this->settings->get_plugin_slug(), $url, array( 'jquery' ), $version, false );
 		}
 	}
-
 }

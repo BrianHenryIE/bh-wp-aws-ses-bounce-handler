@@ -17,10 +17,9 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
  */
 class Plugins_Page {
 
-	protected Settings_Interface $settings;
-
-	public function __construct( $settings ) {
-		$this->settings = $settings;
+	public function __construct(
+		protected Settings_Interface $settings
+	) {
 	}
 
 	/**
@@ -71,5 +70,4 @@ class Plugins_Page {
 
 		return $plugin_meta;
 	}
-
 }

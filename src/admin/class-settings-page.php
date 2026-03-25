@@ -12,39 +12,26 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
-use Psr\Log\LogLevel;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LogLevel;
 
 
 /**
  * Adds a wp-admin Settings submenu. Adds a page with input for bounces ARN and complaints ARN.
+ *
+ * @uses API_Interface::get_integrations()
  */
 class Settings_Page {
 
 	/**
-	 * The settings, to pass to the individual fields for populating.
-	 *
-	 * @var Settings_Interface $settings The previously saved settings for the plugin.
-	 */
-	protected Settings_Interface $settings;
-
-	/**
-	 * Needed to display what integrations are available or enabled.
-	 *
-	 * @uses API_Interface::get_integrations()
-	 *
-	 * @var API_Interface
-	 */
-	protected API_Interface $api;
-
-	/**
 	 * Constructor.
 	 *
-	 * @param API_Interface      $api The main plugin functions.
-	 * @param Settings_Interface $settings The plugin settings.
+	 * @param API_Interface      $api The main plugin functions. Needed to display what integrations are available or enabled.
+	 * @param Settings_Interface $settings The settings, to pass to the individual fields for populating.
 	 */
-	public function __construct( API_Interface $api, Settings_Interface $settings ) {
-		$this->settings = $settings;
-		$this->api      = $api;
+	public function __construct(
+		protected API_Interface $api,
+		protected Settings_Interface $settings
+	) {
 	}
 
 	/**
@@ -145,10 +132,10 @@ class Settings_Page {
 		global $phpmailer;
 		if ( ! empty( $phpmailer ) ) {
 			try {
-				$phpmailer_reflector = new \ReflectionClass( get_class( $phpmailer ) );
+				$phpmailer_reflector = new \ReflectionClass( $phpmailer::class );
 
 			} catch ( \ReflectionException $e ) {
-				return '<div class="notice inline notice-error"><p>Error checking PHPMailer class: ' . $e->getMessage() . ' – ' . get_class( $phpmailer ) . '</p></div>';
+				return '<div class="notice inline notice-error"><p>Error checking PHPMailer class: ' . $e->getMessage() . ' – ' . $phpmailer::class . '</p></div>';
 
 			}
 			$phpmailer_filename = $phpmailer_reflector->getFileName();
@@ -174,7 +161,6 @@ class Settings_Page {
 		}
 
 		return '<div class="notice inline notice-error"><p>Email is being sent using WordPress\'s built in <code>wp_mail()</code> function. It is probably not being sent using AWS SES.</p></div>';
-
 	}
 
 	/**
@@ -193,7 +179,7 @@ class Settings_Page {
 	private function get_plugin_from_path( string $filename ): ?array {
 
 		// If the file is outside the plugins' dir, what's up? MU plugins?
-		if ( ! stristr( $filename, WP_PLUGIN_DIR ) ) {
+		if ( ! stristr( $filename, (string) WP_PLUGIN_DIR ) ) {
 			return null;
 		}
 

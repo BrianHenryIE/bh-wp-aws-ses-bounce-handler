@@ -8,8 +8,7 @@
 
 namespace BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations;
 
-use BrianHenryIE\ColorLogger\ColorLogger;
-use Psr\Log\NullLogger;
+use BrianHenryIE\AWS_SES_Bounce_Handler\WPUnit_Testcase;
 use WC_Order;
 
 /**
@@ -17,7 +16,7 @@ use WC_Order;
  *
  * @coversDefaultClass \BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations\WooCommerce
  */
-class WooCommerce_Test extends \Codeception\TestCase\WPTestCase {
+class WooCommerce_Test extends WPUnit_Testcase {
 
 	/**
 	 * Create an order, see if the delete_test_data function successfully deletes it.
@@ -36,9 +35,7 @@ class WooCommerce_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertInstanceOf( WC_Order::class, $order_before );
 
-		$logger = new ColorLogger();
-
-		$woocommerce_integration = new WooCommerce( $logger );
+		$woocommerce_integration = new WooCommerce( $this->logger );
 
 		$woocommerce_integration->delete_test_data( $test_data );
 

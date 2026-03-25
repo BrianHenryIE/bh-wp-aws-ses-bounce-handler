@@ -6,7 +6,7 @@ activate_plugin( 'woocommerce/woocommerce.php' );
 $option_name = 'newsletter_main';
 add_filter(
 	'pre_option_' . $option_name,
-	function( $result, $option, $default ) {
+	function ( $result, $option, $default ) {
 		$options                  = array();
 		$options['scheduler_max'] = 123;
 		return $options;

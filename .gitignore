@@ -41,8 +41,11 @@ cache
 node_modules
 scratch
 src/vendor-prefixed/
-wp-content/
 wordpress
+wp-content/*
+!wp-content/mu-plugins/
+wp-content/mu-plugins/*
+!wp-content/mu-plugins/bh-plugin-outside-dir.php
 /vendor/
 
 *.zip
@@ -61,3 +64,11 @@ docker_tag
 
 vendor-prefixed
 dist-archive
+.env.wordpress.secret
+
+*.min.*
+*.pot
+
+.claude/settings.local.json
+.phpunit.result.cache
+patches.lock.json
