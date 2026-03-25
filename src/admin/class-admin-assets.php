@@ -35,7 +35,11 @@ class Admin_Assets {
 	public function enqueue_styles(): void {
 		global $pagenow;
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended
-		if ( 'options-general.php' === $pagenow && isset( $_GET['page'] ) && 'bh-wp-aws-ses-bounce-handler' === filter_var( wp_unslash( $_GET['page'] ), FILTER_SANITIZE_STRING ) ) {
+		if (
+			'options-general.php' === $pagenow
+			&& isset( $_GET['page'] )
+			&& 'bh-wp-aws-ses-bounce-handler' === sanitize_key( wp_unslash( $_GET['page'] ) )
+		) {
 			$url = plugin_dir_url( $this->settings->get_plugin_basename() ) . 'assets/bh-wp-aws-ses-bounce-handler-admin.css';
 			wp_enqueue_style( $this->settings->get_plugin_slug(), $url, array(), $this->settings->get_plugin_version(), 'all' );
 		}
