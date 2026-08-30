@@ -11,7 +11,7 @@
  * Plugin URI:        https://github.com/BrianHenryIE/bh-wp-aws-ses-bounce-handler
  * Description:       When AWS SES sends a bounce or complaint report, users & orders are marked; Newsletter users are unsubscribed.
  * Version:           2.1.0
- * Requires PHP:      8.0
+ * Requires PHP:      8.4
  * Author:            BrianHenryIE
  * Author URI:        https://BrianHenry.ie
  * License:           GPL-2.0+
