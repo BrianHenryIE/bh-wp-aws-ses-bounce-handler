@@ -10,7 +10,7 @@
  * Plugin Name:       AWS SES Bounce Handler
  * Plugin URI:        https://github.com/BrianHenryIE/bh-wp-aws-ses-bounce-handler
  * Description:       When AWS SES sends a bounce or complaint report, users & orders are marked; Newsletter users are unsubscribed.
- * Version:           2.0.0
+ * Version:           2.1.0
  * Requires PHP:      8.0
  * Author:            BrianHenryIE
  * Author URI:        https://BrianHenry.ie
@@ -32,8 +32,8 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\API\Settings;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger;
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	throw new \Exception( 'WPINC not defined' );
+if ( ! defined( 'ABSPATH' ) ) {
+	return;
 }
 
 require_once plugin_dir_path( __FILE__ ) . 'autoload.php';
@@ -45,7 +45,7 @@ register_deactivation_hook( __FILE__, array( Deactivator::class, 'deactivate' ) 
 /**
  * Currently plugin version.
  */
-define( 'BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION', '1.7.0' );
+define( 'BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION', '2.1.0' );
 define( 'BH_WP_AWS_SES_BOUNCE_HANDLER_BASENAME', plugin_basename( __FILE__ ) );
 
 /**
@@ -74,23 +74,3 @@ function instantiate_bh_wp_aws_ses_bounce_handler() {
  * @since    1.0.0
  */
 $GLOBALS['bh_wp_aws_ses_bounce_handler'] = instantiate_bh_wp_aws_ses_bounce_handler();
-
-
-
-// Fix: Deprecated: strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/wp-admin/admin-header.php on line 41
-add_action(
-	'plugins_loaded',
-	function () {
-
-		if (
-		! isset( $_REQUEST['page'] )
-		|| ! is_string( $_REQUEST['page'] )
-		|| 'bh-wp-aws-ses-bounce-handler-logs' !== sanitize_key( wp_unslash( $_REQUEST['page'] ) )
-		) {
-			return;
-		}
-
-		global $title;
-		$title = 'Logs page';
-	}
-);

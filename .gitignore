@@ -61,3 +61,5 @@ docker_tag
 
 vendor-prefixed
 dist-archive
+patches.lock.json
+languages/bh-wp-aws-ses-bounce-handler.pot
