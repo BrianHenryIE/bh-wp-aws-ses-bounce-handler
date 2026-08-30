@@ -41,7 +41,6 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$expected = 'Marks users as bounced and unsubscribes complaints';
 
 		$this->assertSame( $expected, wp_kses( $description, wp_kses_allowed_html( 'strip' ) ) );
-
 	}
 
 	/**
@@ -98,7 +97,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$option_name = 'newsletter_unsubscription';
 		add_filter(
 			'pre_option_' . $option_name,
-			function( $result, $option, $default ) {
+			function ( $result, $option, $default ) {
 				$options                         = array();
 				$options['unsubscribed_message'] = 'message';
 				$options['unsubscribed_subject'] = 'subject';
@@ -111,7 +110,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$option_name = 'newsletter_subscription_template';
 		add_filter(
 			'pre_option_' . $option_name,
-			function( $result, $option, $default ) {
+			function ( $result, $option, $default ) {
 				$options             = array();
 				$options['template'] = '{message}';
 				return $options;
@@ -123,7 +122,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$option_name = 'newsletter_profile';
 		add_filter(
 			'pre_option_' . $option_name,
-			function( $result, $option, $default ): array {
+			function ( $result, $option, $default ): array {
 				$options               = array();
 				$options['title_none'] = 'title_none';
 				return $options;
@@ -135,7 +134,7 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$option_name = 'newsletter_main_info';
 		add_filter(
 			'pre_option_' . $option_name,
-			function( $result, $option, $default ): array {
+			function ( $result, $option, $default ): array {
 				$options                   = array();
 				$options['footer_contact'] = 'footer_contact';
 				$options['footer_title']   = 'footer_title';
@@ -274,7 +273,5 @@ class Newsletter_Test extends \Codeception\TestCase\WPTestCase {
 		$user_after = $tnp->get_user( 'brianhenryie@gmail.com' );
 
 		$this->assertNull( $user_after );
-
 	}
-
 }

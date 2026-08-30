@@ -2,7 +2,7 @@
 /**
  * A WordPress plugin to unsubscribe users from email lists when AWS SES sends a bounce or complaint report.
  *
- * @link              https://BrianHenry.ie
+ * @link              https://bhwp.ie
  * @since             1.0.0
  * @package brianhenryie/bh-wp-aws-ses-bounce-handler
  *
@@ -10,8 +10,8 @@
  * Plugin Name:       AWS SES Bounce Handler
  * Plugin URI:        https://github.com/BrianHenryIE/bh-wp-aws-ses-bounce-handler
  * Description:       When AWS SES sends a bounce or complaint report, users & orders are marked; Newsletter users are unsubscribed.
- * Version:           1.7.0
- * Requires PHP:      7.4
+ * Version:           2.0.0
+ * Requires PHP:      8.0
  * Author:            BrianHenryIE
  * Author URI:        https://BrianHenry.ie
  * License:           GPL-2.0+
@@ -75,3 +75,22 @@ function instantiate_bh_wp_aws_ses_bounce_handler() {
  */
 $GLOBALS['bh_wp_aws_ses_bounce_handler'] = instantiate_bh_wp_aws_ses_bounce_handler();
 
+
+
+// Fix: Deprecated: strip_tags(): Passing null to parameter #1 ($string) of type string is deprecated in /var/www/html/wp-admin/admin-header.php on line 41
+add_action(
+	'plugins_loaded',
+	function () {
+
+		if (
+		! isset( $_REQUEST['page'] )
+		|| ! is_string( $_REQUEST['page'] )
+		|| 'bh-wp-aws-ses-bounce-handler-logs' !== sanitize_key( wp_unslash( $_REQUEST['page'] ) )
+		) {
+			return;
+		}
+
+		global $title;
+		$title = 'Logs page';
+	}
+);

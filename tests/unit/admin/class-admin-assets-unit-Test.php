@@ -20,6 +20,7 @@ class Admin_Assets_Unit_Test extends \Codeception\Test\Unit {
 
 	protected function setup(): void {
 		\WP_Mock::setUp();
+		\WP_Mock::passthruFunction( 'sanitize_key' );
 	}
 
 	protected function tearDown(): void {
@@ -136,6 +137,5 @@ class Admin_Assets_Unit_Test extends \Codeception\Test\Unit {
 		$bh_wp_aws_ses_bounce_handler_admin = new Admin_Assets( $api, $settings );
 
 		$bh_wp_aws_ses_bounce_handler_admin->enqueue_styles();
-
 	}
 }

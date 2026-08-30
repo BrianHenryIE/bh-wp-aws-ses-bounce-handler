@@ -13,7 +13,7 @@ class TNP_User_Hyperlink_WPUnit_Test extends \Codeception\TestCase\WPTestCase {
 	/**
 	 * @covers ::replace_tnp_user_id_with_link
 	 */
-	public function test_replace_user_id():void {
+	public function test_replace_user_id(): void {
 
 		$sut = new TNP_User_Hyperlink();
 
@@ -32,5 +32,4 @@ class TNP_User_Hyperlink_WPUnit_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertStringContainsString( 'Newsletter subscriber brianhenryie@gmail.com', $result );
 	}
-
 }

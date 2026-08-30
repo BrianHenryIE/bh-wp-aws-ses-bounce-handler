@@ -32,7 +32,5 @@ class BH_WP_AWS_SES_Bounce_Handler_I18n_Test extends \Codeception\TestCase\WPTes
 
 		// Seems to fail because there are no translations to load.
 		$this->assertTrue( is_textdomain_loaded( 'bh-wp-aws-ses-bounce-handler' ), 'i18n text domain not loaded.' );
-
 	}
-
 }

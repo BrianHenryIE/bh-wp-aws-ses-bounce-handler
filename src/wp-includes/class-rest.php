@@ -12,8 +12,8 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler\WP_Includes;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\LoggerInterface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerAwareTrait;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerInterface;
 use SimpleXMLElement;
 use stdClass;
 
@@ -28,15 +28,6 @@ class REST {
 	use LoggerAwareTrait;
 
 	/**
-	 * The settings object contains the AWS ARNs to listen to, as configured by the user.
-	 *
-	 * @var Settings_Interface
-	 */
-	protected $settings;
-
-	protected API_Interface $api;
-
-	/**
 	 * Initialize the class and set its properties.
 	 *
 	 * @param Settings_Interface $settings The settings containing the ARNs to listen for.
@@ -44,11 +35,12 @@ class REST {
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct( API_Interface $api, Settings_Interface $settings, LoggerInterface $logger ) {
-
+	public function __construct(
+		protected API_Interface $api,
+		protected Settings_Interface $settings,
+		LoggerInterface $logger
+	) {
 		$this->setLogger( $logger );
-		$this->settings = $settings;
-		$this->api      = $api;
 	}
 
 	/**
@@ -213,6 +205,4 @@ class REST {
 			'message' => $message,
 		);
 	}
-
 }
-

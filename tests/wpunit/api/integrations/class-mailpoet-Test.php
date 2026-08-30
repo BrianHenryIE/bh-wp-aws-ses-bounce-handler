@@ -40,8 +40,5 @@ class MailPoet_Test extends \Codeception\TestCase\WPTestCase {
 
 		// It should have a 'html' entry with the message to show the user.
 		$this->assertArrayHasKey( 'html', $test_data );
-
 	}
-
-
 }

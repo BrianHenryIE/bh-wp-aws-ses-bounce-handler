@@ -17,7 +17,7 @@ use BrianHenryIE\AWS_SES_Bounce_Handler\Settings_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger_Settings_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\WP_Logger\Logger_Settings_Trait;
-use Psr\Log\LogLevel;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LogLevel;
 
 
 /**
@@ -131,6 +131,6 @@ class Settings implements Settings_Interface, Logger_Settings_Interface {
 	public function get_plugin_version(): string {
 		return defined( 'BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION' )
 		? BH_WP_AWS_SES_BOUNCE_HANDLER_VERSION
-			: '1.7.0';
+			: '2.0.0';
 	}
 }

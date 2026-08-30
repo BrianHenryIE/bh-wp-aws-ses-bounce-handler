@@ -12,8 +12,8 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler\Admin;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API_Interface;
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\SES_Bounce_Handler_Integration_Interface;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\LoggerInterface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerAwareTrait;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerInterface;
 
 /**
  * Create a uid, bounce simulator email address, setup integrations, save the data, verify tests, delete data.
@@ -21,8 +21,6 @@ use Psr\Log\LoggerInterface;
 class Bounce_Handler_Test {
 
 	use LoggerAwareTrait;
-
-	protected API_Interface $api;
 
 	/**
 	 * Uid for referencing the test. Created from time().
@@ -69,14 +67,12 @@ class Bounce_Handler_Test {
 	 *
 	 * Bounce_Handler_Test constructor.
 	 */
-	public function __construct( API_Interface $api, LoggerInterface $logger ) {
+	public function __construct( protected API_Interface $api, LoggerInterface $logger ) {
 
 		$this->logger = $logger;
-		$this->api    = $api;
 
 		$this->id    = time();
 		$this->email = "bounce+{$this->id}@simulator.amazonses.com";
-
 	}
 
 	/**
@@ -121,7 +117,6 @@ class Bounce_Handler_Test {
 		$data['html'] .= '<p>Test email sent to: <em>' . $this->get_email() . '</em></p>';
 
 		return $data;
-
 	}
 
 	/**
@@ -152,7 +147,6 @@ class Bounce_Handler_Test {
 		}
 
 		return $results_data;
-
 	}
 
 	/**
@@ -167,5 +161,4 @@ class Bounce_Handler_Test {
 			$integrations[ $name ]->delete_test_data( $data );
 		}
 	}
-
 }

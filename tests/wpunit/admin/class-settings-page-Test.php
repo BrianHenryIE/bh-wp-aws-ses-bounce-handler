@@ -39,5 +39,4 @@ class Settings_Page_Test extends \Codeception\TestCase\WPTestCase {
 
 		$this->assertTrue( 1 === preg_match( $pattern, $wp_mail_info ) );
 	}
-
 }

@@ -10,7 +10,7 @@
 namespace BrianHenryIE\AWS_SES_Bounce_Handler;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\SES_Bounce_Handler_Integration_Interface;
-use Psr\Log\LogLevel;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LogLevel;
 use stdClass;
 
 interface API_Interface {

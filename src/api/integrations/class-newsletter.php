@@ -15,8 +15,8 @@ namespace BrianHenryIE\AWS_SES_Bounce_Handler\API\Integrations;
 use BrianHenryIE\AWS_SES_Bounce_Handler\Admin\Bounce_Handler_Test;
 
 use BrianHenryIE\AWS_SES_Bounce_Handler\API\SES_Bounce_Handler_Integration_Interface;
-use Psr\Log\LoggerAwareTrait;
-use Psr\Log\LoggerInterface;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerAwareTrait;
+use BrianHenryIE\AWS_SES_Bounce_Handler\Psr\Log\LoggerInterface;
 use stdClass;
 use TNP;
 
@@ -33,7 +33,9 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 	 *
 	 * @param LoggerInterface $logger A PSR logger.
 	 */
-	public function __construct( LoggerInterface $logger ) {
+	public function __construct(
+		LoggerInterface $logger
+	) {
 		$this->setLogger( $logger );
 	}
 
@@ -134,7 +136,7 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 			return;
 		}
 
-		$log_unsubscribe_action = function( $subscriber ) {
+		$log_unsubscribe_action = function ( $subscriber ) {
 			$this->logger->info( "`tnp_user:{$subscriber->id}` unsubscribed after complaint." );
 		};
 
@@ -183,7 +185,7 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 			return;
 		}
 
-		$log_unsubscribe_action = function( $subscriber ) {
+		$log_unsubscribe_action = function ( $subscriber ) {
 			$this->logger->info( "`tnp_user:{$subscriber->id}` unsubscribed after unsubscribe request." );
 		};
 
@@ -244,7 +246,6 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 			'data' => $data,
 			'html' => $html,
 		);
-
 	}
 
 	/**
@@ -309,5 +310,4 @@ class Newsletter implements SES_Bounce_Handler_Integration_Interface {
 
 		return ! is_null( $user );
 	}
-
 }

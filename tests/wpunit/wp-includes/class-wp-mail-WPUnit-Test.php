@@ -13,7 +13,7 @@ class WP_Mail_WPUnit_Test extends \Codeception\TestCase\WPTestCase {
 	public function setUp(): void {
 		parent::setUp();
 		$wp_user = get_user_by( 'email', 'brianhenryie@gmail.com' );
-		if ( $wp_user instanceof \WP_User ) {
+		if ( $wp_user instanceof WP_User ) {
 			self::delete_user( $wp_user->ID );
 		}
 		add_role( 'bounced_email', 'Bounced Email' );

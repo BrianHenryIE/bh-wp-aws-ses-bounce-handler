@@ -17,5 +17,4 @@ class IntegrationsCest {
 
 		$I->canSee( 'MailPoet: Marks users as bounced and unsubscribes complaints' );
 	}
-
 }
