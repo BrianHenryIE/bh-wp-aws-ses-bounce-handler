@@ -69,7 +69,7 @@ class Admin_Assets_Unit_Test extends \Codeception\Test\Unit {
 			'wp_enqueue_style',
 			array(
 				'times' => 1,
-				'args'  => array( 'bh-wp-aws-ses-bounce-handler', $css_url, array(), '2.1.0', 'all' ),
+				'args'  => array( 'bh-wp-aws-ses-bounce-handler', $css_url, array(), '2.1.1', 'all' ),
 			)
 		);
 
@@ -79,7 +79,7 @@ class Admin_Assets_Unit_Test extends \Codeception\Test\Unit {
 			array(
 				'get_plugin_slug'     => 'bh-wp-aws-ses-bounce-handler',
 				'get_plugin_basename' => 'bh-wp-aws-ses-bounce-handler/bh-wp-aws-ses-bounce-handler.php',
-				'get_plugin_version'  => '2.1.0',
+				'get_plugin_version'  => '2.1.1',
 			)
 		);
 
@@ -120,7 +120,7 @@ class Admin_Assets_Unit_Test extends \Codeception\Test\Unit {
 			'wp_enqueue_style',
 			array(
 				'times' => 0,
-				'args'  => array( 'bh-wp-aws-ses-bounce-handler', $css_url, array(), '2.1.0', 'all' ),
+				'args'  => array( 'bh-wp-aws-ses-bounce-handler', $css_url, array(), '2.1.1', 'all' ),
 			)
 		);
 
@@ -130,7 +130,7 @@ class Admin_Assets_Unit_Test extends \Codeception\Test\Unit {
 			array(
 				'get_plugin_slug'     => 'bh-wp-aws-ses-bounce-handler',
 				'get_plugin_basename' => 'bh-wp-aws-ses-bounce-handler/bh-wp-aws-ses-bounce-handler.php',
-				'get_plugin_version'  => '2.1.0',
+				'get_plugin_version'  => '2.1.1',
 			)
 		);
 

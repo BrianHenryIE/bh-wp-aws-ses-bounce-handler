@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.1.1
+
+* Update `bh-wp-logger`
+
+## n
+
 ## 1.7.0
 
 * Add: use templates folder for settings page and allow overriding.

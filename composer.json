@@ -25,6 +25,19 @@
     "sort-packages": true
   },
   "repositories": {
+    "brianhenryie/strauss": {
+      "type": "package",
+      "package": {
+        "name": "brianhenryie/strauss",
+        "version": "0.29.1",
+        "dist": {
+          "url": "https://github.com/BrianHenryIE/strauss/releases/download/0.29.1/strauss.phar",
+          "type": "phar"
+        },
+        "installation-source": "dist",
+        "bin": "bin/strauss"
+      }
+    },
     "composer/composer": {
       "type": "composer",
       "url": "https://wpackagist.org"
@@ -35,15 +48,14 @@
     "ext-json": "*",
     "ext-simplexml": "*",
     "alleyinteractive/wordpress-autoloader": "^1.1",
-    "brianhenryie/bh-wp-logger": ">0.3"
+    "brianhenryie/bh-wp-logger": ">=0.4"
   },
   "require-dev": {
     "10up/wp_mock": "*",
     "antecedent/patchwork": "*",
     "brianhenryie/color-logger": "*",
-    "brianhenryie/strauss": "*",
+    "brianhenryie/strauss": "0.29.1",
     "dealerdirect/phpcodesniffer-composer-installer": "*",
-    "hoa/console": "^3.17",
     "lucatume/wp-browser": "*",
     "php-stubs/woocommerce-stubs": "*",
     "phpcompatibility/phpcompatibility-wp": "*",
